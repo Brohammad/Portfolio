@@ -10,7 +10,6 @@ import { SkillsSection } from "@/components/sections/skills";
 import { TechFloatingSection } from "@/components/sections/tech-floating";
 import { NowSection } from "@/components/sections/now";
 import { UsesSection } from "@/components/sections/uses";
-import { CertificationsSection } from "@/components/sections/certifications";
 import { GithubSection } from "@/components/sections/github";
 import { BlogSection } from "@/components/sections/blog";
 import { ContactSection } from "@/components/sections/contact";
@@ -39,7 +38,6 @@ export default function Home() {
         <SkillsSection />
         <TechFloatingSection />
         <NowSection />
-        <CertificationsSection />
         <UsesSection />
         <GithubSection />
         <BlogSection />

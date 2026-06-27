@@ -183,7 +183,7 @@ export function ContactSection() {
               )}
 
               <p className="text-xs text-zinc-600 text-center">
-                Note: Connect a form API (Formspree, Resend) to handle submissions in production.
+                I typically respond within 24 hours.
               </p>
             </form>
           </motion.div>

@@ -13,7 +13,7 @@ export const siteConfig = {
   links: {
     github: "https://github.com/Brohammad",
     linkedin: "https://www.linkedin.com/in/aabid-mohamed-a-b22a02229/",
-    email: "hello@brohammad.tech",
+    email: "aabidmohamed2003@gmail.com",
     resume: "/resume.pdf",
   },
 };
@@ -220,36 +220,6 @@ export const projects: Project[] = [
       "Node.js REST API + Python AI service. MongoDB for CRM data. LangChain for insight generation. React dashboard. Deployed with Docker on AWS.",
   },
   {
-    id: "url-shortener",
-    title: "Production URL Shortener",
-    description:
-      "High-throughput URL shortening service with analytics, custom slugs, rate limiting, and sub-5ms redirect latency.",
-    longDescription:
-      "A production-grade URL shortener built to handle high request volumes. Features include custom slug generation, click analytics, Redis caching for fast redirects, rate limiting, QR code generation, and expirable links.",
-    tech: ["Node.js", "Express", "Redis", "PostgreSQL", "Docker"],
-    difficulty: "Advanced",
-    status: "in-progress",
-    features: [
-      "Custom short slugs with collision detection",
-      "Redis-backed caching for sub-5ms redirect latency",
-      "Click analytics with geographic breakdown",
-      "Rate limiting per API key",
-      "QR code generation",
-      "Link expiration with TTL",
-    ],
-    challenges: [
-      "Collision-free slug generation at scale",
-      "Consistent analytics under high concurrent load",
-    ],
-    lessons: [
-      "Redis TTL strategies for caching and expiration",
-      "Horizontal scaling patterns for stateless services",
-    ],
-    metrics: ["< 5ms redirect latency", "Redis hot path", "Stateless design"],
-    architecture:
-      "Stateless Node.js API with Redis caching layer and PostgreSQL for persistent storage.",
-  },
-  {
     id: "distributed-kv",
     title: "Distributed Key-Value Store",
     description:
@@ -276,32 +246,6 @@ export const projects: Project[] = [
     ],
     metrics: ["Raft consensus", "3-node cluster", "Linearizable guarantees"],
     architecture: "Multi-node cluster over gRPC with Raft state machine per node.",
-  },
-  {
-    id: "coming-auth",
-    title: "Authentication Service",
-    description:
-      "Standalone auth microservice — JWT, OAuth2, refresh token rotation, TOTP MFA, and session management.",
-    longDescription: "Coming soon.",
-    tech: ["Node.js", "PostgreSQL", "Redis", "Docker"],
-    difficulty: "Advanced",
-    status: "coming-soon",
-    features: [],
-    challenges: [],
-    lessons: [],
-  },
-  {
-    id: "coming-cache",
-    title: "Distributed Cache",
-    description:
-      "Redis-inspired distributed cache with LRU eviction, consistent hashing, and replication.",
-    longDescription: "Coming soon.",
-    tech: ["Go", "Consistent Hashing", "Docker"],
-    difficulty: "Expert",
-    status: "coming-soon",
-    features: [],
-    challenges: [],
-    lessons: [],
   },
 ];
 
@@ -393,7 +337,6 @@ export const nowPage = {
     "Performance Engineering — profiling, benchmarking",
   ],
   building: [
-    "Production URL Shortener",
     "Distributed Key-Value Store",
     "AI RAG Platform",
     "Authentication Service",

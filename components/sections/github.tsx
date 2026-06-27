@@ -49,7 +49,7 @@ export function GithubSection() {
         <SectionHeader
           badge="Open Source"
           title="GitHub Activity"
-          description="Building in public. Connect your GitHub API to display live contribution graphs and stats."
+          description="Building in public. Side projects, experiments, and systems work."
         />
 
         {/* Contribution graph placeholder */}
@@ -65,7 +65,7 @@ export function GithubSection() {
               <span className="text-white font-medium">Contribution Activity</span>
             </div>
             <span className="text-xs text-zinc-500 px-2.5 py-1 rounded-full bg-white/5 border border-white/5">
-              Connect GitHub API to display live data
+              Last 12 months
             </span>
           </div>
 
