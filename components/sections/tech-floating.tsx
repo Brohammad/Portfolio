@@ -43,13 +43,13 @@ export function TechFloatingSection() {
                 animationDelay: `${i * 0.3}s`,
               }}
               whileHover={{ scale: 1.1, y: -4 }}
-              className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#111113] border border-white/5 hover:border-white/10 transition-colors cursor-default"
+              className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-card border border-border-subtle hover:border-border transition-colors cursor-default"
             >
               <div
                 className="w-2.5 h-2.5 rounded-full"
                 style={{ background: tech.color }}
               />
-              <span className="text-sm font-medium text-zinc-300">{tech.name}</span>
+              <span className="text-sm font-medium text-foreground/80">{tech.name}</span>
             </motion.div>
           ))}
         </div>

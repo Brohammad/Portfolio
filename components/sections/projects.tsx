@@ -36,22 +36,22 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       </DialogHeader>
 
       <div className="space-y-6 mt-2">
-        <p className="text-zinc-300 leading-relaxed">{project.longDescription}</p>
+        <p className="text-foreground/80 leading-relaxed">{project.longDescription}</p>
 
         {/* Architecture */}
         {project.architecture && (
-          <div className="p-4 rounded-xl bg-white/3 border border-white/5">
+          <div className="p-4 rounded-xl bg-white/3 border border-border-subtle">
             <div className="flex items-center gap-2 mb-2 text-blue-400">
               <Layers className="w-4 h-4" />
               <span className="text-sm font-semibold">Architecture</span>
             </div>
-            <p className="text-sm text-zinc-400">{project.architecture}</p>
+            <p className="text-sm text-muted-foreground">{project.architecture}</p>
           </div>
         )}
 
         {/* Tech stack */}
         <div>
-          <div className="flex items-center gap-2 mb-3 text-zinc-300">
+          <div className="flex items-center gap-2 mb-3 text-foreground/80">
             <Zap className="w-4 h-4 text-yellow-400" />
             <span className="text-sm font-semibold">Tech Stack</span>
           </div>
@@ -65,13 +65,13 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         {/* Features */}
         {project.features.length > 0 && (
           <div>
-            <div className="flex items-center gap-2 mb-3 text-zinc-300">
+            <div className="flex items-center gap-2 mb-3 text-foreground/80">
               <ChevronRight className="w-4 h-4 text-emerald-400" />
               <span className="text-sm font-semibold">Key Features</span>
             </div>
             <ul className="space-y-1.5">
               {project.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm text-zinc-400">
+                <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <span className="text-emerald-400 mt-0.5">✓</span>
                   {f}
                 </li>
@@ -83,14 +83,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         {/* Metrics */}
         {project.metrics && project.metrics.length > 0 && (
           <div>
-            <div className="flex items-center gap-2 mb-3 text-zinc-300">
+            <div className="flex items-center gap-2 mb-3 text-foreground/80">
               <BarChart2 className="w-4 h-4 text-blue-400" />
               <span className="text-sm font-semibold">Metrics</span>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {project.metrics.map((m) => (
                 <div key={m} className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/10 text-center">
-                  <p className="text-xs text-zinc-400">{m}</p>
+                  <p className="text-xs text-muted-foreground">{m}</p>
                 </div>
               ))}
             </div>
@@ -101,13 +101,13 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         <div className="grid sm:grid-cols-2 gap-4">
           {project.challenges.length > 0 && (
             <div>
-              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+              <div className="flex items-center gap-2 mb-3 text-foreground/80">
                 <span className="text-orange-400 text-sm">⚡</span>
                 <span className="text-sm font-semibold">Challenges</span>
               </div>
               <ul className="space-y-1.5">
                 {project.challenges.map((c) => (
-                  <li key={c} className="text-xs text-zinc-500 flex gap-2">
+                  <li key={c} className="text-xs text-muted-foreground/70 flex gap-2">
                     <span className="text-orange-400 shrink-0">→</span>
                     {c}
                   </li>
@@ -117,13 +117,13 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           )}
           {project.lessons.length > 0 && (
             <div>
-              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+              <div className="flex items-center gap-2 mb-3 text-foreground/80">
                 <BookOpen className="w-4 h-4 text-purple-400" />
                 <span className="text-sm font-semibold">Lessons</span>
               </div>
               <ul className="space-y-1.5">
                 {project.lessons.map((l) => (
-                  <li key={l} className="text-xs text-zinc-500 flex gap-2">
+                  <li key={l} className="text-xs text-muted-foreground/70 flex gap-2">
                     <span className="text-purple-400 shrink-0">→</span>
                     {l}
                   </li>
@@ -134,7 +134,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         </div>
 
         {/* Links */}
-        <div className="flex gap-3 pt-2 border-t border-white/5">
+        <div className="flex gap-3 pt-2 border-t border-border-subtle">
           {project.github && (
             <Button size="sm" variant="outline" asChild>
               <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -172,7 +172,7 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#0a0a0d] to-[#09090b]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -194,8 +194,8 @@ export function ProjectsSection() {
               variants={cardVariants}
               className={`relative group rounded-xl border transition-all duration-300 overflow-hidden ${
                 project.status === "coming-soon"
-                  ? "bg-[#0d0d0f] border-white/5 opacity-70"
-                  : "bg-[#111113] border-white/5 hover:border-white/10 card-hover cursor-pointer"
+                  ? "bg-[#0d0d0f] border-border-subtle opacity-70"
+                  : "bg-card border-border-subtle hover:border-border card-hover cursor-pointer"
               }`}
               onClick={() => {
                 if (project.status !== "coming-soon") setSelectedProject(project);
@@ -224,7 +224,7 @@ export function ProjectsSection() {
                       {project.difficulty}
                     </Badge>
                     {project.status === "coming-soon" && (
-                      <Badge variant="outline" className="text-[10px] text-zinc-500">
+                      <Badge variant="outline" className="text-[10px] text-muted-foreground/70">
                         <Clock className="w-2.5 h-2.5 mr-1" />
                         Coming Soon
                       </Badge>
@@ -236,17 +236,17 @@ export function ProjectsSection() {
                     )}
                   </div>
                   {project.status !== "coming-soon" && (
-                    <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-blue-400 transition-colors shrink-0" />
+                    <ArrowUpRight className="w-4 h-4 text-muted-foreground/50 group-hover:text-blue-400 transition-colors shrink-0" />
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                <h3 className="font-semibold text-foreground mb-2 group-hover:text-blue-300 transition-colors">
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-zinc-400 leading-relaxed mb-4 line-clamp-3">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
                   {project.description}
                 </p>
 
@@ -255,13 +255,13 @@ export function ProjectsSection() {
                   {project.tech.slice(0, 4).map((t) => (
                     <span
                       key={t}
-                      className="px-2 py-0.5 text-[11px] rounded-md bg-white/5 text-zinc-500 border border-white/5"
+                      className="px-2 py-0.5 text-[11px] rounded-md bg-muted/50 text-muted-foreground/70 border border-border-subtle"
                     >
                       {t}
                     </span>
                   ))}
                   {project.tech.length > 4 && (
-                    <span className="px-2 py-0.5 text-[11px] rounded-md bg-white/5 text-zinc-600 border border-white/5">
+                    <span className="px-2 py-0.5 text-[11px] rounded-md bg-muted/50 text-muted-foreground/50 border border-border-subtle">
                       +{project.tech.length - 4}
                     </span>
                   )}
@@ -300,7 +300,7 @@ export function ProjectsSection() {
                       </Button>
                     )}
                     <button
-                      className="ml-auto text-xs text-zinc-500 hover:text-blue-400 transition-colors flex items-center gap-1"
+                      className="ml-auto text-xs text-muted-foreground/70 hover:text-blue-400 transition-colors flex items-center gap-1"
                       onClick={() => setSelectedProject(project)}
                     >
                       Details

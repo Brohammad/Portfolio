@@ -50,7 +50,7 @@ export function UsesSection() {
                   <div className={`w-9 h-9 rounded-lg border flex items-center justify-center ${colorMap[cat.color]}`}>
                     <Icon className="w-4 h-4" />
                   </div>
-                  <span className="text-xs text-zinc-500 font-medium text-center">{cat.label}</span>
+                  <span className="text-xs text-muted-foreground/70 font-medium text-center">{cat.label}</span>
                 </div>
 
                 {/* Items */}
@@ -58,10 +58,10 @@ export function UsesSection() {
                   {items.map((item) => (
                     <div
                       key={item.name}
-                      className="p-4 rounded-xl bg-[#111113] border border-white/5 hover:border-white/10 transition-colors"
+                      className="p-4 rounded-xl bg-card border border-border-subtle hover:border-white/10 transition-colors"
                     >
-                      <div className="font-medium text-white text-sm mb-0.5">{item.name}</div>
-                      <div className="text-xs text-zinc-500">{item.description}</div>
+                      <div className="font-medium text-foreground text-sm mb-0.5">{item.name}</div>
+                      <div className="text-xs text-muted-foreground/70">{item.description}</div>
                     </div>
                   ))}
                 </div>

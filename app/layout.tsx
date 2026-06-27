@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/content/data";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -88,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} dark`} suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -110,8 +111,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased bg-[#09090b] text-white">
-        {children}
+      <body className="font-sans antialiased bg-background text-foreground">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

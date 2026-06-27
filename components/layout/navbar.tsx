@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Terminal, Download } from "lucide-react";
+import { Menu, X, Terminal, Download, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/content/data";
@@ -23,6 +24,10 @@ export function Navbar() {
   const { scrolled } = useScroll(20);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const sections = navLinks
@@ -78,7 +83,7 @@ export function Navbar() {
               <Terminal className="w-4 h-4 text-white" />
             </div>
             <span className="tracking-tight">brohammad</span>
-            <span className="text-blue-400">.tech</span>
+            <span className="text-primary">.tech</span>
           </button>
 
           {/* Desktop nav */}
@@ -112,6 +117,15 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-lg text-zinc-400 hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+            )}
             <Button
               size="sm"
               variant="outline"
@@ -166,13 +180,22 @@ export function Navbar() {
                   )}
                 </button>
               ))}
-              <div className="pt-2 border-t border-white/5 mt-1">
+              <div className="pt-2 border-t border-border-subtle mt-1 flex flex-col gap-2">
                 <Button size="sm" variant="outline" className="w-full gap-2" asChild>
                   <a href={siteConfig.links.resume} download>
                     <Download className="w-3.5 h-3.5" />
                     Download Resume
                   </a>
                 </Button>
+                {mounted && (
+                  <button
+                    onClick={() => { setTheme(theme === "dark" ? "light" : "dark"); setMobileOpen(false); }}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-zinc-400 hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  >
+                    {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                    {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                  </button>
+                )}
               </div>
             </div>
           </motion.div>

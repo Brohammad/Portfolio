@@ -76,7 +76,7 @@ const cardVariants = {
 export function AboutSection() {
   return (
     <section id="about" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#0a0a0d] to-[#09090b]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -94,22 +94,22 @@ export function AboutSection() {
             transition={{ duration: 0.6 }}
             className="space-y-5"
           >
-            <p className="text-zinc-300 text-lg leading-relaxed">
+            <p className="text-foreground/80 text-lg leading-relaxed">
               I&apos;m a{" "}
-              <span className="text-white font-medium">Backend and AI Engineer</span>{" "}
+              <span className="text-foreground font-medium">Backend and AI Engineer</span>{" "}
               at PwC, building enterprise-grade intelligent systems for banking
               clients. NIT Calicut grad working at the intersection of{" "}
-              <span className="text-white font-medium">distributed systems</span>,{" "}
-              <span className="text-white font-medium">LLM applications</span>, and{" "}
-              <span className="text-white font-medium">production backend infrastructure</span>.
+              <span className="text-foreground font-medium">distributed systems</span>,{" "}
+              <span className="text-foreground font-medium">LLM applications</span>, and{" "}
+              <span className="text-foreground font-medium">production backend infrastructure</span>.
             </p>
-            <p className="text-zinc-400 text-base leading-relaxed">
+            <p className="text-muted-foreground text-base leading-relaxed">
               Day to day I design multi-agent AI systems, RAG pipelines, and backend
               APIs deployed in production for Fortune 500 clients. Outside work I&apos;m
               building side projects to go deeper — distributed systems, systems
               programming in C++, and AI infrastructure.
             </p>
-            <p className="text-zinc-400 text-base leading-relaxed">
+            <p className="text-muted-foreground text-base leading-relaxed">
               I understand systems from first principles. I read source code,
               study production postmortems, and build things from scratch when
               that&apos;s the best way to actually understand them. My target is
@@ -127,7 +127,7 @@ export function AboutSection() {
                 "Production-focused",
                 "Always experimenting",
               ].map((value) => (
-                <div key={value} className="flex items-center gap-2 text-zinc-400 text-sm">
+                <div key={value} className="flex items-center gap-2 text-muted-foreground text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
                   {value}
                 </div>
@@ -151,15 +151,15 @@ export function AboutSection() {
                 <motion.div
                   key={card.label}
                   variants={cardVariants}
-                  className="card-hover p-4 rounded-xl bg-[#111113] border border-white/5 flex flex-col gap-3"
+                  className="card-hover p-4 rounded-xl bg-card border border-border-subtle flex flex-col gap-3"
                 >
                   <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${colorClass}`}>
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs text-zinc-500 mb-0.5">{card.label}</div>
-                    <div className="text-white font-medium text-sm">{card.value}</div>
-                    <div className="text-zinc-500 text-xs mt-0.5">{card.sub}</div>
+                    <div className="text-xs text-muted-foreground/70 mb-0.5">{card.label}</div>
+                    <div className="text-foreground font-medium text-sm">{card.value}</div>
+                    <div className="text-muted-foreground/70 text-xs mt-0.5">{card.sub}</div>
                   </div>
                 </motion.div>
               );

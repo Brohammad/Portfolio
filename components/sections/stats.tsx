@@ -19,12 +19,12 @@ function StatItem({
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-1">
-      <div className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+      <div className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
         {prefix}
         {count}
         <span className="text-blue-400">{suffix}</span>
       </div>
-      <div className="text-sm text-zinc-500 text-center">{label}</div>
+      <div className="text-sm text-muted-foreground/70 text-center">{label}</div>
     </div>
   );
 }
@@ -33,7 +33,7 @@ export function StatsSection() {
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-950/20 via-[#09090b] to-purple-950/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-950/20 via-background to-purple-950/20" />
       <div className="absolute inset-0 grid-bg opacity-30" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -18,7 +18,7 @@ const itemVariants = {
 export function NowSection() {
   return (
     <section id="now" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#0a0a0d] to-[#09090b]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -34,20 +34,20 @@ export function NowSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:col-span-2 p-6 rounded-xl bg-[#111113] border border-white/5"
+            className="lg:col-span-2 p-6 rounded-xl bg-card border border-border-subtle"
           >
             <div className="flex items-center gap-2 mb-5">
               <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                 <BookOpen className="w-4 h-4 text-blue-400" />
               </div>
-              <h3 className="font-semibold text-white">Currently Learning</h3>
+              <h3 className="font-semibold text-foreground">Currently Learning</h3>
             </div>
             <div className="space-y-2">
               {nowPage.learning.map((item) => (
                 <motion.div
                   key={item}
                   variants={itemVariants}
-                  className="flex items-start gap-2.5 text-sm text-zinc-400"
+                  className="flex items-start gap-2.5 text-sm text-muted-foreground"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0 mt-1.5" />
                   {item}
@@ -62,20 +62,20 @@ export function NowSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="p-6 rounded-xl bg-[#111113] border border-white/5"
+            className="p-6 rounded-xl bg-card border border-border-subtle"
           >
             <div className="flex items-center gap-2 mb-5">
               <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
                 <Hammer className="w-4 h-4 text-purple-400" />
               </div>
-              <h3 className="font-semibold text-white">Building</h3>
+              <h3 className="font-semibold text-foreground">Building</h3>
             </div>
             <div className="space-y-2">
               {nowPage.building.map((item) => (
                 <motion.div
                   key={item}
                   variants={itemVariants}
-                  className="flex items-start gap-2.5 text-sm text-zinc-400"
+                  className="flex items-start gap-2.5 text-sm text-muted-foreground"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 mt-1.5" />
                   {item}
@@ -90,20 +90,20 @@ export function NowSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="p-6 rounded-xl bg-[#111113] border border-white/5"
+            className="p-6 rounded-xl bg-card border border-border-subtle"
           >
             <div className="flex items-center gap-2 mb-5">
               <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                 <Target className="w-4 h-4 text-emerald-400" />
               </div>
-              <h3 className="font-semibold text-white">Goals</h3>
+              <h3 className="font-semibold text-foreground">Goals</h3>
             </div>
             <div className="space-y-2">
               {nowPage.goals.map((item) => (
                 <motion.div
                   key={item}
                   variants={itemVariants}
-                  className="flex items-start gap-2.5 text-sm text-zinc-400"
+                  className="flex items-start gap-2.5 text-sm text-muted-foreground"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
                   {item}
@@ -124,14 +124,14 @@ export function NowSection() {
               <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
                 <BookMarked className="w-4 h-4 text-orange-400" />
               </div>
-              <h3 className="font-semibold text-white">Reading</h3>
+              <h3 className="font-semibold text-foreground">Reading</h3>
             </div>
             <div className="flex flex-wrap gap-3">
               {nowPage.reading.map((book) => (
                 <motion.div
                   key={book}
                   variants={itemVariants}
-                  className="px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-sm text-zinc-300"
+                  className="px-3 py-2 rounded-lg bg-white/5 border border-border-subtle text-sm text-foreground/80"
                 >
                   {book}
                 </motion.div>

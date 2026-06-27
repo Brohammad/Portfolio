@@ -57,14 +57,14 @@ export function GithubSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 p-6 rounded-2xl bg-[#111113] border border-white/5 overflow-hidden"
+          className="mt-12 p-6 rounded-2xl bg-card border border-border-subtle overflow-hidden"
         >
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <GithubIcon className="w-5 h-5 text-zinc-400" />
-              <span className="text-white font-medium">Contribution Activity</span>
+              <GithubIcon className="w-5 h-5 text-muted-foreground" />
+              <span className="text-foreground font-medium">Contribution Activity</span>
             </div>
-            <span className="text-xs text-zinc-500 px-2.5 py-1 rounded-full bg-white/5 border border-white/5">
+            <span className="text-xs text-muted-foreground/70 px-2.5 py-1 rounded-full bg-white/5 border border-border-subtle">
               Last 12 months
             </span>
           </div>
@@ -101,7 +101,7 @@ export function GithubSection() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 mt-4 justify-end text-xs text-zinc-600">
+          <div className="flex items-center gap-2 mt-4 justify-end text-xs text-muted-foreground/50">
             <span>Less</span>
             <div className="flex gap-1">
               {["bg-white/5", "bg-blue-900/40", "bg-blue-700/50", "bg-blue-600/70", "bg-blue-500"].map(
@@ -132,21 +132,21 @@ export function GithubSection() {
                 hidden: { opacity: 0, y: 10 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
               }}
-              className="card-hover group p-4 rounded-xl bg-[#111113] border border-white/5 hover:border-white/10 transition-all flex flex-col gap-3"
+              className="card-hover group p-4 rounded-xl bg-card border border-border-subtle hover:border-white/10 transition-all flex flex-col gap-3"
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
-                  <GithubIcon className="w-4 h-4 text-zinc-500" />
+                  <GithubIcon className="w-4 h-4 text-muted-foreground/70" />
                   <span className="text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors">
                     {repo.name}
                   </span>
                 </div>
-                <ExternalLink className="w-3.5 h-3.5 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
+                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-muted-foreground transition-colors" />
               </div>
 
-              <p className="text-xs text-zinc-500 leading-relaxed">{repo.description}</p>
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">{repo.description}</p>
 
-              <div className="flex items-center gap-4 text-xs text-zinc-600">
+              <div className="flex items-center gap-4 text-xs text-muted-foreground/50">
                 <div className="flex items-center gap-1">
                   <div
                     className="w-2.5 h-2.5 rounded-full"

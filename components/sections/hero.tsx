@@ -88,11 +88,11 @@ export function HeroSection() {
               className="space-y-2"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
-                <span className="text-white">Hi, I&apos;m </span>
+                <span className="text-foreground">Hi, I&apos;m </span>
                 <span className="gradient-text">Brohammad</span>
               </h1>
               <div className="h-16 flex items-center">
-                <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-300">
+                <h2 className="text-2xl sm:text-3xl font-semibold text-foreground/80">
                   {typedRole}
                   <span className="cursor-blink text-blue-400 ml-0.5">|</span>
                 </h2>
@@ -104,10 +104,10 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-lg text-zinc-400 leading-relaxed max-w-lg"
+              className="text-lg text-muted-foreground leading-relaxed max-w-lg"
             >
               Building intelligent systems that scale. Currently at{" "}
-              <span className="text-white font-medium">PwC</span>{" "}
+              <span className="text-foreground font-medium">PwC</span>{" "}
               shipping enterprise AI for banking clients — multi-agent systems,
               RAG pipelines, and production LLM infrastructure. NIT Calicut grad.
             </motion.p>
@@ -163,24 +163,24 @@ export function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-xs text-zinc-600 flex items-center gap-1.5"
+              className="text-xs text-muted-foreground/50 flex items-center gap-1.5"
             >
               Press{" "}
-              <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 font-mono text-zinc-400">
+              <kbd className="px-1.5 py-0.5 rounded bg-muted/50 border border-border-subtle font-mono text-muted-foreground">
                 ⌘K
               </kbd>{" "}
               to open command palette
             </motion.p>
           </div>
 
-          {/* Right — Terminal */}
+          {/* Right — Terminal (forced dark so terminal colors always stay correct) */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hidden lg:block"
           >
-            <div className="relative">
+            <div className="relative dark" suppressHydrationWarning>
               {/* Glow */}
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl blur-xl" />
 
@@ -194,7 +194,7 @@ export function HeroSection() {
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
                   </div>
                   <div className="flex-1 mx-4">
-                    <div className="bg-white/5 rounded-md px-3 py-0.5 text-xs text-zinc-500 font-mono text-center">
+                    <div className="bg-white/5 rounded-md px-3 py-0.5 text-xs text-muted-foreground/70 font-mono text-center">
                       zsh — brohammad@dev
                     </div>
                   </div>
@@ -213,14 +213,14 @@ export function HeroSection() {
                       {"prompt" in line ? (
                         <>
                           <span className="text-blue-400 shrink-0">{line.prompt} $</span>
-                          <span className="text-zinc-300">{line.cmd}</span>
+                          <span className="text-foreground/80">{line.cmd}</span>
                         </>
                       ) : (
                         <span
                           className={
                             "success" in line && line.success
                               ? "text-emerald-400 pl-6"
-                              : "text-zinc-500 pl-6"
+                              : "text-muted-foreground/70 pl-6"
                           }
                         >
                           {line.result}
@@ -266,7 +266,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-600"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/50"
         >
           <span className="text-xs">Scroll to explore</span>
           <motion.div

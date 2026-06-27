@@ -35,29 +35,29 @@ export function BlogSection() {
             className="mt-12 text-center"
           >
             {/* Empty state */}
-            <div className="max-w-2xl mx-auto p-10 rounded-2xl bg-[#111113] border border-white/5 flex flex-col items-center gap-6">
+            <div className="max-w-2xl mx-auto p-10 rounded-2xl bg-card border border-border-subtle flex flex-col items-center gap-6">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/20 flex items-center justify-center">
                 <PenLine className="w-7 h-7 text-blue-400" />
               </div>
               <div className="space-y-2 text-center">
-                <h3 className="text-xl font-semibold text-white">Technical articles coming soon</h3>
-                <p className="text-zinc-500 text-sm max-w-sm">
+                <h3 className="text-xl font-semibold text-foreground">Technical articles coming soon</h3>
+                <p className="text-muted-foreground/70 text-sm max-w-sm">
                   Writing in-depth posts about systems engineering, AI pipelines, and production software.
                 </p>
               </div>
 
               {/* Upcoming topics */}
               <div className="w-full max-w-md space-y-2.5">
-                <p className="text-xs text-zinc-600 uppercase tracking-wider text-center mb-3">
+                <p className="text-xs text-muted-foreground/50 uppercase tracking-wider text-center mb-3">
                   Upcoming topics
                 </p>
                 {upcomingTopics.map((topic) => (
                   <div
                     key={topic}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-white/3 border border-white/5 text-left"
+                    className="flex items-center gap-3 p-3 rounded-lg bg-white/3 border border-border-subtle text-left"
                   >
-                    <Clock className="w-4 h-4 text-zinc-600 shrink-0" />
-                    <span className="text-sm text-zinc-400">{topic}</span>
+                    <Clock className="w-4 h-4 text-muted-foreground/50 shrink-0" />
+                    <span className="text-sm text-muted-foreground">{topic}</span>
                   </div>
                 ))}
               </div>
@@ -73,7 +73,7 @@ export function BlogSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="card-hover group p-5 rounded-xl bg-[#111113] border border-white/5 hover:border-white/10 transition-all"
+                className="card-hover group p-5 rounded-xl bg-card border border-border-subtle hover:border-white/10 transition-all"
               >
                 <div className="flex flex-wrap gap-1.5 mb-3">
                   {post.tags.map((tag) => (
@@ -85,11 +85,11 @@ export function BlogSection() {
                     </span>
                   ))}
                 </div>
-                <h3 className="font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                <h3 className="font-semibold text-foreground mb-2 group-hover:text-blue-300 transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-sm text-zinc-400 line-clamp-2 mb-4">{post.excerpt}</p>
-                <div className="flex items-center justify-between text-xs text-zinc-600">
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{post.excerpt}</p>
+                <div className="flex items-center justify-between text-xs text-muted-foreground/50">
                   <span>{post.date}</span>
                   <span>{post.readTime}</span>
                 </div>
@@ -99,7 +99,7 @@ export function BlogSection() {
         )}
 
         <div className="mt-8 text-center">
-          <Button variant="ghost" className="gap-2 text-zinc-400 hover:text-white">
+          <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-foreground">
             All Articles
             <ArrowRight className="w-4 h-4" />
           </Button>

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Class-based dark mode for next-themes */
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #09090b;
   --foreground: #fafafa;
@@ -15,9 +18,30 @@
   --accent: #1c1c1e;
   --accent-foreground: #fafafa;
   --border: #27272a;
+  --border-subtle: rgba(255, 255, 255, 0.06);
   --input: #27272a;
   --ring: #3b82f6;
   --radius: 0.75rem;
+}
+
+html.light {
+  --background: #f9fafb;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #6d28d9;
+  --muted: #f4f4f5;
+  --muted-foreground: #52525b;
+  --accent: #f4f4f5;
+  --accent-foreground: #09090b;
+  --border: #e4e4e7;
+  --border-subtle: rgba(0, 0, 0, 0.07);
+  --input: #e4e4e7;
+  --ring: #2563eb;
 }
 
 @theme inline {
@@ -31,6 +55,7 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -54,6 +79,7 @@ body {
   font-family: var(--font-sans);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -86,6 +112,12 @@ body {
   background-size: 60px 60px;
 }
 
+html.light .grid-bg {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+}
+
 /* Gradient text utility */
 .gradient-text {
   background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
@@ -96,10 +128,15 @@ body {
 
 /* Glassmorphism */
 .glass {
-  background: rgba(17, 17, 19, 0.8);
+  background: rgba(17, 17, 19, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.light .glass {
+  background: rgba(249, 250, 251, 0.9);
+  border-color: rgba(0, 0, 0, 0.07);
 }
 
 /* Glow effects */
@@ -192,6 +229,10 @@ body {
 .card-hover:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+html.light .card-hover:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* Timeline connector */

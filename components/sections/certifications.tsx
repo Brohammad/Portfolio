@@ -58,11 +58,11 @@ export function CertificationsSection() {
                     </div>
                     <div>
                       <Award className="w-4 h-4 text-yellow-400 mb-1" />
-                      <p className="text-xs text-zinc-500">{cert.issuer}</p>
+                      <p className="text-xs text-muted-foreground/70">{cert.issuer}</p>
                     </div>
                   </div>
                   {cert.placeholder && (
-                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-zinc-800 text-zinc-500 border border-white/5 shrink-0">
+                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-zinc-800 text-muted-foreground/70 border border-white/5 shrink-0">
                       <Clock className="w-2.5 h-2.5" />
                       In Progress
                     </span>
@@ -74,7 +74,7 @@ export function CertificationsSection() {
                 </h3>
 
                 {cert.date && (
-                  <p className="text-xs text-zinc-500">{cert.date}</p>
+                  <p className="text-xs text-muted-foreground/70">{cert.date}</p>
                 )}
 
                 {cert.credentialUrl && (

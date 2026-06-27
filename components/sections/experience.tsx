@@ -9,7 +9,7 @@ import { experiences } from "@/content/data";
 export function ExperienceSection() {
   return (
     <section id="experience" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#0a0a0d] to-[#09090b]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -39,25 +39,25 @@ export function ExperienceSection() {
                     className={`w-4 h-4 rounded-full border-2 ${
                       exp.current
                         ? "bg-blue-500 border-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.6)]"
-                        : "bg-[#09090b] border-zinc-600"
+                        : "bg-background border-zinc-600"
                     }`}
                   />
                 </div>
 
                 {/* Card */}
-                <div className="card-hover group p-5 sm:p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-white/10 transition-all">
+                <div className="card-hover group p-5 sm:p-6 rounded-xl bg-card border border-border-subtle hover:border-border transition-all">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold text-white text-lg">{exp.role}</h3>
+                        <h3 className="font-semibold text-foreground text-lg">{exp.role}</h3>
                         {exp.current && (
                           <Badge variant="default" className="text-[10px]">
                             Current
                           </Badge>
                         )}
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-zinc-400">
-                        <span className="font-medium text-zinc-300">{exp.company}</span>
+                      <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                        <span className="font-medium text-foreground/80">{exp.company}</span>
                         <span>·</span>
                         <span className="flex items-center gap-1">
                           <MapPin className="w-3 h-3" />
@@ -66,10 +66,10 @@ export function ExperienceSection() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-xs text-zinc-500 px-2.5 py-1 rounded-full bg-white/5 border border-white/5">
+                      <span className="text-xs text-muted-foreground/70 px-2.5 py-1 rounded-full bg-muted/50 border border-border-subtle">
                         {exp.duration}
                       </span>
-                      <span className="text-xs text-zinc-500 capitalize px-2.5 py-1 rounded-full bg-white/5 border border-white/5">
+                      <span className="text-xs text-muted-foreground/70 capitalize px-2.5 py-1 rounded-full bg-muted/50 border border-border-subtle">
                         {exp.type}
                       </span>
                     </div>
@@ -78,7 +78,7 @@ export function ExperienceSection() {
                   {/* Responsibilities */}
                   <ul className="space-y-1.5 mb-4">
                     {exp.responsibilities.map((r, j) => (
-                      <li key={j} className="flex items-start gap-2 text-zinc-400 text-sm">
+                      <li key={j} className="flex items-start gap-2 text-muted-foreground text-sm">
                         <ChevronRight className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
                         {r}
                       </li>
@@ -91,7 +91,7 @@ export function ExperienceSection() {
                       {exp.achievements.map((a, j) => (
                         <div key={j} className="flex items-start gap-2 text-sm">
                           <span className="text-emerald-400 shrink-0">▲</span>
-                          <span className="text-zinc-400">{a}</span>
+                          <span className="text-muted-foreground">{a}</span>
                         </div>
                       ))}
                     </div>
@@ -118,17 +118,17 @@ export function ExperienceSection() {
               className="relative pl-16 sm:pl-20"
             >
               <div className="absolute left-4 sm:left-6 top-6 -translate-x-1/2 z-10">
-                <div className="w-4 h-4 rounded-full bg-[#09090b] border-2 border-zinc-600" />
+                <div className="w-4 h-4 rounded-full bg-background border-2 border-zinc-600" />
               </div>
-              <div className="p-5 sm:p-6 rounded-xl bg-[#111113] border border-white/5">
+              <div className="p-5 sm:p-6 rounded-xl bg-card border border-border-subtle">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1">
                   <div>
-                    <h3 className="font-semibold text-white">B.Tech</h3>
-                    <p className="text-zinc-400 text-sm mt-0.5">
+                    <h3 className="font-semibold text-foreground">B.Tech</h3>
+                    <p className="text-muted-foreground text-sm mt-0.5">
                       National Institute of Technology Calicut
                     </p>
                   </div>
-                  <span className="text-xs text-zinc-500 px-2.5 py-1 rounded-full bg-white/5 border border-white/5 w-fit">
+                  <span className="text-xs text-muted-foreground/70 px-2.5 py-1 rounded-full bg-muted/50 border border-border-subtle w-fit">
                     NIT Calicut
                   </span>
                 </div>

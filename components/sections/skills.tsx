@@ -34,7 +34,7 @@ const cardVariants = {
 export function SkillsSection() {
   return (
     <section id="skills" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] to-[#09090b]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-background" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -57,14 +57,14 @@ export function SkillsSection() {
               <motion.div
                 key={group.category}
                 variants={cardVariants}
-                className="card-hover group p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-white/10 transition-colors"
+                className="card-hover group p-6 rounded-xl bg-card border border-border-subtle hover:border-white/10 transition-colors"
               >
                 {/* Category header */}
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Icon className="w-4.5 h-4.5 text-blue-400 w-5 h-5" />
                   </div>
-                  <h3 className="font-semibold text-white">{group.category}</h3>
+                  <h3 className="font-semibold text-foreground">{group.category}</h3>
                 </div>
 
                 {/* Skills */}
@@ -73,7 +73,7 @@ export function SkillsSection() {
                     <motion.span
                       key={skill.name}
                       whileHover={{ scale: 1.05 }}
-                      className="skill-tag px-3 py-1 rounded-full text-sm text-zinc-400 bg-white/5 border border-white/5 cursor-default"
+                      className="skill-tag px-3 py-1 rounded-full text-sm text-muted-foreground bg-white/5 border border-border-subtle cursor-default"
                     >
                       {skill.name}
                     </motion.span>
@@ -92,7 +92,7 @@ export function SkillsSection() {
           transition={{ delay: 0.3 }}
           className="mt-16 overflow-hidden"
         >
-          <p className="text-center text-xs text-zinc-600 uppercase tracking-widest mb-6">
+          <p className="text-center text-xs text-muted-foreground/50 uppercase tracking-widest mb-6">
             Also familiar with
           </p>
           <div className="flex gap-3 flex-wrap justify-center">
@@ -114,7 +114,7 @@ export function SkillsSection() {
             ].map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-full text-xs text-zinc-500 bg-white/3 border border-white/5"
+                className="px-3 py-1 rounded-full text-xs text-muted-foreground/70 bg-white/3 border border-border-subtle"
               >
                 {tech}
               </span>
