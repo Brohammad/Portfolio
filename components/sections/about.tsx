@@ -24,45 +24,41 @@ const infoCards = [
     label: "Education",
     value: "NIT Calicut",
     sub: "B.Tech EEE · Class of 2025",
-    color: "emerald",
+    color: "purple",
   },
   {
     icon: Target,
     label: "Current Focus",
     value: "Enterprise AI Systems",
     sub: "Multi-agent · RAG · LLM Infra",
-    color: "purple",
+    color: "blue",
   },
   {
     icon: BookOpen,
     label: "Learning",
     value: "Distributed Systems",
     sub: "C++ · Consensus · Linux",
-    color: "orange",
+    color: "purple",
   },
   {
     icon: Coffee,
     label: "Interests",
     value: "Backend & AI",
     sub: "Building intelligent systems at scale",
-    color: "pink",
+    color: "blue",
   },
   {
     icon: Zap,
     label: "Goal",
     value: "Top-Tier Tech",
     sub: "OpenAI · Anthropic · Cloudflare · Stripe",
-    color: "cyan",
+    color: "purple",
   },
 ];
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-500/10 border-blue-500/20 text-blue-400",
-  emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
   purple: "bg-purple-500/10 border-purple-500/20 text-purple-400",
-  orange: "bg-orange-500/10 border-orange-500/20 text-orange-400",
-  pink: "bg-pink-500/10 border-pink-500/20 text-pink-400",
-  cyan: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400",
 };
 
 const containerVariants = {
@@ -79,7 +75,7 @@ const cardVariants = {
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" className="py-16 sm:py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#0a0a0d] to-[#09090b]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +85,7 @@ export function AboutSection() {
           description="I'm a backend and AI engineer who cares deeply about building systems that are reliable, observable, and maintainable at scale."
         />
 
-        <div className="mt-16 grid lg:grid-cols-2 gap-16 items-start">
+        <div className="mt-12 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Bio */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -145,7 +141,7 @@ export function AboutSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-3"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
           >
             {infoCards.map((card) => {
               const Icon = card.icon;

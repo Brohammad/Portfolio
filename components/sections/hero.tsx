@@ -87,7 +87,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-2"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
                 <span className="text-white">Hi, I&apos;m </span>
                 <span className="gradient-text">Brohammad</span>
               </h1>

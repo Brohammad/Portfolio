@@ -28,7 +28,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-16 sm:py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#0a0a0d] to-[#09090b]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +38,7 @@ export function ContactSection() {
           description="Open to full-time opportunities, collaborations, and interesting projects. Don't hesitate to reach out."
         />
 
-        <div className="mt-16 grid lg:grid-cols-2 gap-12">
+        <div className="mt-10 sm:mt-16 grid lg:grid-cols-2 gap-12">
           {/* Left — Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

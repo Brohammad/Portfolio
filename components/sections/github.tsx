@@ -44,7 +44,7 @@ const pinnedRepos = [
 
 export function GithubSection() {
   return (
-    <section id="github" className="py-24 relative">
+    <section id="github" className="py-16 sm:py-24 relative">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Open Source"

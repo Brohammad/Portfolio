@@ -8,7 +8,7 @@ import { experiences } from "@/content/data";
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 relative">
+    <section id="experience" className="py-16 sm:py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#0a0a0d] to-[#09090b]" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,7 +19,7 @@ export function ExperienceSection() {
           align="center"
         />
 
-        <div className="mt-16 relative">
+        <div className="mt-10 sm:mt-16 relative">
           {/* Timeline line */}
           <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px timeline-line" />
 

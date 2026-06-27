@@ -33,7 +33,7 @@ const cardVariants = {
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-24 relative">
+    <section id="skills" className="py-16 sm:py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] to-[#09090b]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

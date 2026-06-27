@@ -23,7 +23,7 @@ const colorMap: Record<string, string> = {
 
 export function UsesSection() {
   return (
-    <section id="uses" className="py-24 relative">
+    <section id="uses" className="py-16 sm:py-24 relative">
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Uses"
@@ -31,7 +31,7 @@ export function UsesSection() {
           description="The tools, apps, and hardware I use daily for engineering work."
         />
 
-        <div className="mt-16 space-y-6">
+        <div className="mt-10 sm:mt-16 space-y-6">
           {categories.map((cat, ci) => {
             const Icon = cat.icon;
             const items = usesPage[cat.key];
