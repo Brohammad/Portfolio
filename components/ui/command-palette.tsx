@@ -37,13 +37,13 @@ const commands = [
         icon: GithubIcon,
         label: "GitHub Profile",
         action: () => window.open(siteConfig.links.github, "_blank"),
-        suffix: <ExternalLink className="w-3 h-3 text-zinc-500" />,
+        suffix: <ExternalLink className="w-3 h-3 text-muted-foreground/70" />,
       },
       {
         icon: LinkedinIcon,
         label: "LinkedIn Profile",
         action: () => window.open(siteConfig.links.linkedin, "_blank"),
-        suffix: <ExternalLink className="w-3 h-3 text-zinc-500" />,
+        suffix: <ExternalLink className="w-3 h-3 text-muted-foreground/70" />,
       },
       {
         icon: Mail,
@@ -92,7 +92,7 @@ export function CommandPalette() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-[9996] bg-black/60 backdrop-blur-sm flex items-start justify-center pt-[20vh]"
+          className="fixed inset-0 z-[9996] bg-foreground/20 backdrop-blur-sm flex items-start justify-center pt-[18vh]"
           onClick={() => setOpen(false)}
         >
           <motion.div
@@ -104,23 +104,23 @@ export function CommandPalette() {
             className="w-full max-w-lg mx-4"
           >
             <Command
-              className="rounded-2xl border border-white/10 bg-[#111113] shadow-2xl overflow-hidden"
+              className="rounded-2xl border border-border bg-card shadow-2xl overflow-hidden"
               shouldFilter={true}
             >
-              <div className="flex items-center border-b border-white/5 px-4">
-                <Search className="w-4 h-4 text-zinc-500 shrink-0" />
+              <div className="flex items-center border-b border-border px-4">
+                <Search className="w-4 h-4 text-muted-foreground/70 shrink-0" />
                 <Command.Input
                   placeholder="Type a command or search..."
-                  className="flex-1 px-3 py-4 bg-transparent text-white placeholder:text-zinc-500 text-sm focus:outline-none"
+                  className="flex-1 px-3 py-4 bg-transparent text-foreground placeholder:text-muted-foreground/70 text-sm focus:outline-none"
                   autoFocus
                 />
-                <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 text-zinc-500 text-xs font-mono">
+                <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md bg-foreground/5 text-muted-foreground/70 text-xs font-mono">
                   ESC
                 </kbd>
               </div>
 
               <Command.List className="max-h-80 overflow-y-auto p-2">
-                <Command.Empty className="py-8 text-center text-sm text-zinc-500">
+                <Command.Empty className="py-8 text-center text-sm text-muted-foreground/70">
                   No results found.
                 </Command.Empty>
 
@@ -128,7 +128,7 @@ export function CommandPalette() {
                   <Command.Group
                     key={group.group}
                     heading={
-                      <span className="px-2 py-1.5 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                      <span className="px-2 py-1.5 text-xs font-medium text-muted-foreground/70 uppercase tracking-wider">
                         {group.group}
                       </span>
                     }
@@ -138,9 +138,9 @@ export function CommandPalette() {
                         key={item.label}
                         value={item.label}
                         onSelect={() => runCommand(item.action)}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-zinc-300 cursor-pointer hover:bg-white/5 hover:text-white data-[selected=true]:bg-white/5 data-[selected=true]:text-white transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground cursor-pointer hover:bg-foreground/5 hover:text-foreground data-[selected=true]:bg-foreground/5 data-[selected=true]:text-foreground transition-colors"
                       >
-                        <item.icon className="w-4 h-4 text-zinc-500 shrink-0" />
+                        <item.icon className="w-4 h-4 text-muted-foreground/70 shrink-0" />
                         <span className="flex-1">{item.label}</span>
                         {"suffix" in item && item.suffix}
                       </Command.Item>
@@ -149,7 +149,7 @@ export function CommandPalette() {
                 ))}
               </Command.List>
 
-              <div className="border-t border-white/5 px-4 py-2.5 flex items-center gap-4 text-xs text-zinc-600">
+              <div className="border-t border-border px-4 py-2.5 flex items-center gap-4 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <kbd className="font-mono">↑↓</kbd> navigate
                 </span>

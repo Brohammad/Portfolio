@@ -9,164 +9,102 @@ import {
   Coffee,
   Zap,
 } from "lucide-react";
+import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
 
 const infoCards = [
-  {
-    icon: Briefcase,
-    label: "Current Role",
-    value: "Associate Consultant",
-    sub: "PwC · Bengaluru, India",
-    color: "blue",
-  },
-  {
-    icon: MapPin,
-    label: "Education",
-    value: "NIT Calicut",
-    sub: "B.Tech EEE · Class of 2025",
-    color: "purple",
-  },
-  {
-    icon: Target,
-    label: "Current Focus",
-    value: "Enterprise AI Systems",
-    sub: "Multi-agent · RAG · LLM Infra",
-    color: "blue",
-  },
-  {
-    icon: BookOpen,
-    label: "Learning",
-    value: "Distributed Systems",
-    sub: "C++ · Consensus · Linux",
-    color: "purple",
-  },
-  {
-    icon: Coffee,
-    label: "Interests",
-    value: "Backend & AI",
-    sub: "Building intelligent systems at scale",
-    color: "blue",
-  },
-  {
-    icon: Zap,
-    label: "Goal",
-    value: "Top-Tier Tech",
-    sub: "OpenAI · Anthropic · Cloudflare · Stripe",
-    color: "purple",
-  },
+  { icon: Briefcase, label: "Role", value: "Associate Consultant", sub: "PwC · Bengaluru", color: "primary" },
+  { icon: MapPin, label: "Education", value: "NIT Calicut", sub: "B.Tech EEE · 2025", color: "secondary" },
+  { icon: Target, label: "Focus", value: "Enterprise AI", sub: "Multi-agent · RAG", color: "primary" },
+  { icon: BookOpen, label: "Learning", value: "Distributed Systems", sub: "C++ · Consensus", color: "secondary" },
+  { icon: Coffee, label: "Interests", value: "Backend & AI", sub: "Systems at scale", color: "primary" },
+  { icon: Zap, label: "Goal", value: "Top-Tier Tech", sub: "OpenAI · Stripe · Linear", color: "secondary" },
 ];
 
 const colorMap: Record<string, string> = {
-  blue: "bg-blue-500/10 border-blue-500/20 text-blue-400",
-  purple: "bg-purple-500/10 border-purple-500/20 text-purple-400",
+  primary: "bg-primary/[0.08] border-primary/15 text-primary",
+  secondary: "bg-secondary/10 border-secondary/20 text-primary",
 };
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.08 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+const principles = [
+  "Simple · Reliable · Scalable",
+  "Fundamentals before frameworks",
+  "Production-focused engineering",
+  "Build, then optimize",
+];
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+    <Section id="about" tone="alt">
+      <SectionHeader
+        badge="About"
+        title="The person behind the code"
+        description="Backend and AI engineer focused on systems that are reliable, observable, and maintainable at scale."
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="About Me"
-          title="The person behind the code"
-          description="I'm a backend and AI engineer who cares deeply about building systems that are reliable, observable, and maintainable at scale."
-        />
-
-        <div className="mt-12 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Bio */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-5"
-          >
-            <p className="text-foreground/80 text-lg leading-relaxed">
-              I&apos;m a{" "}
-              <span className="text-foreground font-medium">Backend and AI Engineer</span>{" "}
-              at PwC, building enterprise-grade intelligent systems for banking
-              clients. NIT Calicut grad working at the intersection of{" "}
-              <span className="text-foreground font-medium">distributed systems</span>,{" "}
-              <span className="text-foreground font-medium">LLM applications</span>, and{" "}
-              <span className="text-foreground font-medium">production backend infrastructure</span>.
-            </p>
-            <p className="text-muted-foreground text-base leading-relaxed">
-              Day to day I design multi-agent AI systems, RAG pipelines, and backend
-              APIs deployed in production for Fortune 500 clients. Outside work I&apos;m
-              building side projects to go deeper — distributed systems, systems
-              programming in C++, and AI infrastructure.
-            </p>
-            <p className="text-muted-foreground text-base leading-relaxed">
-              I understand systems from first principles. I read source code,
-              study production postmortems, and build things from scratch when
-              that&apos;s the best way to actually understand them. My target is
-              backend and AI engineering roles at companies like OpenAI, Anthropic,
-              Cloudflare, Stripe, and Databricks.
+      <SectionContent className="grid lg:grid-cols-[1fr_1.05fr] gap-16 lg:gap-24 items-start">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-8 lg:space-y-10"
+        >
+          <div className="space-y-6">
+            <p className="text-foreground text-[1.0625rem] leading-[1.85] font-medium max-w-[40ch]">
+              I&apos;m a <span className="text-primary">Backend & AI Engineer</span> at PwC,
+              building intelligent systems for Fortune 500 banking clients.
             </p>
 
-            {/* Values */}
-            <div className="pt-4 grid grid-cols-2 gap-3">
-              {[
-                "Simple · Reliable · Scalable",
-                "Fundamentals before frameworks",
-                "Understand the why, not just the how",
-                "Build then optimize",
-                "Production-focused",
-                "Always experimenting",
-              ].map((value) => (
-                <div key={value} className="flex items-center gap-2 text-muted-foreground text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
-                  {value}
-                </div>
+            <p className="prose-body">
+              I design multi-agent AI systems, RAG pipelines, and backend APIs — deployed in production, not prototypes.
+            </p>
+
+            <p className="prose-body">
+              I read source code, study postmortems, and build from first principles when that&apos;s the fastest path to real understanding.
+            </p>
+          </div>
+
+          <div className="card-static card-body">
+            <p className="text-caption mb-5">Engineering Principles</p>
+            <ul className="space-y-3">
+              {principles.map((item) => (
+                <li key={item} className="flex items-center gap-3 text-sm text-muted-foreground leading-relaxed">
+                  <span className="w-1 h-1 rounded-full bg-primary/50 shrink-0" />
+                  {item}
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </div>
+        </motion.div>
 
-          {/* Info cards */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-          >
-            {infoCards.map((card) => {
-              const Icon = card.icon;
-              const colorClass = colorMap[card.color];
-
-              return (
-                <motion.div
-                  key={card.label}
-                  variants={cardVariants}
-                  className="card-hover p-4 rounded-xl bg-card border border-border-subtle flex flex-col gap-3"
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+          {infoCards.map((card, i) => {
+            const Icon = card.icon;
+            return (
+              <motion.div
+                key={card.label}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
+                className="card-static card-body flex flex-col gap-5 min-h-[160px]"
+              >
+                <div
+                  className={`w-10 h-10 rounded-[calc(var(--radius)-4px)] border flex items-center justify-center shrink-0 ${colorMap[card.color]}`}
                 >
-                  <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${colorClass}`}>
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-muted-foreground/70 mb-0.5">{card.label}</div>
-                    <div className="text-foreground font-medium text-sm">{card.value}</div>
-                    <div className="text-muted-foreground/70 text-xs mt-0.5">{card.sub}</div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+                  <Icon className="w-4 h-4" />
+                </div>
+                <div className="mt-auto space-y-1">
+                  <p className="text-caption">{card.label}</p>
+                  <p className="text-foreground font-semibold text-[15px] tracking-tight leading-snug">{card.value}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed pt-0.5">{card.sub}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
-      </div>
-    </section>
+      </SectionContent>
+    </Section>
   );
 }

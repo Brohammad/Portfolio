@@ -4,13 +4,15 @@ import { motion } from "framer-motion";
 import { useCounter } from "@/hooks/use-counter";
 import { stats } from "@/content/data";
 
-function StatItem({
+function StatBlock({
   label,
+  subtitle,
   value,
   suffix,
   prefix,
 }: {
   label: string;
+  subtitle?: string;
   value: number;
   suffix?: string;
   prefix?: string;
@@ -18,42 +20,46 @@ function StatItem({
   const { count, ref } = useCounter(value, 2000);
 
   return (
-    <div ref={ref} className="flex flex-col items-center gap-1">
-      <div className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
+    <div
+      ref={ref}
+      className="card-static card-body flex flex-col items-center justify-center text-center min-h-[168px]"
+    >
+      <div className="text-[2.5rem] sm:text-[2.75rem] font-semibold text-foreground tracking-tight tabular-nums leading-none">
         {prefix}
         {count}
-        <span className="text-blue-400">{suffix}</span>
+        {suffix && <span className="text-primary">{suffix}</span>}
       </div>
-      <div className="text-sm text-muted-foreground/70 text-center">{label}</div>
+      <p className="mt-5 text-sm font-medium text-foreground tracking-tight">{label}</p>
+      {subtitle && (
+        <p className="mt-1.5 text-xs text-muted-foreground/70">{subtitle}</p>
+      )}
     </div>
   );
 }
 
 export function StatsSection() {
   return (
-    <section className="py-20 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-950/20 via-background to-purple-950/20" />
-      <div className="absolute inset-0 grid-bg opacity-30" />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-16 section-tone-alt overflow-hidden border-y border-border-subtle">
+      <div className="absolute inset-0 grid-bg opacity-[0.15] pointer-events-none" />
+      <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12"
+          className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5"
         >
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.06 }}
+              className={i === stats.length - 1 ? "col-span-2 lg:col-span-1" : ""}
             >
-              <StatItem
+              <StatBlock
                 label={stat.label}
+                subtitle={stat.subtitle}
                 value={stat.value}
                 suffix={stat.suffix}
                 prefix={stat.prefix}

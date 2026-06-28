@@ -1,142 +1,148 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, ExternalLink, ChevronRight } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { experiences } from "@/content/data";
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+    <Section id="experience" tone="default" containerClassName="max-w-3xl">
+      <SectionHeader
+        badge="Experience"
+        title="Where I've worked"
+        description="Enterprise AI systems and backend infrastructure in production."
+        align="center"
+      />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="Experience"
-          title="Where I've worked"
-          description="My professional journey building enterprise AI systems and backend infrastructure."
-          align="center"
-        />
+      <SectionContent tight>
+        <div className="relative">
+          <div className="absolute left-4 sm:left-5 top-3 bottom-3 w-px timeline-line" />
 
-        <div className="mt-10 sm:mt-16 relative">
-          {/* Timeline line */}
-          <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px timeline-line" />
-
-          <div className="space-y-8">
+          <div className="space-y-6">
             {experiences.map((exp, i) => (
               <motion.div
                 key={exp.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="relative pl-16 sm:pl-20"
+                transition={{ duration: 0.4, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                className="relative pl-12 sm:pl-14"
               >
-                {/* Timeline dot */}
-                <div className="absolute left-4 sm:left-6 top-6 -translate-x-1/2 z-10">
+                <div className="absolute left-4 sm:left-5 top-7 -translate-x-1/2 z-10">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 ${
-                      exp.current
-                        ? "bg-blue-500 border-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.6)]"
-                        : "bg-background border-zinc-600"
+                    className={`w-2 h-2 rounded-full ring-4 ring-background ${
+                      exp.current ? "bg-primary" : "bg-border"
                     }`}
                   />
                 </div>
 
-                {/* Card */}
-                <div className="card-hover group p-5 sm:p-6 rounded-xl bg-card border border-border-subtle hover:border-border transition-all">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold text-foreground text-lg">{exp.role}</h3>
+                <div className="card-static card-body lg:px-9 lg:py-9">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 pb-6 border-b divider-subtle">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2.5 flex-wrap">
+                        <h3 className="text-[1.0625rem] font-semibold text-foreground leading-tight tracking-tight">
+                          {exp.role}
+                        </h3>
                         {exp.current && (
                           <Badge variant="default" className="text-[10px]">
                             Current
                           </Badge>
                         )}
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                        <span className="font-medium text-foreground/80">{exp.company}</span>
-                        <span>·</span>
-                        <span className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3" />
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                        <span className="font-medium text-foreground/75">{exp.company}</span>
+                        <span aria-hidden className="text-border">·</span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <MapPin className="w-3.5 h-3.5 opacity-60" />
                           {exp.location}
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-xs text-muted-foreground/70 px-2.5 py-1 rounded-full bg-muted/50 border border-border-subtle">
+                    <div className="flex flex-wrap gap-2 shrink-0">
+                      <span className="text-xs text-muted-foreground px-3 py-1.5 rounded-full bg-muted/50 border border-border-subtle whitespace-nowrap">
                         {exp.duration}
                       </span>
-                      <span className="text-xs text-muted-foreground/70 capitalize px-2.5 py-1 rounded-full bg-muted/50 border border-border-subtle">
+                      <span className="text-xs text-muted-foreground capitalize px-3 py-1.5 rounded-full bg-muted/50 border border-border-subtle">
                         {exp.type}
                       </span>
                     </div>
                   </div>
 
-                  {/* Responsibilities */}
-                  <ul className="space-y-1.5 mb-4">
-                    {exp.responsibilities.map((r, j) => (
-                      <li key={j} className="flex items-start gap-2 text-muted-foreground text-sm">
-                        <ChevronRight className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
-                        {r}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Achievements */}
-                  {exp.achievements.length > 0 && (
-                    <div className="mb-4 space-y-1">
-                      {exp.achievements.map((a, j) => (
-                        <div key={j} className="flex items-start gap-2 text-sm">
-                          <span className="text-emerald-400 shrink-0">▲</span>
-                          <span className="text-muted-foreground">{a}</span>
-                        </div>
+                  <div className="py-6 border-b divider-subtle">
+                    <p className="text-caption mb-4">Responsibilities</p>
+                    <ul className="space-y-3">
+                      {exp.responsibilities.map((r, j) => (
+                        <li
+                          key={j}
+                          className="text-sm text-muted-foreground leading-[1.75] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1 before:h-1 before:rounded-full before:bg-border"
+                        >
+                          {r}
+                        </li>
                       ))}
+                    </ul>
+                  </div>
+
+                  {exp.achievements.length > 0 && (
+                    <div className="py-6 border-b divider-subtle">
+                      <p className="text-caption text-success mb-4">Key Impact</p>
+                      <ul className="space-y-3">
+                        {exp.achievements.map((a, j) => (
+                          <li
+                            key={j}
+                            className="text-sm text-muted-foreground leading-[1.75] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1 before:h-1 before:rounded-full before:bg-success/50"
+                          >
+                            {a}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
 
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {exp.technologies.map((tech) => (
-                      <Badge key={tech} variant="tech" className="text-[11px]">
-                        {tech}
-                      </Badge>
-                    ))}
+                  <div className="pt-6">
+                    <p className="text-caption mb-4">Technologies</p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.technologies.map((tech) => (
+                        <Badge key={tech} variant="tech" className="text-[11px]">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
 
-            {/* Education */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative pl-16 sm:pl-20"
+              className="relative pl-12 sm:pl-14"
             >
-              <div className="absolute left-4 sm:left-6 top-6 -translate-x-1/2 z-10">
-                <div className="w-4 h-4 rounded-full bg-background border-2 border-zinc-600" />
+              <div className="absolute left-4 sm:left-5 top-7 -translate-x-1/2 z-10">
+                <div className="w-2 h-2 rounded-full bg-border ring-4 ring-background" />
               </div>
-              <div className="p-5 sm:p-6 rounded-xl bg-card border border-border-subtle">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1">
+              <div className="card-static card-body lg:px-9 lg:py-9">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <h3 className="font-semibold text-foreground">B.Tech</h3>
-                    <p className="text-muted-foreground text-sm mt-0.5">
+                    <h3 className="text-[1.0625rem] font-semibold text-foreground tracking-tight">
+                      B.Tech in Electrical & Electronics Engineering
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                       National Institute of Technology Calicut
                     </p>
                   </div>
-                  <span className="text-xs text-muted-foreground/70 px-2.5 py-1 rounded-full bg-muted/50 border border-border-subtle w-fit">
-                    NIT Calicut
+                  <span className="text-xs text-muted-foreground px-3 py-1.5 rounded-full bg-muted/50 border border-border-subtle w-fit whitespace-nowrap">
+                    2021 – 2025
                   </span>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-      </div>
-    </section>
+      </SectionContent>
+    </Section>
   );
 }

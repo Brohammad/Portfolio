@@ -65,6 +65,7 @@ export interface BlogPost {
 
 export interface Stat {
   label: string;
+  subtitle?: string;
   value: number;
   suffix?: string;
   prefix?: string;

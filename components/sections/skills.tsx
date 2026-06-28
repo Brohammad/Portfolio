@@ -9,6 +9,7 @@ import {
   Monitor,
   Code2,
 } from "lucide-react";
+import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { skillGroups } from "@/content/data";
 
@@ -23,32 +24,30 @@ const iconMap: Record<string, React.ElementType> = {
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.08 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
 };
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-background" />
+    <Section id="skills" tone="default">
+      <SectionHeader
+        badge="Skills & Technologies"
+        title="What I work with"
+        description="A curated set of technologies I use to build backend systems, AI applications, and cloud infrastructure."
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="Skills & Technologies"
-          title="What I work with"
-          description="A curated set of technologies I use to build backend systems, AI applications, and cloud infrastructure."
-        />
-
+      <SectionContent>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
         >
           {skillGroups.map((group) => {
             const Icon = iconMap[group.icon] || Code2;
@@ -57,26 +56,23 @@ export function SkillsSection() {
               <motion.div
                 key={group.category}
                 variants={cardVariants}
-                className="card-hover group p-6 rounded-xl bg-card border border-border-subtle hover:border-white/10 transition-colors"
+                className="surface-card card-hover card-body"
               >
-                {/* Category header */}
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                    <Icon className="w-4.5 h-4.5 text-blue-400 w-5 h-5" />
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-10 h-10 rounded-[calc(var(--radius)-4px)] bg-primary/[0.08] border border-primary/12 flex items-center justify-center shrink-0">
+                    <Icon className="w-[18px] h-[18px] text-muted-foreground group-hover:text-primary" />
                   </div>
-                  <h3 className="font-semibold text-foreground">{group.category}</h3>
+                  <h3 className="font-semibold text-foreground text-[1.0625rem] tracking-tight">{group.category}</h3>
                 </div>
 
-                {/* Skills */}
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
-                    <motion.span
+                    <span
                       key={skill.name}
-                      whileHover={{ scale: 1.05 }}
-                      className="skill-tag px-3 py-1 rounded-full text-sm text-muted-foreground bg-white/5 border border-border-subtle cursor-default"
+                      className="skill-tag px-3 py-1.5 rounded-full text-[13px] text-muted-foreground bg-foreground/[0.03] border border-border-subtle cursor-default"
                     >
                       {skill.name}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </motion.div>
@@ -84,44 +80,31 @@ export function SkillsSection() {
           })}
         </motion.div>
 
-        {/* Tech stack marquee */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-16 overflow-hidden"
+          transition={{ delay: 0.25 }}
+          className="mt-20 sm:mt-24"
         >
-          <p className="text-center text-xs text-muted-foreground/50 uppercase tracking-widest mb-6">
+          <p className="text-center text-caption mb-8">
             Also familiar with
           </p>
-          <div className="flex gap-3 flex-wrap justify-center">
+          <div className="flex gap-2.5 flex-wrap justify-center max-w-3xl mx-auto">
             {[
-              "Kafka",
-              "RabbitMQ",
-              "Nginx",
-              "Linux",
-              "Terraform",
-              "Kubernetes",
-              "GraphQL",
-              "WebSockets",
-              "Jest",
-              "Pytest",
-              "Git",
-              "gRPC",
-              "Prometheus",
-              "Grafana",
+              "Kafka", "RabbitMQ", "Nginx", "Linux", "Terraform", "Kubernetes",
+              "GraphQL", "WebSockets", "Jest", "Pytest", "Git", "gRPC", "Prometheus", "Grafana",
             ].map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-full text-xs text-muted-foreground/70 bg-white/3 border border-border-subtle"
+                className="px-3.5 py-1.5 rounded-full text-xs text-muted-foreground bg-foreground/[0.02] border border-border-subtle"
               >
                 {tech}
               </span>
             ))}
           </div>
         </motion.div>
-      </div>
-    </section>
+      </SectionContent>
+    </Section>
   );
 }

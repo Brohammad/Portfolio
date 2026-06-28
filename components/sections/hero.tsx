@@ -16,12 +16,12 @@ const roles = [
 ];
 
 const terminalLines = [
-  { prompt: "~", cmd: "git clone github.com/Brohammad/fincore-assistant", delay: 0.3 },
-  { prompt: "~", cmd: "cd fincore-assistant && docker compose up -d", delay: 0.8 },
-  { prompt: "~", cmd: "python ingest.py --source ./banking-docs --chunks 512", delay: 1.4 },
-  { result: "✓ Indexed 3,841 chunks · hybrid index ready", delay: 1.9, success: true },
-  { prompt: "~", cmd: "curl localhost:8000/api/health", delay: 2.4 },
-  { result: '{"status":"healthy","agents":3,"uptime":"99.9%"}', delay: 2.8 },
+  { prompt: "~", cmd: "git clone github.com/Brohammad/fincore-assistant" },
+  { prompt: "~", cmd: "cd fincore-assistant && docker compose up -d" },
+  { prompt: "~", cmd: "python ingest.py --source ./banking-docs --chunks 512" },
+  { result: "✓ Indexed 3,841 chunks · hybrid index ready", success: true },
+  { prompt: "~", cmd: "curl localhost:8000/api/health" },
+  { result: '{"status":"healthy","agents":3,"uptime":"99.9%"}' },
 ];
 
 export function HeroSection() {
@@ -30,251 +30,178 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-[92vh] flex items-center overflow-hidden noise section-tone-default"
     >
-      {/* Animated grid background */}
-      <div className="absolute inset-0 grid-bg opacity-60" />
+      <div className="absolute inset-0 hero-glow pointer-events-none" />
+      <div className="absolute inset-0 grid-bg opacity-[0.2] pointer-events-none" />
 
-      {/* Gradient blobs */}
-      <div className="absolute top-1/4 -left-48 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl" />
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 rounded-full bg-purple-600/10 blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-blue-900/5 blur-3xl" />
-
-      {/* Floating dots */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1.5 h-1.5 rounded-full bg-blue-400/40"
-          style={{
-            left: `${15 + i * 14}%`,
-            top: `${20 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            y: [0, -15, 0],
-            opacity: [0.4, 1, 0.4],
-          }}
-          transition={{
-            duration: 3 + i * 0.5,
-            repeat: Infinity,
-            delay: i * 0.4,
-          }}
-        />
-      ))}
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — Text */}
-          <div className="flex flex-col gap-6">
-            {/* Status badge */}
+      <div className="relative z-10 section-container w-full pt-40 pb-32 lg:pt-44 lg:pb-40">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-20 lg:gap-28 items-center">
+          <div className="flex flex-col max-w-[34rem]">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.45 }}
             >
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-success/[0.08] border border-success/15 text-success text-[12px] font-medium tracking-wide">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-30" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-success" />
                 </span>
-                Associate Consultant @ PwC · Open to new roles
+                Associate Consultant @ PwC · Open to roles
               </span>
             </motion.div>
 
-            {/* Main heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-2"
+              transition={{ duration: 0.45, delay: 0.06 }}
+              className="text-display mt-12"
             >
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
-                <span className="text-foreground">Hi, I&apos;m </span>
-                <span className="gradient-text">Brohammad</span>
-              </h1>
-              <div className="h-16 flex items-center">
-                <h2 className="text-2xl sm:text-3xl font-semibold text-foreground/80">
-                  {typedRole}
-                  <span className="cursor-blink text-blue-400 ml-0.5">|</span>
-                </h2>
-              </div>
+              <span className="text-foreground">Hi, I&apos;m </span>
+              <span className="accent-text">Brohammad</span>
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.12 }}
+              className="mt-6 min-h-[2.25rem]"
+            >
+              <p className="text-subheading">
+                {typedRole}
+                <span className="cursor-blink text-primary ml-0.5">|</span>
+              </p>
             </motion.div>
 
-            {/* Description */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-lg text-muted-foreground leading-relaxed max-w-lg"
+              transition={{ duration: 0.45, delay: 0.18 }}
+              className="prose-body-lg mt-10"
             >
-              Building intelligent systems that scale. Currently at{" "}
-              <span className="text-foreground font-medium">PwC</span>{" "}
-              shipping enterprise AI for banking clients — multi-agent systems,
-              RAG pipelines, and production LLM infrastructure. NIT Calicut grad.
+              Building intelligent systems that scale. At{" "}
+              <span className="text-foreground font-medium">PwC</span>, I ship
+              enterprise AI for banking — multi-agent systems, RAG pipelines,
+              and production LLM infrastructure.
             </motion.p>
 
-            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap gap-3"
+              transition={{ duration: 0.45, delay: 0.24 }}
+              className="mt-14 flex flex-wrap items-center gap-4"
             >
               <Button
                 size="lg"
-                variant="gradient"
-                className="gap-2"
-                onClick={() => {
-                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={() =>
+                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+                }
               >
                 View Projects
                 <ArrowRight className="w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" className="gap-2" asChild>
+              <Button size="lg" variant="outline" asChild>
                 <a href={siteConfig.links.resume} download>
                   <Download className="w-4 h-4" />
                   Resume
                 </a>
               </Button>
-              <Button size="lg" variant="ghost" className="gap-2" asChild>
-                <a
-                  href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.3 }}
+              className="mt-6 flex flex-wrap items-center gap-2"
+            >
+              <Button size="default" variant="ghost" asChild>
+                <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer">
                   <GithubIcon className="w-4 h-4" />
                   GitHub
                 </a>
               </Button>
-              <Button size="lg" variant="ghost" className="gap-2" asChild>
-                <a
-                  href={siteConfig.links.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              <Button size="default" variant="ghost" asChild>
+                <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer">
                   <LinkedinIcon className="w-4 h-4" />
                   LinkedIn
                 </a>
               </Button>
             </motion.div>
 
-            {/* Keyboard shortcut hint */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-xs text-muted-foreground/50 flex items-center gap-1.5"
+              transition={{ duration: 0.45, delay: 0.42 }}
+              className="mt-20 text-caption flex items-center gap-2 normal-case tracking-[0.06em]"
             >
               Press{" "}
-              <kbd className="px-1.5 py-0.5 rounded bg-muted/50 border border-border-subtle font-mono text-muted-foreground">
+              <kbd className="px-2 py-1 rounded-md bg-muted border border-border font-mono text-[10px] normal-case tracking-normal text-foreground/70">
                 ⌘K
-              </kbd>{" "}
-              to open command palette
+              </kbd>
+              for command palette
             </motion.p>
           </div>
 
-          {/* Right — Terminal (forced dark so terminal colors always stay correct) */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden lg:block"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="hidden lg:block w-full max-w-[460px] ml-auto opacity-90"
           >
             <div className="relative dark" suppressHydrationWarning>
-              {/* Glow */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl blur-xl" />
-
-              {/* Terminal window */}
-              <div className="relative bg-[#0d0d0f] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-                {/* Terminal header */}
-                <div className="flex items-center gap-2 px-4 py-3 bg-white/5 border-b border-white/5">
+              <div className="rounded-[var(--radius)] overflow-hidden terminal-glow border border-white/[0.05]">
+                <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-white/[0.05] bg-[#16130F]">
                   <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/90" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/90" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]/90" />
                   </div>
-                  <div className="flex-1 mx-4">
-                    <div className="bg-white/5 rounded-md px-3 py-0.5 text-xs text-muted-foreground/70 font-mono text-center">
+                  <div className="flex-1 text-center">
+                    <span className="text-[11px] text-[#A8A098]/60 font-mono tracking-wide">
                       zsh — brohammad@dev
-                    </div>
+                    </span>
                   </div>
                 </div>
-
-                {/* Terminal body */}
-                <div className="p-5 font-mono text-sm space-y-2 min-h-[280px]">
+                <div className="p-6 font-mono text-[12px] leading-[1.8] space-y-2 bg-[#16130F] min-h-[280px]">
                   {terminalLines.map((line, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: line.delay + 0.5, duration: 0.3 }}
-                      className="flex items-start gap-2"
-                    >
+                    <div key={i} className="flex items-start gap-2.5">
                       {"prompt" in line ? (
                         <>
-                          <span className="text-blue-400 shrink-0">{line.prompt} $</span>
-                          <span className="text-foreground/80">{line.cmd}</span>
+                          <span className="text-[#C89B6D] shrink-0">{line.prompt} $</span>
+                          <span className="text-[#A8A098]/85">{line.cmd}</span>
                         </>
                       ) : (
                         <span
                           className={
                             "success" in line && line.success
-                              ? "text-emerald-400 pl-6"
-                              : "text-muted-foreground/70 pl-6"
+                              ? "text-[#6B9A6B] pl-6"
+                              : "text-[#A8A098]/50 pl-6"
                           }
                         >
                           {line.result}
                         </span>
                       )}
-                    </motion.div>
+                    </div>
                   ))}
-
-                  {/* Blinking cursor */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 3.2 }}
-                    className="flex items-center gap-2"
-                  >
-                    <span className="text-blue-400">~ $</span>
-                    <span className="cursor-blink w-2 h-4 bg-blue-400 rounded-sm" />
-                  </motion.div>
+                  <div className="flex items-center gap-2.5 pt-1">
+                    <span className="text-[#C89B6D]">~ $</span>
+                    <span className="cursor-blink inline-block w-1.5 h-3.5 bg-[#C89B6D]/70 rounded-[1px] align-middle" />
+                  </div>
                 </div>
               </div>
-
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -top-4 -right-4 px-3 py-1.5 rounded-full bg-blue-600/20 border border-blue-500/30 text-blue-300 text-xs font-mono backdrop-blur-sm"
-              >
-                99.9% uptime
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
-                className="absolute -bottom-4 -left-4 px-3 py-1.5 rounded-full bg-purple-600/20 border border-purple-500/30 text-purple-300 text-xs font-mono backdrop-blur-sm"
-              >
-                &lt;5ms latency
-              </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll hint */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/50"
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/30"
         >
-          <span className="text-xs">Scroll to explore</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <ChevronDown className="w-4 h-4" />
-          </motion.div>
+          <span className="text-caption">Scroll</span>
+          <ChevronDown className="w-4 h-4 animate-bounce" style={{ animationDuration: "2.5s" }} />
         </motion.div>
       </div>
     </section>

@@ -41,7 +41,7 @@ export function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed z-[9997] pointer-events-none rounded-full border border-white/20 w-8 h-8 hidden xl:block"
+        className="fixed z-[9997] pointer-events-none rounded-full border border-primary/20 w-8 h-8 hidden xl:block"
         style={{ x: springX, y: springY }}
       />
       <motion.div

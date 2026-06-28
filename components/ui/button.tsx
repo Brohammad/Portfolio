@@ -6,30 +6,30 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b] disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius)] text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 cursor-pointer [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/20 hover:shadow-blue-500/30",
+          "bg-primary text-primary-foreground hover:bg-secondary shadow-[var(--shadow-button)] hover:shadow-[var(--shadow-md)] active:scale-[0.98]",
         destructive:
-          "bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20",
+          "bg-red-500/10 text-red-600 border border-red-500/20 hover:bg-red-500/15",
         outline:
-          "border border-white/10 bg-transparent text-white hover:bg-white/5 hover:border-white/20",
+          "border border-border bg-transparent text-foreground hover:border-primary/30 hover:bg-primary/[0.04] active:scale-[0.98]",
         secondary:
-          "bg-purple-600/10 text-purple-300 border border-purple-500/20 hover:bg-purple-600/20 hover:border-purple-400/30",
+          "bg-muted text-foreground border border-border-subtle hover:bg-muted/70 active:scale-[0.98]",
         ghost:
-          "text-zinc-400 hover:text-white hover:bg-white/5",
-        link: "text-blue-400 underline-offset-4 hover:underline hover:text-blue-300",
+          "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] active:scale-[0.98]",
+        link: "text-link underline-offset-4 hover:underline",
         gradient:
-          "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-purple-600/20",
+          "bg-primary text-primary-foreground hover:bg-secondary shadow-[var(--shadow-button)] active:scale-[0.98]",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-12 rounded-lg px-6 text-base",
-        xl: "h-14 rounded-xl px-8 text-base font-semibold",
-        icon: "h-10 w-10",
+        default: "h-11 min-h-11 px-5",
+        sm: "h-9 min-h-9 px-4 text-xs rounded-[calc(var(--radius)-4px)]",
+        lg: "h-12 min-h-12 px-7 text-[15px]",
+        xl: "h-14 min-h-14 px-8 text-base",
+        icon: "h-11 w-11 min-h-11 min-w-11",
       },
     },
     defaultVariants: {

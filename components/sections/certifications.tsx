@@ -7,9 +7,9 @@ import { certifications } from "@/content/data";
 
 const issuerColors: Record<string, string> = {
   "Amazon Web Services": "from-orange-600/20 to-orange-700/10 border-orange-500/20",
-  Microsoft: "from-blue-600/20 to-blue-700/10 border-blue-500/20",
-  Google: "from-emerald-600/20 to-emerald-700/10 border-emerald-500/20",
-  GitHub: "from-zinc-600/20 to-zinc-700/10 border-zinc-500/20",
+  Microsoft: "from-primary/20 to-primary/10 border-primary/20",
+  Google: "from-success/20 to-success/10 border-success/20",
+  GitHub: "from-muted to-muted/80 border-border",
 };
 
 const issuerIcon: Record<string, string> = {
@@ -39,7 +39,7 @@ export function CertificationsSection() {
           {certifications.map((cert, i) => {
             const gradientClass =
               issuerColors[cert.issuer] ||
-              "from-zinc-600/20 to-zinc-700/10 border-zinc-500/20";
+              "from-muted to-muted/80 border-border";
             const abbreviation = issuerIcon[cert.issuer] || cert.issuer[0];
 
             return (
@@ -49,11 +49,11 @@ export function CertificationsSection() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
                 }}
-                className={`card-hover group p-5 rounded-xl bg-gradient-to-br border ${gradientClass} relative overflow-hidden`}
+                className={`card-hover group p-5 rounded-2xl bg-gradient-to-br border ${gradientClass} relative overflow-hidden`}
               >
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    <div className="w-10 h-10 rounded-2xl bg-white/10 border border-border flex items-center justify-center text-foreground font-medium text-sm shrink-0">
                       {abbreviation}
                     </div>
                     <div>
@@ -62,14 +62,14 @@ export function CertificationsSection() {
                     </div>
                   </div>
                   {cert.placeholder && (
-                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-zinc-800 text-muted-foreground/70 border border-white/5 shrink-0">
+                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-muted text-muted-foreground/70 border border-border shrink-0">
                       <Clock className="w-2.5 h-2.5" />
                       In Progress
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-sm font-semibold text-white leading-snug mb-2">
+                <h3 className="text-sm font-semibold text-foreground leading-snug mb-2">
                   {cert.name}
                 </h3>
 
@@ -82,7 +82,7 @@ export function CertificationsSection() {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                    className="mt-3 flex items-center gap-1 text-xs text-primary hover:text-primary transition-colors"
                   >
                     View credential
                     <ExternalLink className="w-3 h-3" />

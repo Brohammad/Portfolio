@@ -19,11 +19,11 @@ export const siteConfig = {
 };
 
 export const stats: Stat[] = [
-  { label: "Projects Built", value: 12, suffix: "+" },
-  { label: "Technologies", value: 40, suffix: "+" },
-  { label: "GitHub Commits", value: 600, suffix: "+" },
-  { label: "Years Engineering", value: 2, suffix: "+" },
-  { label: "AI Systems Shipped", value: 3, suffix: "" },
+  { label: "Projects Built", subtitle: "Production Systems", value: 12, suffix: "+" },
+  { label: "Technologies", subtitle: "Languages & Tools", value: 40, suffix: "+" },
+  { label: "GitHub Commits", subtitle: "Open Source", value: 600, suffix: "+" },
+  { label: "Years Engineering", subtitle: "Professional", value: 2, suffix: "+" },
+  { label: "AI Systems Shipped", subtitle: "Enterprise Clients", value: 3 },
 ];
 
 export const skillGroups: SkillGroup[] = [
@@ -115,9 +115,9 @@ export const projects: Project[] = [
     id: "renewai",
     title: "RenewAI",
     description:
-      "Multi-agent insurance renewal platform that autonomously handles policy renewals, risk assessment, and client communication at enterprise scale.",
+      "Multi-agent platform that automates insurance renewals for Fortune 500 banking clients — orchestrating policy analysis, risk scoring, and client outreach at scale.",
     longDescription:
-      "An enterprise-grade multi-agent AI platform built for insurance renewal workflows. The system uses LangGraph to orchestrate specialized agents for policy analysis, risk scoring, document extraction, and client outreach — reducing manual processing time significantly.",
+      "Built for a Fortune 500 banking client, RenewAI replaces manual renewal workflows with a production multi-agent system. LangGraph orchestrates specialized agents for document extraction, risk assessment, and client communication — with full audit trails and REST APIs into legacy banking infrastructure.",
     tech: ["Python", "LangGraph", "LangChain", "FastAPI", "PostgreSQL", "Redis", "Docker"],
     difficulty: "Expert",
     status: "completed",
@@ -140,9 +140,9 @@ export const projects: Project[] = [
       "Streaming responses dramatically improve UX in AI applications",
     ],
     metrics: [
-      "Multi-agent orchestration",
-      "Enterprise production deployment",
-      "Banking client rollout",
+      "Fortune 500 banking client",
+      "Multi-agent architecture",
+      "Production on Azure",
     ],
     architecture:
       "FastAPI backend with LangGraph orchestrating specialized agents. PostgreSQL for audit logs. Redis for session state. Deployed on Azure with Docker Compose.",
@@ -151,9 +151,9 @@ export const projects: Project[] = [
     id: "fincore",
     title: "FinCore Banking Assistant",
     description:
-      "Enterprise conversational AI assistant for banking operations — answering policy queries, summarizing documents, and automating routine workflows.",
+      "Enterprise AI assistant that automates banking workflows and retrieves financial knowledge using hybrid RAG — handling thousands of production queries daily.",
     longDescription:
-      "A production RAG-based conversational assistant deployed inside a major banking client's operations. Handles policy queries, regulatory document Q&A, and internal workflow automation. Built with a hybrid search pipeline and strict hallucination guardrails.",
+      "A production RAG assistant deployed inside a major banking client's operations team. Hybrid semantic + keyword retrieval over regulatory documents, strict hallucination guardrails with source citation, and role-based access for compliance-sensitive content.",
     tech: ["Python", "FastAPI", "LangChain", "OpenAI", "Azure", "PostgreSQL", "Qdrant"],
     difficulty: "Advanced",
     status: "completed",
@@ -176,8 +176,8 @@ export const projects: Project[] = [
       "Guardrails and eval frameworks are essential in finance",
     ],
     metrics: [
-      "Enterprise banking deployment",
-      "Thousands of queries/day",
+      "Enterprise production deployment",
+      "Thousands of queries daily",
       "Hybrid retrieval pipeline",
     ],
     architecture:
@@ -187,9 +187,9 @@ export const projects: Project[] = [
     id: "paint-intelligence",
     title: "Paint Intelligence Platform",
     description:
-      "AI-powered Dealer CRM that surfaces actionable insights, automates follow-ups, and predicts churn for paint distribution networks.",
+      "AI-first CRM that predicts dealer churn, automates follow-ups, and surfaces growth opportunities across a national paint distribution network.",
     longDescription:
-      "An AI-first CRM platform for a paint distribution network. Analyzes dealer purchase patterns, generates automated follow-up recommendations, predicts churn risk, and surfaces growth opportunities — all powered by LLM-driven insight generation.",
+      "Production CRM platform combining structured dealer data with LLM-driven insight generation. Churn prediction, automated follow-up recommendations, and natural language queries over sales data — integrated with mobile CRM via REST APIs.",
     tech: ["Python", "Node.js", "LangChain", "OpenAI", "MongoDB", "React", "Docker"],
     difficulty: "Advanced",
     status: "completed",
@@ -213,8 +213,8 @@ export const projects: Project[] = [
     ],
     metrics: [
       "Production CRM deployment",
+      "National dealer network",
       "AI-generated insights",
-      "Dealer network rollout",
     ],
     architecture:
       "Node.js REST API + Python AI service. MongoDB for CRM data. LangChain for insight generation. React dashboard. Deployed with Docker on AWS.",
@@ -223,9 +223,9 @@ export const projects: Project[] = [
     id: "distributed-kv",
     title: "Distributed Key-Value Store",
     description:
-      "Fault-tolerant distributed KV store implementing Raft consensus, log replication, and linearizable reads/writes from scratch.",
+      "Fault-tolerant distributed store implementing Raft consensus from scratch — linearizable reads/writes with automatic leader election and failover.",
     longDescription:
-      "A distributed key-value store implementing the Raft consensus algorithm from scratch. Supports linearizable reads and writes across a cluster with automatic leader election and failover.",
+      "A from-scratch implementation of the Raft consensus algorithm in Go. Supports linearizable reads and writes across a multi-node cluster with snapshotting, log compaction, and gRPC inter-node communication.",
     tech: ["Go", "Raft", "gRPC", "Docker", "Protocol Buffers"],
     difficulty: "Expert",
     status: "in-progress",
@@ -244,7 +244,11 @@ export const projects: Project[] = [
       "Distributed systems testing requires fault injection",
       "Consensus protocols are subtle at the boundary cases",
     ],
-    metrics: ["Raft consensus", "3-node cluster", "Linearizable guarantees"],
+    metrics: [
+      "Raft consensus",
+      "Linearizable guarantees",
+      "3-node cluster",
+    ],
     architecture: "Multi-node cluster over gRPC with Raft state machine per node.",
   },
 ];

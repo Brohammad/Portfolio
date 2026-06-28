@@ -19,31 +19,28 @@ export function SectionHeader({
   align = "center",
 }: SectionHeaderProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <motion.header
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        "flex flex-col gap-3",
+        "flex flex-col gap-4 sm:gap-5",
         align === "center" && "items-center text-center",
         className
       )}
     >
       {badge && (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium w-fit">
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+        <span className="text-caption inline-flex items-center px-3 py-1.5 rounded-full bg-primary/[0.06] border border-primary/12 text-primary">
           {badge}
         </span>
       )}
-      <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-        {title}
-      </h2>
+      <h2 className="text-heading text-foreground">{title}</h2>
       {description && (
-        <p className="text-zinc-400 text-base sm:text-lg max-w-2xl">
+        <p className="text-muted-foreground text-base sm:text-[17px] max-w-[42ch] leading-[1.8] font-normal mt-1">
           {description}
         </p>
       )}
-    </motion.div>
+    </motion.header>
   );
 }

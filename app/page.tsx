@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { PageWrapper } from "@/components/layout/page-wrapper";
 import { HeroSection } from "@/components/sections/hero";
 import { AboutSection } from "@/components/sections/about";
 import { StatsSection } from "@/components/sections/stats";
@@ -14,19 +13,13 @@ import { GithubSection } from "@/components/sections/github";
 import { BlogSection } from "@/components/sections/blog";
 import { ContactSection } from "@/components/sections/contact";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { CustomCursor } from "@/components/ui/custom-cursor";
-import { LoadingScreen } from "@/components/ui/loading-screen";
 import { CommandPalette } from "@/components/ui/command-palette";
 
 export default function Home() {
   return (
     <>
-      <LoadingScreen />
       <ScrollProgress />
-      <CustomCursor />
       <CommandPalette />
-
-      <PageWrapper>
       <Navbar />
 
       <main>
@@ -45,7 +38,6 @@ export default function Home() {
       </main>
 
       <Footer />
-      </PageWrapper>
     </>
   );
 }

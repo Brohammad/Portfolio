@@ -3,34 +3,34 @@ import { Terminal, ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#09090b] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="text-center space-y-8 max-w-md">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center mx-auto shadow-2xl shadow-blue-600/30">
-          <Terminal className="w-8 h-8 text-white" />
+        <div className="w-14 h-14 rounded-[var(--radius)] bg-primary flex items-center justify-center mx-auto shadow-[var(--shadow-button)]">
+          <Terminal className="w-7 h-7 text-primary-foreground" />
         </div>
 
         <div className="space-y-3">
-          <div className="font-mono text-sm text-blue-400">404 — NOT_FOUND</div>
-          <h1 className="text-4xl font-bold text-white">Page not found</h1>
-          <p className="text-zinc-400">
+          <div className="text-caption text-primary">404 — Not Found</div>
+          <h1 className="text-heading text-foreground">Page not found</h1>
+          <p className="text-muted-foreground leading-relaxed">
             The route you requested doesn&apos;t exist. It may have been moved or deleted.
           </p>
         </div>
 
-        <div className="bg-[#111113] border border-white/5 rounded-xl p-4 font-mono text-sm text-left">
-          <span className="text-blue-400">~ $</span>{" "}
-          <span className="text-zinc-300">curl https://brohammad.tech</span>
+        <div className="card-static p-5 font-mono text-sm text-left">
+          <span className="text-primary">~ $</span>{" "}
+          <span className="text-muted-foreground">curl https://brohammad.tech</span>
           <br />
-          <span className="text-red-400">error:</span>{" "}
-          <span className="text-zinc-500">404 Not Found</span>
+          <span className="text-red-400/80">error:</span>{" "}
+          <span className="text-muted-foreground/70">404 Not Found</span>
           <br />
-          <span className="text-blue-400">~ $</span>{" "}
-          <span className="cursor-blink inline-block w-2 h-4 bg-blue-400 rounded-sm align-middle" />
+          <span className="text-primary">~ $</span>{" "}
+          <span className="cursor-blink inline-block w-1.5 h-3.5 bg-primary/70 rounded-[1px] align-middle" />
         </div>
 
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/20"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-[var(--radius)] bg-primary text-primary-foreground text-sm font-medium hover:bg-secondary transition-colors shadow-[var(--shadow-button)]"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to home

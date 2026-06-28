@@ -4,22 +4,26 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ExternalLink,
-  ArrowUpRight,
+  ArrowRight,
   Clock,
-  ChevronRight,
-  X,
   Layers,
   Zap,
   BookOpen,
   BarChart2,
+  Check,
+  Terminal,
+  Network,
+  Database,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { GithubIcon } from "@/components/ui/social-icons";
 import { projects } from "@/content/data";
 import type { Project } from "@/types";
+import { cn } from "@/lib/utils";
 
 const difficultyColor: Record<string, string> = {
   Beginner: "success",
@@ -28,51 +32,233 @@ const difficultyColor: Record<string, string> = {
   Expert: "secondary",
 };
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+type PreviewKind = "agents" | "rag" | "dashboard" | "cluster";
+
+const previewKind: Record<string, PreviewKind> = {
+  renewai: "agents",
+  fincore: "rag",
+  "paint-intelligence": "dashboard",
+  "distributed-kv": "cluster",
+};
+
+function PreviewAgents() {
+  return (
+    <div className="flex flex-col gap-2 w-full max-w-[220px]">
+      <div className="flex items-center justify-between gap-2">
+        {["Policy", "Risk", "Outreach"].map((node) => (
+          <div key={node} className="flex-1 rounded-md border border-primary/15 bg-primary/[0.06] px-2 py-1.5 text-center">
+            <span className="text-[9px] font-medium text-primary/80">{node}</span>
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center gap-6">
+        <div className="h-3 w-px bg-border" />
+        <div className="h-3 w-px bg-border" />
+      </div>
+      <div className="flex items-center justify-center gap-3">
+        <div className="rounded-md border border-border-subtle bg-card/80 px-2 py-1">
+          <span className="text-[9px] text-muted-foreground">PostgreSQL</span>
+        </div>
+        <div className="rounded-md border border-border-subtle bg-card/80 px-2 py-1">
+          <span className="text-[9px] text-muted-foreground">Redis</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PreviewRag() {
+  return (
+    <div className="w-full max-w-[240px] space-y-2 font-mono text-[9px] leading-relaxed">
+      <div className="flex items-center gap-2 text-muted-foreground/70">
+        <span className="text-primary/70">→</span>
+        <span>query: policy renewal terms</span>
+      </div>
+      <div className="flex items-center gap-2 pl-3 text-muted-foreground/60">
+        <span className="text-primary/60">hybrid</span>
+        <span>Qdrant + BM25 → 12 chunks</span>
+      </div>
+      <div className="flex items-center gap-2 pl-3 text-muted-foreground/60">
+        <span className="text-primary/60">llm</span>
+        <span>stream response + citations</span>
+      </div>
+      <div className="mt-1 rounded-md border border-success/15 bg-success/[0.05] px-2 py-1 text-success/80">
+        ✓ cited answer · RBAC enforced
+      </div>
+    </div>
+  );
+}
+
+function PreviewDashboard() {
+  return (
+    <div className="w-full max-w-[200px] space-y-2">
+      <div className="flex items-end gap-1.5 h-10">
+        {[40, 65, 48, 80, 55, 72].map((h, i) => (
+          <div
+            key={i}
+            className="flex-1 rounded-sm bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300"
+            style={{ height: `${h}%` }}
+          />
+        ))}
+      </div>
+      <div className="flex justify-between text-[9px] text-muted-foreground/50">
+        <span>Dealer churn</span>
+        <span className="text-success/70">↓ 12%</span>
+      </div>
+    </div>
+  );
+}
+
+function PreviewCluster() {
+  return (
+    <div className="flex items-center gap-3">
+      {["Node A", "Node B", "Node C"].map((node, i) => (
+        <div
+          key={node}
+          className={cn(
+            "flex flex-col items-center gap-1.5",
+            i === 1 && "scale-105"
+          )}
+        >
+          <div
+            className={cn(
+              "w-10 h-10 rounded-lg border flex items-center justify-center",
+              i === 1
+                ? "border-primary/25 bg-primary/[0.08]"
+                : "border-border-subtle bg-card/60"
+            )}
+          >
+            <Database className={cn("w-3.5 h-3.5", i === 1 ? "text-primary" : "text-muted-foreground/50")} />
+          </div>
+          <span className="text-[8px] text-muted-foreground/50">{i === 1 ? "Leader" : node}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const previewIcons: Record<PreviewKind, React.ElementType> = {
+  agents: Network,
+  rag: Terminal,
+  dashboard: BarChart2,
+  cluster: Database,
+};
+
+function ProjectPreview({ project }: { project: Project }) {
+  const kind = previewKind[project.id] ?? "agents";
+  const PreviewIcon = previewIcons[kind];
+
+  return (
+    <div className="relative h-[7.5rem] shrink-0 border-b divider-subtle overflow-hidden">
+      <div className="absolute inset-0 bg-muted/35" />
+      <div className="absolute inset-0 grid-bg opacity-[0.35]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(139,94,60,0.08),transparent_60%)]" />
+
+      <div className="relative h-full flex flex-col p-4">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <div className="flex items-center gap-1.5 text-muted-foreground/45">
+            <PreviewIcon className="w-3 h-3" />
+            <span className="text-[10px] font-medium tracking-wide uppercase">
+              {kind === "agents" && "Architecture"}
+              {kind === "rag" && "Pipeline"}
+              {kind === "dashboard" && "Analytics"}
+              {kind === "cluster" && "Cluster"}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {project.status === "in-progress" && (
+              <Badge variant="warning" className="text-[9px] px-2 py-0.5">
+                In Progress
+              </Badge>
+            )}
+            {project.status === "coming-soon" && (
+              <Badge variant="outline" className="text-[9px] px-2 py-0.5 text-muted-foreground/60">
+                <Clock className="w-2.5 h-2.5 mr-0.5" />
+                Soon
+              </Badge>
+            )}
+            {project.status === "completed" && (
+              <span className="text-[9px] font-medium text-success/70 uppercase tracking-wide">
+                Production
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex-1 flex items-center justify-center">
+          {kind === "agents" && <PreviewAgents />}
+          {kind === "rag" && <PreviewRag />}
+          {kind === "dashboard" && <PreviewDashboard />}
+          {kind === "cluster" && <PreviewCluster />}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProductionHighlights({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.slice(0, 3).map((item) => (
+        <li key={item} className="highlight-item">
+          <Check className="w-3.5 h-3.5 text-success shrink-0 mt-0.5" strokeWidth={2.5} />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ProjectModal({ project }: { project: Project }) {
   return (
     <DialogContent className="max-w-3xl">
       <DialogHeader>
-        <DialogTitle className="text-2xl">{project.title}</DialogTitle>
+        <p className="text-caption text-primary mb-2">Case Study</p>
+        <DialogTitle className="text-2xl font-semibold tracking-tight">{project.title}</DialogTitle>
       </DialogHeader>
 
-      <div className="space-y-6 mt-2">
-        <p className="text-foreground/80 leading-relaxed">{project.longDescription}</p>
+      <div className="space-y-8 mt-2">
+        <p className="text-foreground/80 leading-[1.85] max-w-prose">{project.longDescription}</p>
 
-        {/* Architecture */}
         {project.architecture && (
-          <div className="p-4 rounded-xl bg-white/3 border border-border-subtle">
-            <div className="flex items-center gap-2 mb-2 text-blue-400">
+          <div className="card-static card-body">
+            <div className="flex items-center gap-2.5 mb-3 text-primary">
               <Layers className="w-4 h-4" />
-              <span className="text-sm font-semibold">Architecture</span>
+              <span className="text-sm font-medium">Architecture</span>
             </div>
-            <p className="text-sm text-muted-foreground">{project.architecture}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{project.architecture}</p>
           </div>
         )}
 
-        {/* Tech stack */}
-        <div>
-          <div className="flex items-center gap-2 mb-3 text-foreground/80">
-            <Zap className="w-4 h-4 text-yellow-400" />
-            <span className="text-sm font-semibold">Tech Stack</span>
+        {project.metrics && project.metrics.length > 0 && (
+          <div>
+            <p className="text-caption mb-4">Production Highlights</p>
+            <ProductionHighlights items={project.metrics} />
           </div>
-          <div className="flex flex-wrap gap-2">
+        )}
+
+        <div>
+          <div className="flex items-center gap-2.5 mb-4 text-foreground/80">
+            <Zap className="w-4 h-4 text-muted-foreground" />
+            <span className="text-sm font-medium">Technology Stack</span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
             {project.tech.map((t) => (
-              <Badge key={t} variant="tech">{t}</Badge>
+              <span key={t} className="tech-chip-sm">{t}</span>
             ))}
           </div>
         </div>
 
-        {/* Features */}
         {project.features.length > 0 && (
           <div>
-            <div className="flex items-center gap-2 mb-3 text-foreground/80">
-              <ChevronRight className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-semibold">Key Features</span>
+            <div className="flex items-center gap-2.5 mb-4 text-foreground/80">
+              <BookOpen className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm font-medium">What Was Built</span>
             </div>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2.5">
               {project.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="text-emerald-400 mt-0.5">✓</span>
+                <li key={f} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
+                  <span className="text-primary mt-0.5">·</span>
                   {f}
                 </li>
               ))}
@@ -80,35 +266,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
         )}
 
-        {/* Metrics */}
-        {project.metrics && project.metrics.length > 0 && (
-          <div>
-            <div className="flex items-center gap-2 mb-3 text-foreground/80">
-              <BarChart2 className="w-4 h-4 text-blue-400" />
-              <span className="text-sm font-semibold">Metrics</span>
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {project.metrics.map((m) => (
-                <div key={m} className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/10 text-center">
-                  <p className="text-xs text-muted-foreground">{m}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Challenges & Lessons */}
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-6">
           {project.challenges.length > 0 && (
             <div>
-              <div className="flex items-center gap-2 mb-3 text-foreground/80">
-                <span className="text-orange-400 text-sm">⚡</span>
-                <span className="text-sm font-semibold">Challenges</span>
-              </div>
-              <ul className="space-y-1.5">
+              <p className="text-caption mb-4">Why It Was Difficult</p>
+              <ul className="space-y-2.5">
                 {project.challenges.map((c) => (
-                  <li key={c} className="text-xs text-muted-foreground/70 flex gap-2">
-                    <span className="text-orange-400 shrink-0">→</span>
+                  <li key={c} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
+                    <span className="text-primary shrink-0">→</span>
                     {c}
                   </li>
                 ))}
@@ -117,14 +282,11 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           )}
           {project.lessons.length > 0 && (
             <div>
-              <div className="flex items-center gap-2 mb-3 text-foreground/80">
-                <BookOpen className="w-4 h-4 text-purple-400" />
-                <span className="text-sm font-semibold">Lessons</span>
-              </div>
-              <ul className="space-y-1.5">
+              <p className="text-caption mb-4">Key Learnings</p>
+              <ul className="space-y-2.5">
                 {project.lessons.map((l) => (
-                  <li key={l} className="text-xs text-muted-foreground/70 flex gap-2">
-                    <span className="text-purple-400 shrink-0">→</span>
+                  <li key={l} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
+                    <span className="text-primary shrink-0">→</span>
                     {l}
                   </li>
                 ))}
@@ -133,20 +295,19 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           )}
         </div>
 
-        {/* Links */}
-        <div className="flex gap-3 pt-2 border-t border-border-subtle">
+        <div className="flex flex-wrap gap-3 pt-6 border-t divider-subtle">
           {project.github && (
-            <Button size="sm" variant="outline" asChild>
+            <Button variant="outline" asChild>
               <a href={project.github} target="_blank" rel="noopener noreferrer">
-                <GithubIcon className="w-3.5 h-3.5" />
+                <GithubIcon className="w-4 h-4" />
                 GitHub
               </a>
             </Button>
           )}
           {project.demo && (
-            <Button size="sm" variant="default" asChild>
+            <Button asChild>
               <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-4 h-4" />
                 Live Demo
               </a>
             </Button>
@@ -159,190 +320,190 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.06 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
 };
+
+interface ProjectCaseStudyCardProps {
+  project: Project;
+  onOpenCaseStudy: () => void;
+}
+
+function ProjectCaseStudyCard({ project, onOpenCaseStudy }: ProjectCaseStudyCardProps) {
+  const isDisabled = project.status === "coming-soon";
+  const highlights = project.metrics ?? [];
+
+  return (
+    <article
+      className={cn(
+        "group surface-card project-case-study flex flex-col h-full overflow-hidden",
+        isDisabled ? "opacity-50 pointer-events-none" : "cursor-pointer"
+      )}
+      onClick={() => !isDisabled && onOpenCaseStudy()}
+    >
+      <ProjectPreview project={project} />
+
+      <div className="card-body flex flex-col flex-1 gap-4 pt-5 pb-5">
+        <div className="space-y-2">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="font-semibold text-foreground text-[1.0625rem] leading-snug tracking-tight group-hover:text-primary transition-colors duration-[250ms]">
+              {project.title}
+            </h3>
+            {!isDisabled && (
+              <Badge
+                variant={
+                  (difficultyColor[project.difficulty] as "default" | "secondary" | "success" | "warning") ||
+                  "default"
+                }
+                className="text-[9px] shrink-0"
+              >
+                {project.difficulty}
+              </Badge>
+            )}
+          </div>
+          <p className="text-sm text-muted-foreground leading-[1.65] line-clamp-2">
+            {project.description}
+          </p>
+        </div>
+
+        {highlights.length > 0 && (
+          <div>
+            <p className="text-caption mb-2.5">Production Highlights</p>
+            <ProductionHighlights items={highlights} />
+          </div>
+        )}
+
+        <div>
+          <p className="text-caption mb-2">Technology Stack</p>
+          <div className="flex flex-wrap gap-1">
+            {project.tech.slice(0, 6).map((t) => (
+              <span key={t} className="tech-chip-sm">{t}</span>
+            ))}
+            {project.tech.length > 6 && (
+              <span className="tech-chip-sm opacity-45">+{project.tech.length - 6}</span>
+            )}
+          </div>
+        </div>
+
+        {!isDisabled && (
+          <div
+            className="flex flex-col gap-3 pt-4 mt-auto border-t divider-subtle"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-9"
+                onClick={onOpenCaseStudy}
+              >
+                Case Study
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+              {project.architecture && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="h-9 text-muted-foreground"
+                  onClick={onOpenCaseStudy}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  Architecture
+                </Button>
+              )}
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors duration-[250ms]"
+                >
+                  <GithubIcon className="w-3.5 h-3.5" />
+                  GitHub
+                  <ArrowRight className="w-3 h-3 opacity-50" />
+                </a>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors duration-[250ms]"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Demo
+                  <ArrowRight className="w-3 h-3 opacity-50" />
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </article>
+  );
+}
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-16 sm:py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+    <Section id="projects" tone="alt" glow>
+      <SectionHeader
+        badge="Projects"
+        title="Things I've built"
+        description="Production systems deployed for enterprise clients — multi-agent AI, RAG pipelines, and distributed infrastructure."
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="Projects"
-          title="Things I've built"
-          description="Production-oriented projects spanning backend systems, distributed computing, and AI engineering."
-        />
-
+      <SectionContent>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
         >
           {projects.map((project) => (
             <motion.div
               key={project.id}
               variants={cardVariants}
-              className={`relative group rounded-xl border transition-all duration-300 overflow-hidden ${
-                project.status === "coming-soon"
-                  ? "bg-[#0d0d0f] border-border-subtle opacity-70"
-                  : "bg-card border-border-subtle hover:border-border card-hover cursor-pointer"
-              }`}
-              onClick={() => {
-                if (project.status !== "coming-soon") setSelectedProject(project);
-              }}
+              className="group h-full"
             >
-              {/* Gradient top bar */}
-              <div
-                className={`h-0.5 w-full ${
-                  project.status === "coming-soon"
-                    ? "bg-zinc-700"
-                    : "bg-gradient-to-r from-blue-600 to-purple-600"
-                }`}
+              <ProjectCaseStudyCard
+                project={project}
+                onOpenCaseStudy={() => setSelectedProject(project)}
               />
-
-              <div className="p-5">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Badge
-                      variant={
-                        (difficultyColor[project.difficulty] as "default" | "secondary" | "success" | "warning") ||
-                        "default"
-                      }
-                      className="text-[10px]"
-                    >
-                      {project.difficulty}
-                    </Badge>
-                    {project.status === "coming-soon" && (
-                      <Badge variant="outline" className="text-[10px] text-muted-foreground/70">
-                        <Clock className="w-2.5 h-2.5 mr-1" />
-                        Coming Soon
-                      </Badge>
-                    )}
-                    {project.status === "in-progress" && (
-                      <Badge variant="warning" className="text-[10px]">
-                        In Progress
-                      </Badge>
-                    )}
-                  </div>
-                  {project.status !== "coming-soon" && (
-                    <ArrowUpRight className="w-4 h-4 text-muted-foreground/50 group-hover:text-blue-400 transition-colors shrink-0" />
-                  )}
-                </div>
-
-                {/* Title */}
-                <h3 className="font-semibold text-foreground mb-2 group-hover:text-blue-300 transition-colors">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Tech stack */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.tech.slice(0, 4).map((t) => (
-                    <span
-                      key={t}
-                      className="px-2 py-0.5 text-[11px] rounded-md bg-muted/50 text-muted-foreground/70 border border-border-subtle"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                  {project.tech.length > 4 && (
-                    <span className="px-2 py-0.5 text-[11px] rounded-md bg-muted/50 text-muted-foreground/50 border border-border-subtle">
-                      +{project.tech.length - 4}
-                    </span>
-                  )}
-                </div>
-
-                {/* Links */}
-                {project.status !== "coming-soon" && (
-                  <div
-                    className="flex gap-2"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {project.github && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2.5 text-xs"
-                        asChild
-                      >
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <GithubIcon className="w-3 h-3 mr-1" />
-                          Code
-                        </a>
-                      </Button>
-                    )}
-                    {project.demo && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2.5 text-xs"
-                        asChild
-                      >
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-3 h-3 mr-1" />
-                          Demo
-                        </a>
-                      </Button>
-                    )}
-                    <button
-                      className="ml-auto text-xs text-muted-foreground/70 hover:text-blue-400 transition-colors flex items-center gap-1"
-                      onClick={() => setSelectedProject(project)}
-                    >
-                      Details
-                      <ChevronRight className="w-3 h-3" />
-                    </button>
-                  </div>
-                )}
-              </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* More projects CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-10 text-center"
+          className="mt-12 text-center"
         >
           <Button variant="outline" size="lg" asChild>
             <a
               href="https://github.com/Brohammad"
               target="_blank"
               rel="noopener noreferrer"
-              className="gap-2"
             >
               <GithubIcon className="w-4 h-4" />
               View all projects on GitHub
             </a>
           </Button>
         </motion.div>
-      </div>
+      </SectionContent>
 
-      {/* Project detail modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
+        {selectedProject && <ProjectModal project={selectedProject} />}
       </Dialog>
-    </section>
+    </Section>
   );
 }

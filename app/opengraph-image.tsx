@@ -10,7 +10,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "#09090b",
+          background: "#F7F3EC",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -27,7 +27,7 @@ export default async function Image() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px)",
+              "linear-gradient(rgba(139,94,60,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(139,94,60,0.06) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
@@ -41,7 +41,7 @@ export default async function Image() {
             width: 400,
             height: 400,
             borderRadius: "50%",
-            background: "rgba(59,130,246,0.08)",
+            background: "rgba(200,155,109,0.15)",
             filter: "blur(80px)",
           }}
         />
@@ -52,7 +52,7 @@ export default async function Image() {
             width: 72,
             height: 72,
             borderRadius: 20,
-            background: "linear-gradient(135deg, #3b82f6, #7c3aed)",
+            background: "linear-gradient(135deg, #8B5E3C, #C89B6D)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -68,7 +68,7 @@ export default async function Image() {
           style={{
             fontSize: 64,
             fontWeight: 800,
-            color: "white",
+            color: "#1F1F1F",
             letterSpacing: "-2px",
             marginBottom: 16,
           }}
@@ -80,7 +80,7 @@ export default async function Image() {
         <div
           style={{
             fontSize: 28,
-            color: "#3b82f6",
+            color: "#8B5E3C",
             fontWeight: 600,
             marginBottom: 24,
           }}
@@ -97,9 +97,9 @@ export default async function Image() {
                 style={{
                   padding: "8px 16px",
                   borderRadius: 999,
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#a1a1aa",
+                  background: "rgba(139,94,60,0.06)",
+                  border: "1px solid rgba(230,222,210,1)",
+                  color: "#5C5C5C",
                   fontSize: 16,
                 }}
               >
@@ -114,7 +114,7 @@ export default async function Image() {
           style={{
             position: "absolute",
             bottom: 40,
-            color: "#52525b",
+            color: "#7B7B7B",
             fontSize: 18,
           }}
         >
