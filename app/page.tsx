@@ -22,13 +22,14 @@ export default function Home() {
       <CommandPalette />
       <Navbar />
 
-      <main>
+      <main id="main-content">
         <HeroSection />
         <AboutSection />
         <StatsSection />
         <ExperienceSection />
         <ProjectsSection />
         <SkillsSection />
+        <div className="section-pause section-tone-elevated" aria-hidden />
         <TechFloatingSection />
         <NowSection />
         <UsesSection />

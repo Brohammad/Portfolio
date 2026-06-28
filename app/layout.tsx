@@ -17,39 +17,43 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
+  category: "technology",
   keywords: [
     "Backend Engineer",
     "AI Engineer",
-    "GenAI Engineer",
-    "Software Engineer",
-    "PwC",
-    "NIT Calicut",
-    "Node.js",
-    "Python",
-    "TypeScript",
-    "LangChain",
-    "LangGraph",
+    "Production Systems",
+    "Enterprise AI",
+    "Multi-Agent Systems",
     "RAG",
     "Distributed Systems",
-    "Multi-Agent Systems",
-    "brohammad",
+    "LangGraph",
+    "FastAPI",
+    "Azure",
+    "Brohammad",
     "Bengaluru",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
+  publisher: siteConfig.name,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
-    siteName: siteConfig.title,
+    siteName: siteConfig.name,
     images: [
       {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: siteConfig.title,
+        alt: `${siteConfig.name} — Backend & AI Engineer`,
       },
     ],
   },
@@ -77,10 +81,46 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F7F3EC",
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F7F3EC" },
+    { media: "(prefers-color-scheme: dark)", color: "#141210" },
+  ],
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: "Brohammad",
+      url: siteConfig.url,
+      jobTitle: "Backend & AI Engineer",
+      description: siteConfig.description,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Bengaluru",
+        addressCountry: "IN",
+      },
+      sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
+      knowsAbout: [
+        "Backend Engineering",
+        "Artificial Intelligence",
+        "Distributed Systems",
+        "RAG",
+        "Multi-Agent Systems",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      inLanguage: "en-US",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -95,26 +135,14 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Brohammad",
-              url: siteConfig.url,
-              sameAs: [
-                siteConfig.links.github,
-                siteConfig.links.linkedin,
-              ],
-              jobTitle: "Backend & AI Engineer",
-              description: siteConfig.description,
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <a href="#main-content" className="skip-link focus-ring">
+          Skip to content
+        </a>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

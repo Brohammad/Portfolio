@@ -16,6 +16,8 @@ export const siteConfig = {
     email: "aabidmohamed2003@gmail.com",
     resume: "/resume.pdf",
   },
+  lastUpdated: "June 2026",
+  builtWith: "Next.js · TypeScript · Tailwind CSS",
 };
 
 export const stats: Stat[] = [
@@ -381,39 +383,54 @@ export const blogTopics = [
 
 export const nowPage = {
   lastUpdated: "June 2026",
-  learning: [
-    "Raft consensus and log replication",
-    "C++ for systems programming",
-    "Kubernetes production patterns",
-    "OpenTelemetry instrumentation",
-    "LLM inference optimization",
-  ],
+  currentObsession: "Making multi-agent handoffs reliable without losing state in production.",
+  favoriteProblem: "Balancing retrieval recall and hallucination rate on regulatory documents.",
   building: [
-    "Distributed Key-Value Store (Raft in Go)",
-    "AI RAG Platform with eval pipelines",
-    "Authentication service with JWT + RBAC",
-  ],
-  experiments: [
-    "Fault injection testing for Raft cluster",
-    "Chunking strategy benchmarks for RAG quality",
-    "Redis caching patterns for LLM response dedup",
+    "Distributed Key-Value Store — Raft consensus in Go",
+    "AI RAG platform with eval pipelines as deployment gates",
+    "Authentication service — JWT, refresh rotation, RBAC",
   ],
   reading: [
     "Designing Data-Intensive Applications — Kleppmann",
-    "Computer Systems: A Programmer's Perspective",
-    "The Pragmatic Programmer",
+    "Computer Systems: A Programmer's Perspective — Bryant & O'Hallaron",
   ],
   exploring: [
-    "CRDTs and eventual consistency models",
-    "Event-driven architectures with Kafka",
-    "API gateway design from first principles",
+    "CRDTs and eventual consistency",
+    "Kubernetes production patterns",
+    "OpenTelemetry instrumentation",
+    "Inference optimization for LLM serving",
+  ],
+  research: [
+    "Chunking strategy benchmarks for banking policy docs",
+    "Fault injection testing for Raft cluster behavior",
+    "Hybrid dense + BM25 retrieval tuning",
+  ],
+  nextProjects: [
+    "Event-driven notification service with Kafka",
+    "API gateway with rate limiting and observability",
   ],
   goals: [
-    "Ship 10 production-grade systems",
-    "Write technical articles on backend + AI",
+    "Ship fewer systems, each production-grade",
+    "Publish technical writing on backend + AI engineering",
     "Deepen distributed systems fundamentals",
   ],
+  ideas: [
+    "Structured output schemas as pre-deployment gates",
+    "Redis dedup for repeated RAG queries in enterprise",
+    "Eval suites tied to CI, not slide decks",
+  ],
+  technicalNotes: [
+    "512-token chunks outperformed 256 on policy renewal docs",
+    "LangGraph checkpoints prevented state loss in agent handoffs",
+    "Hybrid retrieval beat pure vector search on finance Q&A",
+  ],
 };
+
+export const engineeringQuotes = [
+  "Simplicity is prerequisite for reliability. — Dijkstra",
+  "Make it work, make it right, make it fast. — Kent Beck",
+  "The only way to go fast is to go well. — Robert C. Martin",
+];
 
 export const usesPage = {
   hardware: [
