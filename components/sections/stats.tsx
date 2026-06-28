@@ -39,22 +39,22 @@ function StatBlock({
 
 export function StatsSection() {
   return (
-    <section className="relative py-12 lg:py-14 section-tone-elevated overflow-hidden border-y border-border-subtle">
+    <section className="relative py-10 lg:py-12 section-tone-elevated overflow-hidden border-y border-border-subtle">
       <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8 lg:mb-10"
+          className="mb-6 lg:mb-8"
         >
-          <p className="text-caption">Production Metrics</p>
+          <p className="text-block-label">Production Metrics</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-10 lg:gap-x-12"
+          className="grid grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-8 lg:gap-x-12"
         >
           {stats.map((stat, i) => (
             <motion.div

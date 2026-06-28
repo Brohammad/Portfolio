@@ -1,116 +1,282 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  Compass,
+  Target,
+  Eye,
+  Shield,
+  Layers,
+  Gauge,
+  Sparkles,
+  BookOpen,
+} from "lucide-react";
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
+import { cn } from "@/lib/utils";
 
-const infoCards = [
+const intro = [
   {
-    label: "Current Role",
-    value: "Associate Consultant",
-    detail: "PwC · Enterprise AI for banking",
-    meta: "Bengaluru, India",
+    label: "Who I am",
+    text: "Backend and AI engineer at PwC, building production systems for enterprise banking.",
   },
   {
-    label: "Education",
-    value: "NIT Calicut",
-    detail: "B.Tech Electrical & Electronics",
-    meta: "Class of 2025",
+    label: "What I build",
+    text: "Multi-agent workflows, hybrid RAG pipelines, and backend APIs deployed on Azure.",
   },
   {
-    label: "Production Focus",
-    value: "Multi-agent · RAG · APIs",
-    detail: "LangGraph, FastAPI, Azure AKS",
-    meta: "3 systems shipped",
+    label: "What excites me",
+    text: "Distributed systems, LLM infrastructure, and software that holds up under real load.",
   },
   {
-    label: "Currently Studying",
-    value: "Distributed Systems",
-    detail: "Raft, consensus, C++ internals",
-    meta: "Building a KV store in Go",
+    label: "What I'm working toward",
+    text: "Fewer projects, higher quality — and deeper mastery of systems engineering.",
   },
 ];
 
 const principles = [
-  "Ship to production, not to demos",
-  "Eval pipelines before deployment",
-  "Simple systems that survive scale",
+  {
+    icon: Layers,
+    title: "First Principles",
+    detail: "Understand systems instead of memorizing frameworks.",
+  },
+  {
+    icon: Target,
+    title: "Production First",
+    detail: "Build software that survives real users.",
+  },
+  {
+    icon: BookOpen,
+    title: "Continuous Learning",
+    detail: "Always studying distributed systems, AI, and infrastructure.",
+  },
+  {
+    icon: Sparkles,
+    title: "Quality over Quantity",
+    detail: "Fewer projects. Higher quality.",
+  },
+  {
+    icon: Eye,
+    title: "Observability",
+    detail: "If you can't measure it, you can't improve it.",
+  },
+  {
+    icon: Shield,
+    title: "Reliability",
+    detail: "Correctness before cleverness.",
+  },
 ];
+
+const currentFocus = [
+  "Production AI",
+  "Distributed Systems",
+  "Backend Infrastructure",
+  "Platform Engineering",
+  "AI Systems",
+  "Cloud Architecture",
+];
+
+const exploring = [
+  "Distributed Systems",
+  "Kubernetes",
+  "System Design",
+  "Networking",
+  "Inference Optimization",
+  "Operating Systems",
+  "Large Scale Databases",
+];
+
+const interests = [
+  "Backend Engineering",
+  "Artificial Intelligence",
+  "Distributed Systems",
+  "Cloud Infrastructure",
+  "Developer Experience",
+  "Performance Engineering",
+  "Financial Technology",
+  "Observability",
+];
+
+const beyondCode = [
+  "Curious by default",
+  "Documentation enthusiast",
+  "Enjoy simplifying complex systems",
+  "Prefer elegant solutions over clever hacks",
+  "Build for maintainability",
+];
+
+const trustSignals = [
+  { label: "Company", value: "PwC" },
+  { label: "Experience", value: "Production AI" },
+  { label: "Domain", value: "Banking" },
+  { label: "Focus", value: "Backend + AI" },
+  { label: "Location", value: "Bengaluru" },
+];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 10 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+};
+
+function PrincipleCard({
+  icon: Icon,
+  title,
+  detail,
+}: {
+  icon: React.ElementType;
+  title: string;
+  detail: string;
+}) {
+  return (
+    <div className="p-4 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
+      <Icon className="w-4 h-4 text-muted-foreground/45 mb-2.5" strokeWidth={1.5} />
+      <p className="text-[13.5px] font-medium text-foreground tracking-tight">{title}</p>
+      <p className="text-[12.5px] text-muted-foreground leading-relaxed mt-1">{detail}</p>
+    </div>
+  );
+}
+
+function InterestCard({ label }: { label: string }) {
+  return (
+    <div className="px-4 py-3 rounded-[calc(var(--radius)-4px)] bg-card/80 border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
+      <p className="text-[12.5px] font-medium text-foreground/85 tracking-tight">{label}</p>
+    </div>
+  );
+}
 
 export function AboutSection() {
   return (
     <Section id="about" tone="alt" spacing="spacious" width="wide">
       <SectionHeader
         badge="About"
-        title="Engineering, not just code"
-        description="I design systems that are reliable, observable, and maintainable — then ship them to production."
+        title="Engineering profile"
+        description="Who I am, how I think, and what I'm building toward."
         align="left"
-        className="max-w-2xl"
+        className="max-w-xl"
       />
 
-      <SectionContent className="grid lg:grid-cols-[0.9fr_1.1fr] gap-16 lg:gap-20 items-start">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-8"
-        >
-          <div className="space-y-5">
-            <p className="text-foreground text-[1.125rem] leading-[1.8] font-medium max-w-[38ch]">
-              Backend & AI engineer at{" "}
-              <span className="text-primary">PwC</span>, building intelligent
-              systems for Fortune 500 banking clients.
-            </p>
+      <SectionContent className="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 xl:gap-20 items-start">
+        {/* Left — story + philosophy */}
+        <div className="space-y-10 lg:space-y-12">
+          <motion.div {...fadeUp} className="space-y-6">
+            {intro.map((block) => (
+              <div key={block.label} className="space-y-1.5">
+                <p className="text-block-label">{block.label}</p>
+                <p className="text-[15px] sm:text-[1rem] text-foreground/85 leading-[1.7] max-w-[36ch]">
+                  {block.text}
+                </p>
+              </div>
+            ))}
+          </motion.div>
 
-            <p className="prose-body">
-              Multi-agent orchestration, hybrid RAG pipelines, and production
-              APIs — deployed on Azure, not in slide decks.
-            </p>
-          </div>
+          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.06 }}>
+            <p className="text-block-label mb-4">Engineering Principles</p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {principles.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.04 }}
+                >
+                  <PrincipleCard {...item} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-          <div className="card-static card-body">
-            <p className="text-caption mb-4">Operating Principles</p>
+          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+            <p className="text-block-label mb-3">Beyond Code</p>
             <ul className="space-y-2.5">
-              {principles.map((item) => (
+              {beyondCode.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-sm text-muted-foreground leading-relaxed"
+                  className="flex items-center gap-3 text-[13px] text-muted-foreground leading-relaxed"
                 >
-                  <span className="w-1 h-1 rounded-full bg-primary/50 shrink-0" />
+                  <span className="w-1 h-1 rounded-full bg-primary/35 shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {infoCards.map((card, i) => (
-            <motion.div
-              key={card.label}
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="card-static card-body flex flex-col gap-4 min-h-[148px] group hover:border-primary/15 transition-colors duration-300"
-            >
-              <div className="flex items-center justify-between gap-2">
-                <p className="text-caption">{card.label}</p>
-                <span className="text-[10px] text-muted-foreground/50 font-medium">
-                  {card.meta}
+        {/* Right — focus, exploring, interests, trust */}
+        <div className="space-y-10 lg:space-y-12">
+          <motion.div
+            {...fadeUp}
+            className="flex flex-wrap gap-x-5 gap-y-2 pb-6 border-b border-border-subtle/80"
+          >
+            {trustSignals.map((signal, i) => (
+              <span key={signal.label} className="inline-flex items-center gap-2 text-[12px]">
+                {i > 0 && (
+                  <span aria-hidden className="text-border hidden sm:inline">
+                    ·
+                  </span>
+                )}
+                <span className="text-muted-foreground/50">{signal.label}</span>
+                <span className="text-foreground/75 font-medium">{signal.value}</span>
+              </span>
+            ))}
+          </motion.div>
+
+          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.04 }}>
+            <div className="flex items-center gap-2 mb-4">
+              <Compass className="w-4 h-4 text-muted-foreground/40" strokeWidth={1.5} />
+              <p className="text-block-label">Current Focus</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {currentFocus.map((item) => (
+                <span
+                  key={item}
+                  className="px-3.5 py-2 rounded-full text-[12px] font-medium text-foreground/75 bg-card border border-border-subtle transition-colors duration-200 hover:border-primary/15 hover:text-primary/90"
+                >
+                  {item}
                 </span>
-              </div>
-              <div className="mt-auto space-y-1">
-                <p className="text-foreground font-semibold text-[15px] tracking-tight leading-snug">
-                  {card.value}
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {card.detail}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.08 }}>
+            <div className="flex items-center gap-2 mb-4">
+              <Gauge className="w-4 h-4 text-muted-foreground/40" strokeWidth={1.5} />
+              <p className="text-block-label">Currently Exploring</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {exploring.map((item) => (
+                <span
+                  key={item}
+                  className={cn(
+                    "px-3 py-1.5 rounded-[calc(var(--radius)-6px)] text-[11.5px] font-medium",
+                    "text-muted-foreground bg-foreground/[0.02] border border-border-subtle",
+                    "transition-all duration-200 hover:border-primary/18 hover:text-foreground/80 hover:-translate-y-px"
+                  )}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.12 }}>
+            <p className="text-block-label mb-5">Engineering Interests</p>
+            <div className="grid grid-cols-2 gap-3">
+              {interests.map((item, i) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: 6 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.03 }}
+                >
+                  <InterestCard label={item} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </SectionContent>
     </Section>

@@ -25,7 +25,7 @@ export function SectionHeader({
       viewport={{ once: true }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        "flex flex-col gap-4 sm:gap-5",
+        "flex flex-col gap-3 sm:gap-4",
         align === "center" && "items-center text-center",
         className
       )}
@@ -37,7 +37,7 @@ export function SectionHeader({
       )}
       <h2 className="text-heading text-foreground">{title}</h2>
       {description && (
-        <p className="text-muted-foreground text-base sm:text-[17px] max-w-[42ch] leading-[1.8] font-normal mt-1">
+        <p className="text-muted-foreground text-[14px] sm:text-[15px] max-w-[52ch] leading-[1.75] font-normal">
           {description}
         </p>
       )}

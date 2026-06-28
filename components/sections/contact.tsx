@@ -31,29 +31,30 @@ export function ContactSection() {
     "w-full px-4 py-3.5 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-2 focus:ring-primary/[0.06] transition-all duration-200";
 
   return (
-    <Section id="contact" tone="default" glow>
+    <Section id="contact" tone="default" spacing="spacious">
       <SectionHeader
         badge="Contact"
-        title="Let's build something"
-        description="Open to full-time opportunities, collaborations, and interesting projects. Don't hesitate to reach out."
+        title="Get in touch"
+        description="Open to backend and AI engineering roles. Recruiters, founders, and engineers welcome."
+        align="left"
+        className="max-w-xl"
       />
 
-      <SectionContent className="grid lg:grid-cols-2 gap-14 lg:gap-20">
+      <SectionContent className="grid lg:grid-cols-2 gap-12 lg:gap-16">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-          className="space-y-10"
+          transition={{ duration: 0.4 }}
+          className="space-y-8"
         >
           <p className="prose-body-lg">
-            Whether you&apos;re a recruiter from a top-tier tech company, a founder
-            building something ambitious, or an engineer who wants to collaborate
-            on open source — I&apos;d love to hear from you.
+            I build production AI and backend systems for enterprise clients.
+            If you&apos;re hiring or building something ambitious, reach out.
           </p>
 
           <div className="space-y-3">
-            <div className="flex items-center justify-between card-static p-6">
+            <div className="flex items-center justify-between interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
               <div className="flex items-center gap-4 min-w-0">
                 <div className="w-10 h-10 rounded-[calc(var(--radius)-4px)] bg-primary/[0.08] border border-primary/12 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-primary" />
@@ -65,14 +66,14 @@ export function ContactSection() {
               </div>
               <button
                 onClick={handleCopyEmail}
-                className="p-2.5 rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] transition-colors duration-200 shrink-0 ml-3"
+                className="p-2.5 rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] transition-colors duration-200 shrink-0 ml-3 focus-ring"
                 aria-label="Copy email"
               >
                 {copied ? <Check className="w-4 h-4 text-success" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
 
-            <div className="flex items-center gap-4 card-static p-6">
+            <div className="flex items-center gap-4 interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
               <div className="w-10 h-10 rounded-[calc(var(--radius)-4px)] bg-success/[0.08] border border-success/12 flex items-center justify-center shrink-0">
                 <MapPin className="w-4 h-4 text-success" />
               </div>
@@ -120,7 +121,7 @@ export function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.08 }}
         >
-          <form onSubmit={handleSubmit} className="card-static p-9 space-y-6">
+          <form onSubmit={handleSubmit} className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-6 sm:p-7 space-y-5" aria-label="Contact form">
             <div className="grid sm:grid-cols-2 gap-5">
               <div className="space-y-2">
                 <label className="block text-caption">Name</label>

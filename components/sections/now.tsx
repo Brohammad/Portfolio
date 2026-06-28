@@ -1,55 +1,48 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Hammer, Target, BookMarked, FlaskConical, Compass } from "lucide-react";
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { nowPage } from "@/content/data";
+import { cn } from "@/lib/utils";
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.05 } },
+const fadeUp = {
+  initial: { opacity: 0, y: 10 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 6 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
-};
-
-function JournalBlock({
-  icon: Icon,
+function JournalPanel({
   title,
   items,
   className,
+  compact,
 }: {
-  icon: React.ElementType;
   title: string;
   items: string[];
   className?: string;
+  compact?: boolean;
 }) {
   return (
     <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className={`card-static p-7 lg:p-8 ${className ?? ""}`}
+      {...fadeUp}
+      className={cn(
+        "interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6 h-full",
+        className
+      )}
     >
-      <div className="flex items-center gap-3 mb-6 pb-4 border-b divider-subtle">
-        <Icon className="w-4 h-4 text-muted-foreground/60" />
-        <h3 className="font-semibold text-foreground text-[15px] tracking-tight">{title}</h3>
-      </div>
-      <div className="space-y-3">
+      <p className="text-block-label mb-3">{title}</p>
+      <ul className={cn("space-y-2.5", compact && "space-y-2")}>
         {items.map((item) => (
-          <motion.p
+          <li
             key={item}
-            variants={itemVariants}
-            className="journal-entry text-sm text-muted-foreground leading-[1.75]"
+            className="journal-entry text-[13px] text-muted-foreground leading-[1.7]"
           >
             {item}
-          </motion.p>
+          </li>
         ))}
-      </div>
+      </ul>
     </motion.div>
   );
 }
@@ -60,83 +53,46 @@ export function NowSection() {
       <SectionHeader
         badge="Now"
         title="Engineering journal"
-        description={`Last updated ${nowPage.lastUpdated}. What I'm learning, building, and exploring right now.`}
+        description={`Updated ${nowPage.lastUpdated}. Active work, research, and what I'm thinking about.`}
         align="left"
         className="max-w-2xl"
       />
 
-      <SectionContent className="grid lg:grid-cols-[1.4fr_1fr] gap-6 lg:gap-7">
-        <div className="space-y-6">
-          <JournalBlock
-            icon={BookOpen}
-            title="Currently Learning"
-            items={nowPage.learning}
-          />
-          <JournalBlock
-            icon={FlaskConical}
-            title="Experiments"
-            items={nowPage.experiments}
-          />
-        </div>
-
-        <div className="space-y-6">
-          <JournalBlock
-            icon={Hammer}
-            title="Building"
-            items={nowPage.building}
-          />
-          <JournalBlock
-            icon={Compass}
-            title="Exploring"
-            items={nowPage.exploring}
-          />
-        </div>
-
+      <SectionContent loose className="space-y-5 lg:space-y-6">
+        {/* Momentum highlights */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="lg:col-span-2 card-static p-7 lg:p-8"
+          {...fadeUp}
+          className="grid sm:grid-cols-2 gap-4 lg:gap-5"
         >
-          <div className="grid sm:grid-cols-2 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b divider-subtle">
-                <BookMarked className="w-4 h-4 text-muted-foreground/60" />
-                <h3 className="font-semibold text-foreground text-[15px] tracking-tight">Reading</h3>
-              </div>
-              <div className="space-y-3">
-                {nowPage.reading.map((book) => (
-                  <motion.p
-                    key={book}
-                    variants={itemVariants}
-                    className="journal-entry text-sm text-muted-foreground leading-[1.75]"
-                  >
-                    {book}
-                  </motion.p>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b divider-subtle">
-                <Target className="w-4 h-4 text-muted-foreground/60" />
-                <h3 className="font-semibold text-foreground text-[15px] tracking-tight">Roadmap</h3>
-              </div>
-              <div className="space-y-3">
-                {nowPage.goals.map((goal) => (
-                  <motion.p
-                    key={goal}
-                    variants={itemVariants}
-                    className="journal-entry text-sm text-muted-foreground leading-[1.75]"
-                  >
-                    {goal}
-                  </motion.p>
-                ))}
-              </div>
-            </div>
+          <div className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
+            <p className="text-block-label mb-2.5">Current Obsession</p>
+            <p className="text-[14.5px] text-foreground/88 leading-[1.65] font-medium">
+              {nowPage.currentObsession}
+            </p>
+          </div>
+          <div className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
+            <p className="text-block-label mb-2.5">Favorite Problem</p>
+            <p className="text-[14.5px] text-foreground/88 leading-[1.65] font-medium">
+              {nowPage.favoriteProblem}
+            </p>
           </div>
         </motion.div>
+
+        {/* Primary journal grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+          <JournalPanel title="Currently Building" items={nowPage.building} />
+          <JournalPanel title="Currently Reading" items={nowPage.reading} />
+          <JournalPanel title="Currently Exploring" items={nowPage.exploring} />
+          <JournalPanel title="Current Research" items={nowPage.research} />
+          <JournalPanel title="Next Projects" items={nowPage.nextProjects} />
+          <JournalPanel title="Engineering Goals" items={nowPage.goals} />
+        </div>
+
+        {/* Notes + ideas */}
+        <div className="grid lg:grid-cols-2 gap-4 lg:gap-5">
+          <JournalPanel title="Ideas" items={nowPage.ideas} compact />
+          <JournalPanel title="Technical Notes" items={nowPage.technicalNotes} compact />
+        </div>
       </SectionContent>
     </Section>
   );

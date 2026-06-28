@@ -60,21 +60,21 @@ export function Navbar() {
           scrolled ? "glass glass-scrolled" : "bg-transparent"
         )}
       >
-        <nav className="section-container h-[4.75rem] grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+        <nav className="section-container h-[4.25rem] grid grid-cols-[1fr_auto_1fr] items-center gap-4">
           <button
             onClick={() => handleNavClick("#home")}
             className="flex items-center gap-3 text-foreground font-medium shrink-0 group justify-self-start"
             aria-label="Go to home"
           >
-            <div className="w-9 h-9 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-all duration-200 group-hover:scale-[1.02]">
-              <Terminal className="w-4 h-4 text-primary-foreground" />
+            <div className="w-8 h-8 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-all duration-200 group-hover:scale-[1.02]">
+              <Terminal className="w-[15px] h-[15px] text-primary-foreground" />
             </div>
-            <span className="text-[15px] tracking-tight hidden sm:inline">
+            <span className="text-[14.5px] tracking-tight hidden sm:inline">
               brohammad<span className="text-primary">.tech</span>
             </span>
           </button>
 
-          <div className="hidden lg:flex items-center justify-center gap-2">
+          <div className="hidden lg:flex items-center justify-center gap-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
               return (
@@ -83,7 +83,7 @@ export function Navbar() {
                   onClick={() => handleNavClick(link.href)}
                   data-active={isActive}
                   className={cn(
-                    "nav-link relative px-5 py-2.5 text-[13px] font-medium rounded-[calc(var(--radius)-6px)] transition-colors duration-200",
+                    "nav-link relative px-4 py-2 text-[13px] font-medium rounded-[calc(var(--radius)-6px)] transition-colors duration-200 focus-ring",
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -130,7 +130,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[4.75rem] left-0 right-0 z-40 glass md:hidden"
+            className="fixed top-[4.25rem] left-0 right-0 z-40 glass md:hidden"
           >
             <div className="section-container py-6 flex flex-col gap-2.5">
               {navLinks.map((link) => (

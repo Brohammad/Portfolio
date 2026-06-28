@@ -24,14 +24,16 @@ const colorMap: Record<string, string> = {
 
 export function UsesSection() {
   return (
-    <Section id="uses" tone="elevated" containerClassName="max-w-5xl">
+    <Section id="uses" tone="elevated" spacing="compact" containerClassName="max-w-5xl">
       <SectionHeader
         badge="Uses"
-        title="My Setup"
-        description="The tools, apps, and hardware I use daily for engineering work."
+        title="Engineering setup"
+        description="Tools I reach for daily when building production systems."
+        align="left"
+        className="max-w-xl"
       />
 
-      <SectionContent className="space-y-12 sm:space-y-14">
+      <SectionContent className="space-y-10 sm:space-y-12">
         {categories.map((cat, ci) => {
           const Icon = cat.icon;
           const items = usesPage[cat.key];
@@ -56,10 +58,10 @@ export function UsesSection() {
                 {items.map((item) => (
                   <div
                     key={item.name}
-                    className="card-static p-6 h-full"
+                    className="interactive-card rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle p-4 sm:p-5 h-full"
                   >
-                    <div className="font-semibold text-foreground text-[14.5px] mb-2 tracking-tight">{item.name}</div>
-                    <div className="text-sm text-muted-foreground leading-[1.75]">{item.description}</div>
+                    <div className="font-semibold text-foreground text-[14px] mb-1.5 tracking-tight">{item.name}</div>
+                    <div className="text-[13px] text-muted-foreground leading-[1.7]">{item.description}</div>
                   </div>
                 ))}
               </div>
