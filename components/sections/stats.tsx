@@ -22,16 +22,16 @@ function StatBlock({
   return (
     <div
       ref={ref}
-      className="card-static card-body flex flex-col items-center justify-center text-center min-h-[168px]"
+      className="stat-engineering flex flex-col items-start justify-center text-left"
     >
-      <div className="text-[2.5rem] sm:text-[2.75rem] font-semibold text-foreground tracking-tight tabular-nums leading-none">
+      <div className="stat-value text-foreground tabular-nums leading-none">
         {prefix}
         {count}
         {suffix && <span className="text-primary">{suffix}</span>}
       </div>
-      <p className="mt-5 text-sm font-medium text-foreground tracking-tight">{label}</p>
+      <p className="mt-3 text-sm font-medium text-foreground tracking-tight">{label}</p>
       {subtitle && (
-        <p className="mt-1.5 text-xs text-muted-foreground/70">{subtitle}</p>
+        <p className="mt-1 text-xs text-muted-foreground/65">{subtitle}</p>
       )}
     </div>
   );
@@ -39,14 +39,22 @@ function StatBlock({
 
 export function StatsSection() {
   return (
-    <section className="relative py-16 section-tone-alt overflow-hidden border-y border-border-subtle">
-      <div className="absolute inset-0 grid-bg opacity-[0.15] pointer-events-none" />
+    <section className="relative py-12 lg:py-14 section-tone-elevated overflow-hidden border-y border-border-subtle">
       <div className="section-container relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-8 lg:mb-10"
+        >
+          <p className="text-caption">Production Metrics</p>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5"
+          className="grid grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-10 lg:gap-x-12"
         >
           {stats.map((stat, i) => (
             <motion.div
@@ -54,7 +62,7 @@ export function StatsSection() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
+              transition={{ delay: i * 0.05 }}
               className={i === stats.length - 1 ? "col-span-2 lg:col-span-1" : ""}
             >
               <StatBlock

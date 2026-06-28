@@ -74,7 +74,7 @@ export function Navbar() {
             </span>
           </button>
 
-          <div className="hidden lg:flex items-center justify-center gap-0.5">
+          <div className="hidden lg:flex items-center justify-center gap-2">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
               return (
@@ -83,7 +83,7 @@ export function Navbar() {
                   onClick={() => handleNavClick(link.href)}
                   data-active={isActive}
                   className={cn(
-                    "nav-link relative px-4 py-2.5 text-[13px] font-medium rounded-[calc(var(--radius)-6px)] transition-colors duration-200",
+                    "nav-link relative px-5 py-2.5 text-[13px] font-medium rounded-[calc(var(--radius)-6px)] transition-colors duration-200",
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -132,7 +132,7 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="fixed top-[4.75rem] left-0 right-0 z-40 glass md:hidden"
           >
-            <div className="section-container py-6 flex flex-col gap-1">
+            <div className="section-container py-6 flex flex-col gap-2.5">
               {navLinks.map((link) => (
                 <button
                   key={link.href}

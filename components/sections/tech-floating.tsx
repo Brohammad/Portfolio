@@ -3,38 +3,31 @@
 import { motion } from "framer-motion";
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
-
-const techItems = [
-  "TypeScript", "Node.js", "Python", "React", "Next.js", "PostgreSQL",
-  "MongoDB", "Redis", "Docker", "AWS", "FastAPI", "OpenAI",
-];
+import { techStack } from "@/content/data";
 
 export function TechFloatingSection() {
   return (
-    <Section tone="alt">
+    <Section tone="alt" spacing="compact">
       <SectionHeader
         badge="Tech Stack"
-        title="Powered by"
-        description="The core technologies I reach for when building production systems."
+        title="Core production stack"
+        description="The technologies behind shipped systems."
+        align="center"
       />
 
-      <SectionContent>
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-4xl mx-auto">
-          {techItems.map((tech, i) => (
-            <motion.div
+      <SectionContent tight>
+        <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 max-w-3xl mx-auto">
+          {techStack.map((tech, i) => (
+            <motion.span
               key={tech}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.03, duration: 0.35 }}
-              whileHover={{ scale: 1.01 }}
-              className="flex items-center gap-2.5 px-5 py-3 rounded-full bg-card border border-border-subtle hover:border-primary/25 transition-all cursor-default group"
+              transition={{ delay: i * 0.025, duration: 0.3 }}
+              className="tech-chip cursor-default hover:border-primary/20 hover:text-primary transition-colors duration-200"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/35 group-hover:bg-primary transition-colors" />
-              <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
-                {tech}
-              </span>
-            </motion.div>
+              {tech}
+            </motion.span>
           ))}
         </div>
       </SectionContent>

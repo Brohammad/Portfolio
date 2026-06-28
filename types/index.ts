@@ -14,6 +14,8 @@ export interface Project {
   lessons: string[];
   metrics?: string[];
   architecture?: string;
+  scale?: string[];
+  engineeringChallenges?: string[];
 }
 
 export interface Experience {
@@ -28,6 +30,10 @@ export interface Experience {
   responsibilities: string[];
   technologies: string[];
   achievements: string[];
+  impact: string[];
+  architecture: string;
+  scale: string[];
+  decisions: string[];
   current: boolean;
 }
 
@@ -40,6 +46,7 @@ export interface Skill {
 export interface SkillGroup {
   category: string;
   icon: string;
+  description?: string;
   skills: Skill[];
 }
 

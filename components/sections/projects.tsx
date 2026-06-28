@@ -237,6 +237,17 @@ function ProjectModal({ project }: { project: Project }) {
           </div>
         )}
 
+        {project.scale && project.scale.length > 0 && (
+          <div>
+            <p className="text-caption mb-4">Scale</p>
+            <div className="flex flex-wrap gap-2">
+              {project.scale.map((item) => (
+                <span key={item} className="metric-chip">{item}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div>
           <div className="flex items-center gap-2.5 mb-4 text-foreground/80">
             <Zap className="w-4 h-4 text-muted-foreground" />
@@ -377,6 +388,30 @@ function ProjectCaseStudyCard({ project, onOpenCaseStudy }: ProjectCaseStudyCard
           </div>
         )}
 
+        {project.scale && project.scale.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {project.scale.map((item) => (
+              <span key={item} className="metric-chip text-[10px]">
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {project.engineeringChallenges && project.engineeringChallenges.length > 0 && (
+          <div className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-24 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <p className="text-caption mb-2">Engineering Challenges</p>
+            <ul className="space-y-1.5">
+              {project.engineeringChallenges.slice(0, 2).map((c) => (
+                <li key={c} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
+                  <span className="text-primary/50 shrink-0">→</span>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div>
           <p className="text-caption mb-2">Technology Stack</p>
           <div className="flex flex-wrap gap-1">
@@ -453,11 +488,13 @@ export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <Section id="projects" tone="alt" glow>
+    <Section id="projects" tone="alt" spacing="spacious" glow width="wide">
       <SectionHeader
         badge="Projects"
-        title="Things I've built"
-        description="Production systems deployed for enterprise clients — multi-agent AI, RAG pipelines, and distributed infrastructure."
+        title="Production systems"
+        description="Each project is a deployed system — with architecture, scale, and engineering trade-offs documented."
+        align="left"
+        className="max-w-2xl"
       />
 
       <SectionContent>
@@ -466,7 +503,7 @@ export function ProjectsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
+          className="grid sm:grid-cols-2 xl:grid-cols-2 gap-6 lg:gap-7 max-w-5xl"
         >
           {projects.map((project) => (
             <motion.div

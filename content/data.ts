@@ -19,74 +19,25 @@ export const siteConfig = {
 };
 
 export const stats: Stat[] = [
-  { label: "Projects Built", subtitle: "Production Systems", value: 12, suffix: "+" },
-  { label: "Technologies", subtitle: "Languages & Tools", value: 40, suffix: "+" },
-  { label: "GitHub Commits", subtitle: "Open Source", value: 600, suffix: "+" },
-  { label: "Years Engineering", subtitle: "Professional", value: 2, suffix: "+" },
-  { label: "AI Systems Shipped", subtitle: "Enterprise Clients", value: 3 },
+  { label: "Production Systems", subtitle: "Enterprise deployments", value: 3 },
+  { label: "Daily API Requests", subtitle: "RAG + agent pipelines", value: 5, suffix: "K+", prefix: "~" },
+  { label: "Open Source Commits", subtitle: "GitHub contributions", value: 600, suffix: "+" },
+  { label: "Languages", subtitle: "Production proficiency", value: 6 },
+  { label: "Years Building", subtitle: "Professional engineering", value: 2, suffix: "+" },
+];
+
+export const heroMetrics = [
+  { label: "Systems in prod", value: "3", detail: "Fortune 500 banking" },
+  { label: "Uptime target", value: "99.9%", detail: "Azure · AKS" },
+  { label: "Query volume", value: "~5K/day", detail: "Hybrid RAG" },
+  { label: "Agents orchestrated", value: "12+", detail: "LangGraph flows" },
 ];
 
 export const skillGroups: SkillGroup[] = [
   {
-    category: "Languages",
-    icon: "Code2",
-    skills: [
-      { name: "Python" },
-      { name: "TypeScript" },
-      { name: "JavaScript" },
-      { name: "Java" },
-      { name: "C++" },
-      { name: "SQL" },
-    ],
-  },
-  {
-    category: "Backend",
-    icon: "Server",
-    skills: [
-      { name: "Node.js" },
-      { name: "Express" },
-      { name: "FastAPI" },
-      { name: "REST APIs" },
-      { name: "gRPC" },
-      { name: "WebSockets" },
-      { name: "SSE" },
-      { name: "JWT / Auth" },
-      { name: "Microservices" },
-      { name: "Kafka" },
-    ],
-  },
-  {
-    category: "AI & GenAI",
-    icon: "Brain",
-    skills: [
-      { name: "LangChain" },
-      { name: "LangGraph" },
-      { name: "LlamaIndex" },
-      { name: "OpenAI APIs" },
-      { name: "Gemini" },
-      { name: "RAG" },
-      { name: "Prompt Engineering" },
-      { name: "LLM Evaluation" },
-      { name: "Multi-Agent Systems" },
-      { name: "MCP" },
-    ],
-  },
-  {
-    category: "Databases",
-    icon: "Database",
-    skills: [
-      { name: "PostgreSQL" },
-      { name: "MongoDB" },
-      { name: "Redis" },
-      { name: "ChromaDB" },
-      { name: "Qdrant" },
-      { name: "Neo4j" },
-      { name: "SQLite" },
-    ],
-  },
-  {
-    category: "Cloud & DevOps",
+    category: "Infrastructure",
     icon: "Cloud",
+    description: "Deployment, observability, and cloud primitives",
     skills: [
       { name: "AWS" },
       { name: "Azure" },
@@ -99,13 +50,76 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    category: "Frontend",
+    category: "AI Platform",
+    icon: "Brain",
+    description: "LLM orchestration, RAG, and evaluation pipelines",
+    skills: [
+      { name: "LangChain" },
+      { name: "LangGraph" },
+      { name: "LlamaIndex" },
+      { name: "OpenAI APIs" },
+      { name: "Gemini" },
+      { name: "RAG" },
+      { name: "LLM Evaluation" },
+      { name: "Multi-Agent Systems" },
+      { name: "MCP" },
+    ],
+  },
+  {
+    category: "Backend",
+    icon: "Server",
+    description: "APIs, services, and event-driven architecture",
+    skills: [
+      { name: "Python" },
+      { name: "TypeScript" },
+      { name: "Node.js" },
+      { name: "FastAPI" },
+      { name: "REST APIs" },
+      { name: "gRPC" },
+      { name: "WebSockets" },
+      { name: "SSE" },
+      { name: "Kafka" },
+      { name: "Microservices" },
+    ],
+  },
+  {
+    category: "Distributed Systems",
+    icon: "Network",
+    description: "Consensus, replication, and fault tolerance",
+    skills: [
+      { name: "Raft" },
+      { name: "Redis" },
+      { name: "PostgreSQL" },
+      { name: "MongoDB" },
+      { name: "Qdrant" },
+      { name: "Neo4j" },
+      { name: "ChromaDB" },
+    ],
+  },
+  {
+    category: "Cloud",
+    icon: "Database",
+    description: "Data stores, caching, and retrieval layers",
+    skills: [
+      { name: "PostgreSQL" },
+      { name: "MongoDB" },
+      { name: "Redis" },
+      { name: "Qdrant" },
+      { name: "SQLite" },
+      { name: "JWT / Auth" },
+    ],
+  },
+  {
+    category: "Developer Experience",
     icon: "Monitor",
+    description: "Interfaces and tooling for shipping faster",
     skills: [
       { name: "React" },
       { name: "Next.js" },
-      { name: "Angular" },
       { name: "TailwindCSS" },
+      { name: "Prompt Engineering" },
+      { name: "Java" },
+      { name: "C++" },
     ],
   },
 ];
@@ -144,6 +158,11 @@ export const projects: Project[] = [
       "Multi-agent architecture",
       "Production on Azure",
     ],
+    scale: ["3 specialized agents", "Full audit trail", "Legacy API integration"],
+    engineeringChallenges: [
+      "Reliable agent handoffs without state loss",
+      "LLM eval pipelines before production",
+    ],
     architecture:
       "FastAPI backend with LangGraph orchestrating specialized agents. PostgreSQL for audit logs. Redis for session state. Deployed on Azure with Docker Compose.",
   },
@@ -179,6 +198,11 @@ export const projects: Project[] = [
       "Enterprise production deployment",
       "Thousands of queries daily",
       "Hybrid retrieval pipeline",
+    ],
+    scale: ["~5K queries/day", "Document-level RBAC", "SSE streaming"],
+    engineeringChallenges: [
+      "Hallucination guardrails on regulatory content",
+      "Hybrid dense + BM25 retrieval tuning",
     ],
     architecture:
       "FastAPI service with LangChain RAG pipeline. Qdrant vector store with PostgreSQL for metadata. Azure OpenAI for embeddings and generation. Deployed on Azure AKS.",
@@ -216,6 +240,11 @@ export const projects: Project[] = [
       "National dealer network",
       "AI-generated insights",
     ],
+    scale: ["National dealer network", "Mobile API integration", "60%+ cache hit rate"],
+    engineeringChallenges: [
+      "Structured LLM output parsing for CRM workflows",
+      "Low-latency mobile API responses",
+    ],
     architecture:
       "Node.js REST API + Python AI service. MongoDB for CRM data. LangChain for insight generation. React dashboard. Deployed with Docker on AWS.",
   },
@@ -249,6 +278,11 @@ export const projects: Project[] = [
       "Linearizable guarantees",
       "3-node cluster",
     ],
+    scale: ["3-node cluster", "Log compaction", "Automatic failover"],
+    engineeringChallenges: [
+      "Correct Raft term management at partition boundaries",
+      "Fault injection for distributed testing",
+    ],
     architecture: "Multi-node cluster over gRPC with Raft state machine per node.",
   },
 ];
@@ -268,8 +302,6 @@ export const experiences: Experience[] = [
       "Building enterprise-grade AI applications for banking clients",
       "Designing and deploying multi-agent AI systems using LangGraph and LangChain",
       "Architecting RAG pipelines with hybrid retrieval for financial document Q&A",
-      "Developing backend APIs and ML pipelines integrated with cloud infrastructure",
-      "Leading technical delivery on production AI projects for Fortune 500 clients",
     ],
     technologies: [
       "Python", "FastAPI", "LangChain", "LangGraph", "LlamaIndex",
@@ -279,6 +311,23 @@ export const experiences: Experience[] = [
       "Shipped 3 production AI systems to enterprise banking clients",
       "Built multi-agent insurance renewal platform reducing manual processing",
       "Deployed RAG assistant handling thousands of queries daily in production",
+    ],
+    impact: [
+      "Reduced manual insurance renewal processing for Fortune 500 banking client",
+      "RAG assistant serving ~5K queries/day with source citation and RBAC",
+      "Multi-agent platform with full audit trails integrated into legacy banking APIs",
+    ],
+    architecture:
+      "LangGraph-orchestrated agents on FastAPI, hybrid RAG over Qdrant + PostgreSQL, deployed on Azure AKS with Docker and Redis session state.",
+    scale: [
+      "3 production systems · Fortune 500 clients",
+      "~5K daily queries · 99.9% uptime target",
+      "12+ agent flows · document-level access control",
+    ],
+    decisions: [
+      "LangGraph state machines over ad-hoc agent chains for reliability",
+      "Hybrid retrieval (dense + BM25) over pure vector search for finance docs",
+      "Eval pipelines as a deployment gate, not a post-launch afterthought",
     ],
   },
 ];
@@ -331,31 +380,38 @@ export const blogTopics = [
 ];
 
 export const nowPage = {
+  lastUpdated: "June 2026",
   learning: [
-    "C++ — systems programming and performance",
-    "Distributed Systems — consensus, replication, CRDTs",
-    "Linux internals — kernel, networking stack",
-    "AI Infrastructure — inference optimization, serving",
-    "Kubernetes — production cluster management",
-    "Observability — OpenTelemetry, Prometheus, Grafana",
-    "Performance Engineering — profiling, benchmarking",
+    "Raft consensus and log replication",
+    "C++ for systems programming",
+    "Kubernetes production patterns",
+    "OpenTelemetry instrumentation",
+    "LLM inference optimization",
   ],
   building: [
-    "Distributed Key-Value Store",
-    "AI RAG Platform",
-    "Authentication Service",
+    "Distributed Key-Value Store (Raft in Go)",
+    "AI RAG Platform with eval pipelines",
+    "Authentication service with JWT + RBAC",
+  ],
+  experiments: [
+    "Fault injection testing for Raft cluster",
+    "Chunking strategy benchmarks for RAG quality",
+    "Redis caching patterns for LLM response dedup",
   ],
   reading: [
     "Designing Data-Intensive Applications — Kleppmann",
     "Computer Systems: A Programmer's Perspective",
     "The Pragmatic Programmer",
   ],
+  exploring: [
+    "CRDTs and eventual consistency models",
+    "Event-driven architectures with Kafka",
+    "API gateway design from first principles",
+  ],
   goals: [
-    "Land a role at a top-tier tech company (OpenAI / Anthropic / Cloudflare / Stripe / Databricks)",
-    "Master distributed systems fundamentals",
-    "Become proficient in C++ for systems programming",
-    "Build and ship 10 production-grade projects",
-    "Write technical articles on backend and AI engineering",
+    "Ship 10 production-grade systems",
+    "Write technical articles on backend + AI",
+    "Deepen distributed systems fundamentals",
   ],
 };
 

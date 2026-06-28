@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
+import { MapPin, Layers, Gauge } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -9,19 +9,19 @@ import { experiences } from "@/content/data";
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" tone="default" containerClassName="max-w-3xl">
+    <Section id="experience" tone="default" spacing="spacious" width="narrow">
       <SectionHeader
         badge="Experience"
-        title="Where I've worked"
-        description="Enterprise AI systems and backend infrastructure in production."
-        align="center"
+        title="Production impact"
+        description="What shipped, at what scale, and why the architecture looks the way it does."
+        align="left"
       />
 
       <SectionContent tight>
         <div className="relative">
           <div className="absolute left-4 sm:left-5 top-3 bottom-3 w-px timeline-line" />
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             {experiences.map((exp, i) => (
               <motion.div
                 key={exp.id}
@@ -39,8 +39,8 @@ export function ExperienceSection() {
                   />
                 </div>
 
-                <div className="card-static card-body lg:px-9 lg:py-9">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 pb-6 border-b divider-subtle">
+                <article className="card-static card-body incident-card lg:px-9 lg:py-9">
+                  <header className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 pb-6 border-b divider-subtle">
                     <div className="space-y-2">
                       <div className="flex items-center gap-2.5 flex-wrap">
                         <h3 className="text-[1.0625rem] font-semibold text-foreground leading-tight tracking-tight">
@@ -65,36 +65,63 @@ export function ExperienceSection() {
                       <span className="text-xs text-muted-foreground px-3 py-1.5 rounded-full bg-muted/50 border border-border-subtle whitespace-nowrap">
                         {exp.duration}
                       </span>
-                      <span className="text-xs text-muted-foreground capitalize px-3 py-1.5 rounded-full bg-muted/50 border border-border-subtle">
-                        {exp.type}
-                      </span>
                     </div>
-                  </div>
+                  </header>
 
-                  <div className="py-6 border-b divider-subtle">
-                    <p className="text-caption mb-4">Responsibilities</p>
-                    <ul className="space-y-3">
-                      {exp.responsibilities.map((r, j) => (
-                        <li
-                          key={j}
-                          className="text-sm text-muted-foreground leading-[1.75] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1 before:h-1 before:rounded-full before:bg-border"
-                        >
-                          {r}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {exp.achievements.length > 0 && (
+                  {exp.impact.length > 0 && (
                     <div className="py-6 border-b divider-subtle">
-                      <p className="text-caption text-success mb-4">Key Impact</p>
+                      <p className="text-caption text-success mb-4">Outcomes</p>
                       <ul className="space-y-3">
-                        {exp.achievements.map((a, j) => (
+                        {exp.impact.map((item) => (
                           <li
-                            key={j}
-                            className="text-sm text-muted-foreground leading-[1.75] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1 before:h-1 before:rounded-full before:bg-success/50"
+                            key={item}
+                            className="text-sm text-foreground/85 leading-[1.75] font-medium pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1 before:h-1 before:rounded-full before:bg-success/60"
                           >
-                            {a}
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {exp.scale.length > 0 && (
+                    <div className="py-6 border-b divider-subtle">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Gauge className="w-3.5 h-3.5 text-muted-foreground/60" />
+                        <p className="text-caption">Scale</p>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.scale.map((item) => (
+                          <span key={item} className="metric-chip">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {exp.architecture && (
+                    <div className="py-6 border-b divider-subtle">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Layers className="w-3.5 h-3.5 text-muted-foreground/60" />
+                        <p className="text-caption">Architecture</p>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-[1.75]">
+                        {exp.architecture}
+                      </p>
+                    </div>
+                  )}
+
+                  {exp.decisions.length > 0 && (
+                    <div className="py-6 border-b divider-subtle">
+                      <p className="text-caption mb-4">Key Decisions</p>
+                      <ul className="space-y-2.5">
+                        {exp.decisions.map((item) => (
+                          <li
+                            key={item}
+                            className="text-sm text-muted-foreground leading-[1.75] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-primary/50 before:text-xs"
+                          >
+                            {item}
                           </li>
                         ))}
                       </ul>
@@ -102,7 +129,7 @@ export function ExperienceSection() {
                   )}
 
                   <div className="pt-6">
-                    <p className="text-caption mb-4">Technologies</p>
+                    <p className="text-caption mb-4">Stack</p>
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech) => (
                         <Badge key={tech} variant="tech" className="text-[11px]">
@@ -111,7 +138,7 @@ export function ExperienceSection() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </article>
               </motion.div>
             ))}
 
@@ -124,13 +151,13 @@ export function ExperienceSection() {
               <div className="absolute left-4 sm:left-5 top-7 -translate-x-1/2 z-10">
                 <div className="w-2 h-2 rounded-full bg-border ring-4 ring-background" />
               </div>
-              <div className="card-static card-body lg:px-9 lg:py-9">
+              <div className="card-static card-body lg:px-9 lg:py-7">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
                     <h3 className="text-[1.0625rem] font-semibold text-foreground tracking-tight">
-                      B.Tech in Electrical & Electronics Engineering
+                      B.Tech · Electrical & Electronics Engineering
                     </h3>
-                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                    <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
                       National Institute of Technology Calicut
                     </p>
                   </div>
