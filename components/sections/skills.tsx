@@ -189,15 +189,16 @@ function CapabilityCard({ capability }: { capability: Capability }) {
 
 export function SkillsSection() {
   return (
-    <Section id="skills" tone="elevated" spacing="default" width="wide">
+    <Section id="skills" tone="elevated" spacing="default" width="wide" className="section-chapter">
       <SectionHeader
         badge="Capabilities"
         title="Engineering capability matrix"
         description="What kinds of systems I build — organized by domain, not syntax."
         align="left"
+        variant="featured"
       />
 
-      <SectionContent>
+      <SectionContent featured>
         <motion.div
           initial="hidden"
           whileInView="visible"

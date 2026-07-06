@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Terminal, Download, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -91,22 +91,24 @@ export function Navbar() {
 
           <nav className="hidden lg:flex items-center justify-center flex-1 min-w-0" aria-label="Primary">
             <div className="navbar-nav-track">
-              {navLinks.map((link) => {
+              {navLinks.map((link, index) => {
                 const isActive = activeSection === link.href.replace("#", "");
                 return (
-                  <button
-                    key={link.href}
-                    onClick={() => handleNavClick(link.href)}
-                    data-active={isActive}
-                    className={cn(
-                      "nav-link relative px-4 xl:px-5 py-2.5 text-[14px] xl:text-[15px] font-medium rounded-[calc(var(--radius)-4px)] transition-all duration-200 focus-ring whitespace-nowrap",
-                      isActive
-                        ? "text-foreground bg-primary/[0.08] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--primary)_12%,transparent)]"
-                        : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
-                    )}
-                  >
-                    {link.label}
-                  </button>
+                  <Fragment key={link.href}>
+                    {index > 0 && <span className="navbar-nav-separator" aria-hidden />}
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      data-active={isActive}
+                      className={cn(
+                        "nav-link relative px-3.5 xl:px-4 py-2.5 text-[14px] xl:text-[15px] font-medium rounded-[calc(var(--radius)-4px)] transition-all duration-200 focus-ring whitespace-nowrap",
+                        isActive
+                          ? "text-foreground bg-card/90 shadow-[var(--shadow-sm)] ring-1 ring-primary/10"
+                          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05]"
+                      )}
+                    >
+                      {link.label}
+                    </button>
+                  </Fragment>
                 );
               })}
             </div>
@@ -166,20 +168,24 @@ export function Navbar() {
               className="fixed left-4 right-4 sm:left-6 sm:right-6 z-50 top-[calc(var(--navbar-height)+0.25rem)] lg:hidden"
             >
               <div className="rounded-[calc(var(--radius)+4px)] border border-border-subtle bg-card/95 backdrop-blur-xl shadow-[var(--shadow-lg)] overflow-hidden">
-                <div className="px-3 py-4 flex flex-col gap-1">
-                  {navLinks.map((link) => (
-                    <button
-                      key={link.href}
-                      onClick={() => handleNavClick(link.href)}
-                      className={cn(
-                        "px-4 py-3.5 text-[15px] font-medium rounded-[calc(var(--radius)-2px)] text-left transition-colors",
-                        activeSection === link.href.replace("#", "")
-                          ? "text-foreground bg-primary/[0.08]"
-                          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+                <div className="px-3 py-3 flex flex-col">
+                  {navLinks.map((link, index) => (
+                    <Fragment key={link.href}>
+                      {index > 0 && (
+                        <div className="h-px bg-border-subtle/80 mx-2" aria-hidden />
                       )}
-                    >
-                      {link.label}
-                    </button>
+                      <button
+                        onClick={() => handleNavClick(link.href)}
+                        className={cn(
+                          "px-4 py-3.5 text-[15px] font-medium rounded-[calc(var(--radius)-2px)] text-left transition-colors",
+                          activeSection === link.href.replace("#", "")
+                            ? "text-foreground bg-primary/[0.08]"
+                            : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+                        )}
+                      >
+                        {link.label}
+                      </button>
+                    </Fragment>
                   ))}
                 </div>
                 <div className="px-4 pb-4 pt-2 border-t border-border-subtle flex flex-col sm:flex-row gap-3">

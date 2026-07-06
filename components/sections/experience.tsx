@@ -309,7 +309,7 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" tone="default" spacing="default" width="wide" className="section-entry-divider">
+    <Section id="experience" tone="default" spacing="default" width="wide" className="section-chapter">
       <SectionHeader
         badge="Experience"
         title="Production engineering"

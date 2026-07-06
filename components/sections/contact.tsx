@@ -31,15 +31,16 @@ export function ContactSection() {
     "w-full px-4 py-3.5 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle text-foreground text-[15px] placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-2 focus:ring-primary/[0.06] transition-all duration-200";
 
   return (
-    <Section id="contact" tone="default" spacing="default" width="wide">
+    <Section id="contact" tone="default" spacing="default" width="wide" className="section-chapter">
       <SectionHeader
         badge="Contact"
         title="Get in touch"
         description="Open to backend and AI engineering roles. Recruiters, founders, and engineers welcome."
         align="left"
+        variant="featured"
       />
 
-      <SectionContent className="grid lg:grid-cols-2 gap-10 lg:gap-12">
+      <SectionContent featured className="grid lg:grid-cols-2 gap-10 lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}

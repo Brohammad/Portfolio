@@ -49,16 +49,16 @@ function JournalPanel({
 
 export function NowSection() {
   return (
-    <Section id="now" tone="default" spacing="default" width="wide">
+    <Section id="now" tone="default" spacing="default" width="wide" className="section-chapter">
       <SectionHeader
         badge="Now"
         title="Engineering journal"
         description={`Updated ${nowPage.lastUpdated}. Active work, research, and what I'm thinking about.`}
         align="left"
-        className="max-w-2xl"
+        variant="featured"
       />
 
-      <SectionContent loose className="space-y-5 lg:space-y-6">
+      <SectionContent featured className="space-y-5 lg:space-y-6">
         {/* Momentum highlights */}
         <motion.div
           {...fadeUp}

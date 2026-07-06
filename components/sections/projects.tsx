@@ -578,15 +578,16 @@ export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <Section id="projects" tone="alt" spacing="default" glow width="wide">
+    <Section id="projects" tone="alt" spacing="default" glow width="wide" className="section-chapter">
       <SectionHeader
         badge="Projects"
         title="Production systems"
         description="Deployed software with documented architecture, scale, and engineering trade-offs."
         align="left"
+        variant="featured"
       />
 
-      <SectionContent>
+      <SectionContent featured>
         <div className="flex flex-col gap-7 lg:gap-8">
           {projects.map((project, i) => (
             <motion.div

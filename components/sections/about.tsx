@@ -148,7 +148,7 @@ function InterestCard({ label }: { label: string }) {
 
 export function AboutSection() {
   return (
-    <Section id="about" tone="alt" spacing="default" width="wide" className="section-entry-divider">
+    <Section id="about" tone="alt" spacing="default" width="wide" className="section-chapter">
       <SectionHeader
         badge="About"
         title="Engineering profile"
