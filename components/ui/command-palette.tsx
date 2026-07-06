@@ -16,18 +16,19 @@ import {
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/social-icons";
 import { siteConfig } from "@/content/data";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
 const commands = [
   {
     group: "Navigate",
     items: [
-      { icon: Home, label: "Go to Home", action: () => scrollTo("#home") },
-      { icon: User, label: "About Me", action: () => scrollTo("#about") },
-      { icon: Briefcase, label: "Experience", action: () => scrollTo("#experience") },
-      { icon: FolderOpen, label: "Projects", action: () => scrollTo("#projects") },
-      { icon: Wrench, label: "Skills", action: () => scrollTo("#skills") },
-      { icon: User, label: "Now", action: () => scrollTo("#now") },
-      { icon: Mail, label: "Contact Me", action: () => scrollTo("#contact") },
+      { icon: Home, label: "Go to Home", action: () => scrollToSection("home") },
+      { icon: User, label: "About Me", action: () => scrollToSection("about") },
+      { icon: Briefcase, label: "Experience", action: () => scrollToSection("experience") },
+      { icon: FolderOpen, label: "Projects", action: () => scrollToSection("projects") },
+      { icon: Wrench, label: "Skills", action: () => scrollToSection("skills") },
+      { icon: User, label: "Now", action: () => scrollToSection("now") },
+      { icon: Mail, label: "Contact Me", action: () => scrollToSection("contact") },
     ],
   },
   {
@@ -53,16 +54,16 @@ const commands = [
       {
         icon: Download,
         label: "Download Resume",
-        action: () => window.open(siteConfig.links.resume, "_blank"),
+        action: () => {
+          const link = document.createElement("a");
+          link.href = siteConfig.links.resume;
+          link.download = "";
+          link.click();
+        },
       },
     ],
   },
 ];
-
-function scrollTo(id: string) {
-  const el = document.getElementById(id.replace("#", ""));
-  el?.scrollIntoView({ behavior: "smooth" });
-}
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);

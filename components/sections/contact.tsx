@@ -28,19 +28,18 @@ export function ContactSection() {
   };
 
   const inputClass =
-    "w-full px-4 py-3.5 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-2 focus:ring-primary/[0.06] transition-all duration-200";
+    "w-full px-4 py-3.5 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle text-foreground text-[15px] placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-2 focus:ring-primary/[0.06] transition-all duration-200";
 
   return (
-    <Section id="contact" tone="default" spacing="spacious">
+    <Section id="contact" tone="default" spacing="default" width="wide">
       <SectionHeader
         badge="Contact"
         title="Get in touch"
         description="Open to backend and AI engineering roles. Recruiters, founders, and engineers welcome."
         align="left"
-        className="max-w-xl"
       />
 
-      <SectionContent className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+      <SectionContent className="grid lg:grid-cols-2 gap-10 lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,14 +53,14 @@ export function ContactSection() {
           </p>
 
           <div className="space-y-3">
-            <div className="flex items-center justify-between interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
+            <div className="flex items-center justify-between interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-6">
               <div className="flex items-center gap-4 min-w-0">
-                <div className="w-10 h-10 rounded-[calc(var(--radius)-4px)] bg-primary/[0.08] border border-primary/12 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-[calc(var(--radius)-4px)] bg-primary/[0.08] border border-primary/12 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-caption mb-1.5">Email</div>
-                  <div className="text-sm text-foreground truncate">{siteConfig.links.email}</div>
+                  <div className="text-[15px] text-foreground truncate">{siteConfig.links.email}</div>
                 </div>
               </div>
               <button
@@ -73,42 +72,42 @@ export function ContactSection() {
               </button>
             </div>
 
-            <div className="flex items-center gap-4 interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
-              <div className="w-10 h-10 rounded-[calc(var(--radius)-4px)] bg-success/[0.08] border border-success/12 flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-4 interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-6">
+              <div className="w-11 h-11 rounded-[calc(var(--radius)-4px)] bg-success/[0.08] border border-success/12 flex items-center justify-center shrink-0">
                 <MapPin className="w-4 h-4 text-success" />
               </div>
               <div>
                 <div className="text-caption mb-1.5">Location</div>
-                <div className="text-sm text-foreground leading-relaxed">Available Globally · Open to Relocation</div>
+                <div className="text-[15px] text-foreground leading-relaxed">Available Globally · Open to Relocation</div>
               </div>
             </div>
           </div>
 
           <div className="space-y-4">
             <p className="text-caption">Connect</p>
-            <div className="flex flex-wrap gap-3">
-              <Button variant="outline" asChild>
+            <div className="flex flex-wrap gap-4">
+              <Button variant="outline" className="min-w-[8.5rem]" asChild>
                 <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer">
                   <GithubIcon className="w-4 h-4" />
                   GitHub
                 </a>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" className="min-w-[8.5rem]" asChild>
                 <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer">
                   <LinkedinIcon className="w-4 h-4" />
                   LinkedIn
                 </a>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" className="min-w-[8.5rem]" asChild>
                 <a href={`mailto:${siteConfig.links.email}`}>
                   <Mail className="w-4 h-4" />
                   Email
                 </a>
               </Button>
-              <Button asChild>
+              <Button className="min-w-[8.5rem] gap-2" asChild>
                 <a href={siteConfig.links.resume} download>
-                  <Download className="w-4 h-4" />
-                  Resume
+                  <Download className="w-4 h-4 shrink-0" />
+                  <span>Resume</span>
                 </a>
               </Button>
             </div>

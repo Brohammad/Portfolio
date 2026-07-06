@@ -150,14 +150,14 @@ function CapabilityCard({ capability }: { capability: Capability }) {
   const Icon = capability.icon;
 
   return (
-    <article className="flex flex-col h-full p-6 rounded-[var(--radius)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-md)] hover:-translate-y-0.5 hover:border-primary/10">
-      <div className="flex items-start justify-between gap-3 mb-4">
-        <div className="w-8 h-8 rounded-[calc(var(--radius)-4px)] bg-primary/[0.05] border border-primary/10 flex items-center justify-center shrink-0">
-          <Icon className="w-3.5 h-3.5 text-muted-foreground/60" strokeWidth={1.5} />
+    <article className="flex flex-col h-full p-6 sm:p-7 rounded-[var(--radius)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-md)] hover:-translate-y-0.5 hover:border-primary/10">
+      <div className="flex items-start justify-between gap-3 mb-5">
+        <div className="w-9 h-9 rounded-[calc(var(--radius)-4px)] bg-primary/[0.05] border border-primary/10 flex items-center justify-center shrink-0">
+          <Icon className="w-4 h-4 text-muted-foreground/60" strokeWidth={1.5} />
         </div>
         <span
           className={cn(
-            "inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-medium border whitespace-nowrap",
+            "inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-medium border whitespace-nowrap",
             confidenceStyle[capability.confidence]
           )}
         >
@@ -165,15 +165,15 @@ function CapabilityCard({ capability }: { capability: Capability }) {
         </span>
       </div>
 
-      <h3 className="text-[1rem] font-semibold text-foreground tracking-[-0.018em] leading-snug">
+      <h3 className="text-[1.0625rem] font-semibold text-foreground tracking-[-0.018em] leading-snug">
         {capability.title}
       </h3>
 
-      <p className="text-[12.5px] text-muted-foreground leading-relaxed mt-2.5 flex-1">
+      <p className="text-[14px] text-muted-foreground leading-relaxed mt-3 flex-1">
         {capability.description}
       </p>
 
-      <div className="flex flex-wrap gap-1.5 mt-5 pt-4 border-t border-border-subtle/80">
+      <div className="flex flex-wrap gap-2 mt-5 pt-5 border-t border-border-subtle/80">
         {capability.technologies.map((tech) => (
           <span
             key={tech}
@@ -189,16 +189,15 @@ function CapabilityCard({ capability }: { capability: Capability }) {
 
 export function SkillsSection() {
   return (
-    <Section id="skills" tone="elevated" spacing="spacious">
+    <Section id="skills" tone="elevated" spacing="default" width="wide">
       <SectionHeader
         badge="Capabilities"
         title="Engineering capability matrix"
         description="What kinds of systems I build — organized by domain, not syntax."
         align="left"
-        className="max-w-xl"
       />
 
-      <SectionContent loose>
+      <SectionContent>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -218,13 +217,13 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.1 }}
-          className="mt-10 lg:mt-12 p-6 sm:p-7 rounded-[var(--radius)] bg-card/60 border border-border-subtle"
+          className="mt-8 lg:mt-10 p-6 sm:p-7 rounded-[var(--radius)] bg-card/60 border border-border-subtle"
         >
           <div className="flex items-center gap-2.5 mb-4">
             <Compass className="w-4 h-4 text-muted-foreground/45" strokeWidth={1.5} />
             <div>
               <p className="text-block-label">Currently Exploring</p>
-              <p className="text-[11.5px] text-muted-foreground/60 mt-0.5">
+              <p className="text-[13px] text-muted-foreground/70 mt-1">
                 Separate from production capabilities — active areas of study.
               </p>
             </div>

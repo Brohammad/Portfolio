@@ -7,7 +7,7 @@ import { techStack } from "@/content/data";
 
 export function TechFloatingSection() {
   return (
-    <Section tone="alt" spacing="compact">
+    <Section tone="alt" spacing="default" width="wide">
       <SectionHeader
         badge="Tech Stack"
         title="Core production stack"
@@ -15,8 +15,8 @@ export function TechFloatingSection() {
         align="center"
       />
 
-      <SectionContent tight>
-        <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 max-w-3xl mx-auto">
+      <SectionContent>
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-3.5 max-w-4xl mx-auto">
           {techStack.map((tech, i) => (
             <motion.span
               key={tech}

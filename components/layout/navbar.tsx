@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Terminal, Download, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/content/data";
 import { useScroll } from "@/hooks/use-scroll";
@@ -38,7 +39,7 @@ export function Navbar() {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { rootMargin: "-45% 0px -45% 0px" }
+      { rootMargin: "-40% 0px -40% 0px" }
     );
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -47,116 +48,161 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    document.getElementById(href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(href.replace("#", ""));
   };
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled ? "glass glass-scrolled" : "bg-transparent"
-        )}
-      >
-        <nav className="section-container h-[4.25rem] grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+      <header className="navbar-header fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div
+          className={cn(
+            "navbar-shell glass pointer-events-auto",
+            "flex h-[var(--navbar-inner-height)] items-center justify-between gap-4 lg:gap-6",
+            "transition-all duration-300",
+            scrolled && "glass-scrolled"
+          )}
+        >
           <button
             onClick={() => handleNavClick("#home")}
-            className="flex items-center gap-3 text-foreground font-medium shrink-0 group justify-self-start"
+            className="flex items-center gap-3 text-foreground font-medium shrink-0 group"
             aria-label="Go to home"
           >
-            <div className="w-8 h-8 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-all duration-200 group-hover:scale-[1.02]">
-              <Terminal className="w-[15px] h-[15px] text-primary-foreground" />
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-transform duration-200 group-hover:scale-[1.03]">
+              <Terminal className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px] text-primary-foreground" />
             </div>
-            <span className="text-[14.5px] tracking-tight hidden sm:inline">
-              brohammad<span className="text-primary">.tech</span>
-            </span>
+            <div className="hidden sm:flex flex-col items-start leading-none gap-1">
+              <span className="text-[15px] lg:text-[16px] tracking-tight font-semibold">
+                brohammad<span className="text-primary">.tech</span>
+              </span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.08em] text-muted-foreground/70">
+                Portfolio
+              </span>
+            </div>
           </button>
 
-          <div className="hidden lg:flex items-center justify-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.replace("#", "");
-              return (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  data-active={isActive}
-                  className={cn(
-                    "nav-link relative px-4 py-2 text-[13px] font-medium rounded-[calc(var(--radius)-6px)] transition-colors duration-200 focus-ring",
-                    isActive
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  {link.label}
-                </button>
-              );
-            })}
-          </div>
+          <nav className="hidden lg:flex items-center justify-center flex-1 min-w-0" aria-label="Primary">
+            <div className="navbar-nav-track">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace("#", "");
+                return (
+                  <button
+                    key={link.href}
+                    onClick={() => handleNavClick(link.href)}
+                    data-active={isActive}
+                    className={cn(
+                      "nav-link relative px-4 xl:px-5 py-2.5 text-[14px] xl:text-[15px] font-medium rounded-[calc(var(--radius)-4px)] transition-all duration-200 focus-ring whitespace-nowrap",
+                      isActive
+                        ? "text-foreground bg-primary/[0.08] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--primary)_12%,transparent)]"
+                        : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+                    )}
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
+            </div>
+          </nav>
 
-          <div className="hidden lg:flex items-center gap-2.5 shrink-0 justify-self-end">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <div className="navbar-divider" aria-hidden />
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="w-9 h-9 flex items-center justify-center rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] transition-colors duration-200"
+                className="w-10 h-10 flex items-center justify-center rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-colors duration-200"
                 aria-label="Toggle theme"
               >
-                {theme === "dark" ? <Sun className="w-[15px] h-[15px]" /> : <Moon className="w-[15px] h-[15px]" />}
+                {theme === "dark" ? <Sun className="w-[17px] h-[17px]" /> : <Moon className="w-[17px] h-[17px]" />}
               </button>
             )}
-            <Button size="default" asChild>
+            <Button
+              size="default"
+              className="h-11 min-w-[8.75rem] px-5 text-[14px] gap-2"
+              asChild
+            >
               <a href={siteConfig.links.resume} download>
-                <Download className="w-4 h-4" />
-                Resume
+                <Download className="w-4 h-4 shrink-0" />
+                <span>Resume</span>
               </a>
             </Button>
           </div>
 
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors justify-self-end col-start-3"
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
-        </nav>
+        </div>
       </header>
 
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[4.25rem] left-0 right-0 z-40 glass md:hidden"
-          >
-            <div className="section-container py-6 flex flex-col gap-2.5">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className={cn(
-                    "px-4 py-3.5 text-sm font-medium rounded-[var(--radius)] text-left transition-colors",
-                    activeSection === link.href.replace("#", "")
-                      ? "text-foreground bg-foreground/[0.04]"
-                      : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-[2px] lg:hidden"
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed left-4 right-4 sm:left-6 sm:right-6 z-50 top-[calc(var(--navbar-height)+0.25rem)] lg:hidden"
+            >
+              <div className="rounded-[calc(var(--radius)+4px)] border border-border-subtle bg-card/95 backdrop-blur-xl shadow-[var(--shadow-lg)] overflow-hidden">
+                <div className="px-3 py-4 flex flex-col gap-1">
+                  {navLinks.map((link) => (
+                    <button
+                      key={link.href}
+                      onClick={() => handleNavClick(link.href)}
+                      className={cn(
+                        "px-4 py-3.5 text-[15px] font-medium rounded-[calc(var(--radius)-2px)] text-left transition-colors",
+                        activeSection === link.href.replace("#", "")
+                          ? "text-foreground bg-primary/[0.08]"
+                          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+                      )}
+                    >
+                      {link.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="px-4 pb-4 pt-2 border-t border-border-subtle flex flex-col sm:flex-row gap-3">
+                  {mounted && (
+                    <Button
+                      variant="outline"
+                      className="flex-1 h-11"
+                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    >
+                      {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                      {theme === "dark" ? "Light mode" : "Dark mode"}
+                    </Button>
                   )}
-                >
-                  {link.label}
-                </button>
-              ))}
-              <div className="pt-5 mt-3 border-t border-border-subtle flex flex-col gap-3">
-                <Button className="w-full" asChild>
-                  <a href={siteConfig.links.resume} download>
-                    <Download className="w-4 h-4" />
-                    Download Resume
-                  </a>
-                </Button>
+                  <Button className="flex-1 h-11 gap-2" asChild>
+                    <a href={siteConfig.links.resume} download>
+                      <Download className="w-4 h-4 shrink-0" />
+                      <span>Resume</span>
+                    </a>
+                  </Button>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

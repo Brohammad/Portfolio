@@ -9,7 +9,7 @@ export function ScrollProgress() {
     <div
       id="scroll-progress"
       style={{ width: `${progress}%` }}
-      className="fixed top-0 left-0 h-[1.5px] bg-primary z-[9999] transition-[width] duration-75"
+      className="h-[2px] bg-primary z-[9999] transition-[width] duration-150"
     />
   );
 }

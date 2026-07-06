@@ -24,7 +24,7 @@ const colorMap: Record<string, string> = {
 
 export function UsesSection() {
   return (
-    <Section id="uses" tone="elevated" spacing="compact" containerClassName="max-w-5xl">
+    <Section id="uses" tone="elevated" spacing="default" width="wide">
       <SectionHeader
         badge="Uses"
         title="Engineering setup"

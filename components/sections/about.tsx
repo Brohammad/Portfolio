@@ -130,41 +130,41 @@ function PrincipleCard({
   detail: string;
 }) {
   return (
-    <div className="p-4 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
-      <Icon className="w-4 h-4 text-muted-foreground/45 mb-2.5" strokeWidth={1.5} />
-      <p className="text-[13.5px] font-medium text-foreground tracking-tight">{title}</p>
-      <p className="text-[12.5px] text-muted-foreground leading-relaxed mt-1">{detail}</p>
+    <div className="p-5 sm:p-6 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
+      <Icon className="w-4 h-4 text-muted-foreground/45 mb-3" strokeWidth={1.5} />
+      <p className="text-[15px] font-medium text-foreground tracking-tight">{title}</p>
+      <p className="text-[14px] text-muted-foreground leading-relaxed mt-2">{detail}</p>
     </div>
   );
 }
 
 function InterestCard({ label }: { label: string }) {
   return (
-    <div className="px-4 py-3 rounded-[calc(var(--radius)-4px)] bg-card/80 border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
-      <p className="text-[12.5px] font-medium text-foreground/85 tracking-tight">{label}</p>
+    <div className="px-4 py-3.5 sm:px-5 sm:py-4 rounded-[calc(var(--radius)-4px)] bg-card/80 border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
+      <p className="text-[14px] font-medium text-foreground/85 tracking-tight">{label}</p>
     </div>
   );
 }
 
 export function AboutSection() {
   return (
-    <Section id="about" tone="alt" spacing="spacious" width="wide">
+    <Section id="about" tone="alt" spacing="default" width="wide" className="section-entry-divider">
       <SectionHeader
         badge="About"
         title="Engineering profile"
         description="Who I am, how I think, and what I'm building toward."
         align="left"
-        className="max-w-xl"
+        variant="featured"
       />
 
-      <SectionContent className="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 xl:gap-20 items-start">
+      <SectionContent featured className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
         {/* Left — story + philosophy */}
-        <div className="space-y-10 lg:space-y-12">
-          <motion.div {...fadeUp} className="space-y-6">
+        <div className="space-y-8 lg:space-y-10">
+          <motion.div {...fadeUp} className="space-y-5">
             {intro.map((block) => (
-              <div key={block.label} className="space-y-1.5">
+              <div key={block.label} className="space-y-2">
                 <p className="text-block-label">{block.label}</p>
-                <p className="text-[15px] sm:text-[1rem] text-foreground/85 leading-[1.7] max-w-[36ch]">
+                <p className="text-[16px] sm:text-[1.0625rem] text-foreground/85 leading-[1.75]">
                   {block.text}
                 </p>
               </div>
@@ -173,7 +173,7 @@ export function AboutSection() {
 
           <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.06 }}>
             <p className="text-block-label mb-4">Engineering Principles</p>
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div className="grid sm:grid-cols-2 gap-4">
               {principles.map((item, i) => (
                 <motion.div
                   key={item.title}
@@ -194,7 +194,7 @@ export function AboutSection() {
               {beyondCode.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-[13px] text-muted-foreground leading-relaxed"
+                  className="flex items-center gap-3 text-[14px] text-muted-foreground leading-relaxed"
                 >
                   <span className="w-1 h-1 rounded-full bg-primary/35 shrink-0" />
                   {item}
@@ -205,13 +205,13 @@ export function AboutSection() {
         </div>
 
         {/* Right — focus, exploring, interests, trust */}
-        <div className="space-y-10 lg:space-y-12">
+        <div className="space-y-8 lg:space-y-10">
           <motion.div
             {...fadeUp}
-            className="flex flex-wrap gap-x-5 gap-y-2 pb-6 border-b border-border-subtle/80"
+            className="flex flex-wrap gap-x-6 gap-y-3 pb-5 border-b border-border-subtle/80"
           >
             {trustSignals.map((signal, i) => (
-              <span key={signal.label} className="inline-flex items-center gap-2 text-[12px]">
+              <span key={signal.label} className="inline-flex items-center gap-2 text-[13px]">
                 {i > 0 && (
                   <span aria-hidden className="text-border hidden sm:inline">
                     ·
@@ -228,11 +228,11 @@ export function AboutSection() {
               <Compass className="w-4 h-4 text-muted-foreground/40" strokeWidth={1.5} />
               <p className="text-block-label">Current Focus</p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {currentFocus.map((item) => (
                 <span
                   key={item}
-                  className="px-3.5 py-2 rounded-full text-[12px] font-medium text-foreground/75 bg-card border border-border-subtle transition-colors duration-200 hover:border-primary/15 hover:text-primary/90"
+                  className="px-4 py-2.5 rounded-full text-[13px] font-medium text-foreground/75 bg-card border border-border-subtle transition-colors duration-200 hover:border-primary/15 hover:text-primary/90"
                 >
                   {item}
                 </span>
@@ -245,12 +245,12 @@ export function AboutSection() {
               <Gauge className="w-4 h-4 text-muted-foreground/40" strokeWidth={1.5} />
               <p className="text-block-label">Currently Exploring</p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {exploring.map((item) => (
                 <span
                   key={item}
                   className={cn(
-                    "px-3 py-1.5 rounded-[calc(var(--radius)-6px)] text-[11.5px] font-medium",
+                    "px-3.5 py-2 rounded-[calc(var(--radius)-6px)] text-[13px] font-medium",
                     "text-muted-foreground bg-foreground/[0.02] border border-border-subtle",
                     "transition-all duration-200 hover:border-primary/18 hover:text-foreground/80 hover:-translate-y-px"
                   )}
@@ -263,7 +263,7 @@ export function AboutSection() {
 
           <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.12 }}>
             <p className="text-block-label mb-5">Engineering Interests</p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               {interests.map((item, i) => (
                 <motion.div
                   key={item}

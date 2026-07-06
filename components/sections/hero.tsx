@@ -6,6 +6,7 @@ import { ArrowRight, Download, ChevronDown } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/social-icons";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/content/data";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { cn } from "@/lib/utils";
 
 const roles = [
@@ -79,10 +80,10 @@ export function HeroSection() {
       id="home"
       className="relative min-h-[92vh] flex items-center overflow-hidden noise section-tone-default"
     >
-      <div className="relative z-10 section-container w-full pt-36 pb-24 lg:pt-44 lg:pb-36">
+      <div className="relative z-10 section-container w-full pt-[calc(var(--navbar-height)+3rem)] pb-24 lg:pt-[calc(var(--navbar-height)+4.5rem)] lg:pb-36">
         <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-14 lg:gap-16 xl:gap-20 items-center">
           {/* Left column */}
-          <div className="flex flex-col max-w-[34rem]">
+          <div className="flex flex-col max-w-none lg:max-w-[38rem]">
             <motion.div {...fadeUp}>
               <span className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-border-subtle bg-card/60 text-[11px] font-medium tracking-[0.02em] text-muted-foreground">
                 <span className="relative flex h-1.5 w-1.5">
@@ -115,12 +116,12 @@ export function HeroSection() {
             <motion.div
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.18 }}
-              className="mt-8 space-y-3 max-w-[40ch]"
+              className="mt-8 space-y-4 max-w-[44ch]"
             >
-              <p className="text-[1rem] sm:text-[1.0625rem] leading-[1.72] text-foreground/88 font-medium">
+              <p className="text-[1.0625rem] sm:text-[1.125rem] leading-[1.72] text-foreground/88 font-medium">
                 Building enterprise AI systems for banking clients.
               </p>
-              <p className="text-[0.9375rem] sm:text-[1rem] leading-[1.75] text-muted-foreground">
+              <p className="text-[1rem] sm:text-[1.0625rem] leading-[1.75] text-muted-foreground">
                 Multi-agent workflows, backend infrastructure, and production
                 LLM platforms on Azure.
               </p>
@@ -149,14 +150,12 @@ export function HeroSection() {
             <motion.div
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.3 }}
-              className="mt-10 flex flex-wrap items-center gap-3"
+              className="mt-10 flex flex-wrap items-center gap-4"
             >
               <Button
                 size="lg"
-                className="group min-w-[9.5rem] hover:-translate-y-px hover:shadow-[var(--shadow-md)]"
-                onClick={() =>
-                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
-                }
+                className="group min-w-[10.5rem] hover:-translate-y-px hover:shadow-[var(--shadow-md)]"
+                onClick={() => scrollToSection("projects")}
               >
                 View Projects
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -164,12 +163,12 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.03]"
+                className="min-w-[10rem] px-8 hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.03]"
                 asChild
               >
                 <a href={siteConfig.links.resume} download>
-                  <Download className="w-4 h-4" />
-                  Resume
+                  <Download className="w-4 h-4 shrink-0" />
+                  <span>Resume</span>
                 </a>
               </Button>
             </motion.div>

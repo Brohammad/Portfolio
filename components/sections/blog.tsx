@@ -8,7 +8,7 @@ import { blogPosts, blogTopics } from "@/content/data";
 
 export function BlogSection() {
   return (
-    <Section id="blog" tone="alt" spacing="compact">
+    <Section id="blog" tone="alt" spacing="default" width="wide">
       <SectionHeader
         badge="Writing"
         title="Technical notes"
@@ -17,7 +17,7 @@ export function BlogSection() {
         className="max-w-xl"
       />
 
-      <SectionContent tight>
+      <SectionContent>
         {blogPosts.length === 0 ? (
           <motion.div
             initial={{ opacity: 0, y: 10 }}

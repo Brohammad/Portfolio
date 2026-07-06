@@ -132,27 +132,27 @@ function FlowArrow() {
 
 function PreviewRenewAI() {
   return (
-    <div className="w-full max-w-[340px] space-y-4">
-      <div className="flex items-center justify-between gap-1">
+    <div className="w-full max-w-[380px] space-y-5">
+      <div className="flex items-center justify-between gap-2">
         {["Policy", "Risk", "Outreach"].map((node, i) => (
-          <div key={node} className="flex items-center gap-1 flex-1 min-w-0">
-            <div className="flex-1 rounded-md border border-primary/20 bg-primary/[0.07] px-2 py-2 text-center group-hover:border-primary/30 transition-colors duration-300">
-              <span className="text-[10px] font-medium text-primary/85 block truncate">{node}</span>
-              <span className="text-[8px] text-muted-foreground/50 mt-0.5 block">agent</span>
+          <div key={node} className="flex items-center gap-2 flex-1 min-w-0">
+            <div className="flex-1 rounded-lg border border-primary/20 bg-primary/[0.07] px-3 py-3 text-center group-hover:border-primary/30 transition-colors duration-300">
+              <span className="text-[11px] font-medium text-primary/85 block truncate">{node}</span>
+              <span className="text-[9px] text-muted-foreground/55 mt-1 block">agent</span>
             </div>
             {i < 2 && <FlowArrow />}
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-border-subtle bg-card/80">
-        <span className="text-[9px] font-mono text-primary/70">LangGraph</span>
-        <span className="text-[8px] text-muted-foreground/40">orchestrator</span>
-        <span className="ml-auto text-[8px] text-muted-foreground/50">state machine</span>
+      <div className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border-subtle bg-card/80">
+        <span className="text-[10px] font-mono text-primary/70">LangGraph</span>
+        <span className="text-[9px] text-muted-foreground/45">orchestrator</span>
+        <span className="ml-auto text-[9px] text-muted-foreground/55">state machine</span>
       </div>
       <div className="flex items-center justify-center gap-3">
         {["PostgreSQL", "Redis", "LLM"].map((s) => (
-          <div key={s} className="px-2 py-1 rounded border border-border-subtle bg-foreground/[0.02]">
-            <span className="text-[8px] text-muted-foreground/70 font-mono">{s}</span>
+          <div key={s} className="px-3 py-2 rounded-md border border-border-subtle bg-foreground/[0.02]">
+            <span className="text-[9px] text-muted-foreground/75 font-mono">{s}</span>
           </div>
         ))}
       </div>
@@ -168,23 +168,23 @@ function PreviewFinCore() {
     { label: "stream", detail: "SSE + cite" },
   ];
   return (
-    <div className="w-full max-w-[320px] space-y-3 font-mono">
-      <div className="flex items-center gap-1">
+    <div className="w-full max-w-[360px] space-y-4 font-mono">
+      <div className="flex items-center gap-2">
         {steps.map((step, i) => (
-          <div key={step.label} className="flex items-center gap-1 flex-1 min-w-0">
-            <div className="flex-1 rounded border border-border-subtle bg-card/70 px-1.5 py-2 text-center group-hover:border-primary/20 transition-colors duration-300">
-              <span className="text-[8px] text-primary/70 block">{step.label}</span>
-              <span className="text-[7px] text-muted-foreground/50 block truncate">{step.detail}</span>
+          <div key={step.label} className="flex items-center gap-2 flex-1 min-w-0">
+            <div className="flex-1 rounded-lg border border-border-subtle bg-card/70 px-2.5 py-3 text-center group-hover:border-primary/20 transition-colors duration-300">
+              <span className="text-[10px] text-primary/70 block">{step.label}</span>
+              <span className="text-[8px] text-muted-foreground/55 block truncate mt-0.5">{step.detail}</span>
             </div>
             {i < steps.length - 1 && (
-              <span className="text-[8px] text-muted-foreground/30 shrink-0">→</span>
+              <span className="text-[9px] text-muted-foreground/35 shrink-0">→</span>
             )}
           </div>
         ))}
       </div>
-      <div className="rounded-md border border-success/15 bg-success/[0.04] px-3 py-2 flex items-center justify-between">
-        <span className="text-[9px] text-success/80">✓ cited · RBAC enforced</span>
-        <span className="text-[8px] text-muted-foreground/50 tabular-nums">840ms p99</span>
+      <div className="rounded-lg border border-success/15 bg-success/[0.04] px-4 py-3 flex items-center justify-between">
+        <span className="text-[10px] text-success/80">✓ cited · RBAC enforced</span>
+        <span className="text-[9px] text-muted-foreground/55 tabular-nums">840ms p99</span>
       </div>
     </div>
   );
@@ -280,9 +280,9 @@ const previewMap: Record<string, React.FC> = {
 function ProjectPreview({ projectId }: { projectId: string }) {
   const Preview = previewMap[projectId] ?? PreviewRenewAI;
   return (
-    <div className="relative h-[11rem] lg:h-full lg:min-h-[15rem] overflow-hidden bg-muted/25 group-hover:bg-muted/35 transition-colors duration-500">
+    <div className="relative h-[14rem] sm:h-[15rem] lg:h-full lg:min-h-[16rem] overflow-hidden bg-muted/25 group-hover:bg-muted/35 transition-colors duration-500">
       <div className="absolute inset-0 grid-bg opacity-[0.25]" />
-      <div className="relative h-full flex items-center justify-center p-6 lg:p-8 transition-transform duration-500 group-hover:-translate-y-0.5">
+      <div className="relative h-full flex items-center justify-center p-6 sm:p-8 transition-transform duration-500 group-hover:-translate-y-0.5">
         <Preview />
       </div>
     </div>
@@ -291,10 +291,10 @@ function ProjectPreview({ projectId }: { projectId: string }) {
 
 function ProductionHighlights({ items }: { items: string[] }) {
   return (
-    <ul className="space-y-1.5">
+    <ul className="space-y-2.5">
       {items.slice(0, 3).map((item) => (
-        <li key={item} className="flex items-start gap-2.5 text-[12.5px] text-foreground/80 leading-snug">
-          <Check className="w-3.5 h-3.5 text-success shrink-0 mt-0.5" strokeWidth={2.5} />
+        <li key={item} className="flex items-start gap-3 text-[14px] text-foreground/85 leading-relaxed">
+          <Check className="w-4 h-4 text-success shrink-0 mt-0.5" strokeWidth={2.5} />
           <span>{item}</span>
         </li>
       ))}
@@ -304,13 +304,11 @@ function ProductionHighlights({ items }: { items: string[] }) {
 
 function MetadataGrid({ items }: { items: ProjectMeta[] }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-2.5">
+    <div className="grid grid-cols-2 gap-4 p-5 sm:p-6 rounded-[calc(var(--radius)-2px)] bg-muted/20 border border-border-subtle h-full">
       {items.map((item) => (
-        <div key={item.label}>
-          <p className="text-[10px] text-muted-foreground/55 uppercase tracking-[0.06em] font-medium">
-            {item.label}
-          </p>
-          <p className="text-[12.5px] text-foreground/85 font-medium mt-0.5 tabular-nums tracking-tight">
+        <div key={item.label} className="min-w-0">
+          <p className="text-block-label">{item.label}</p>
+          <p className="text-[15px] text-foreground/90 font-medium mt-1.5 tabular-nums tracking-tight">
             {item.value}
           </p>
         </div>
@@ -321,15 +319,13 @@ function MetadataGrid({ items }: { items: ProjectMeta[] }) {
 
 function TechGroups({ groups }: { groups: TechGroup[] }) {
   return (
-    <div className="flex flex-wrap gap-x-6 gap-y-3">
+    <div className="flex flex-wrap gap-x-8 gap-y-5">
       {groups.map((group) => (
-        <div key={group.label} className="min-w-[5rem]">
-          <p className="text-[10px] text-muted-foreground/55 uppercase tracking-[0.06em] font-medium mb-1.5">
-            {group.label}
-          </p>
-          <div className="flex flex-wrap gap-1">
+        <div key={group.label} className="min-w-[6.5rem]">
+          <p className="text-block-label mb-2.5">{group.label}</p>
+          <div className="flex flex-wrap gap-1.5">
             {group.items.map((item) => (
-              <span key={item} className="tech-chip-sm">
+              <span key={item} className="tech-chip">
                 {item}
               </span>
             ))}
@@ -343,53 +339,62 @@ function TechGroups({ groups }: { groups: TechGroup[] }) {
 function ProjectModal({ project }: { project: Project }) {
   const display = projectDisplay[project.id];
   return (
-    <DialogContent className="max-w-3xl">
-      <DialogHeader>
-        <p className="text-block-label text-primary mb-2">Case Study</p>
-        <DialogTitle className="text-2xl font-semibold tracking-tight">{project.title}</DialogTitle>
-        {display && (
-          <p className="text-muted-foreground text-[15px] leading-relaxed mt-2">{display.tagline}</p>
-        )}
-      </DialogHeader>
+    <DialogContent className="max-w-4xl p-0 gap-0 overflow-hidden">
+      <div className="p-8 sm:p-10 lg:p-12 border-b border-border-subtle bg-background-elevated/30">
+        <DialogHeader className="space-y-4 pr-8">
+          <p className="text-caption text-primary">Case Study</p>
+          <DialogTitle className="text-[clamp(1.5rem,3vw,2rem)] font-semibold tracking-tight leading-tight">
+            {project.title}
+          </DialogTitle>
+          {display && (
+            <p className="text-muted-foreground text-[16px] leading-relaxed">
+              {display.tagline}
+            </p>
+          )}
+        </DialogHeader>
+      </div>
 
-      <div className="space-y-8 mt-2">
-        <p className="text-foreground/80 leading-[1.85] max-w-prose">{project.longDescription}</p>
+      <div className="p-7 sm:p-9 lg:p-10 space-y-8 overflow-y-auto max-h-[min(72vh,760px)]">
+        <p className="text-[16px] text-foreground/85 leading-[1.8]">{project.longDescription}</p>
 
         {project.architecture && (
-          <div>
-            <p className="text-block-label mb-3">Architecture</p>
-            <p className="text-sm text-muted-foreground leading-[1.75]">{project.architecture}</p>
+          <div className="case-study-panel space-y-4">
+            <div className="flex items-center gap-2.5">
+              <Layers className="w-4 h-4 text-primary/70" />
+              <p className="text-block-label">Architecture</p>
+            </div>
+            <p className="text-[15px] text-muted-foreground leading-[1.8]">{project.architecture}</p>
           </div>
         )}
 
         {project.metrics && project.metrics.length > 0 && (
-          <div>
-            <p className="text-block-label mb-4">Production Highlights</p>
+          <div className="space-y-4">
+            <p className="text-block-label">Production Highlights</p>
             <ProductionHighlights items={project.metrics} />
           </div>
         )}
 
         {display && (
-          <div>
-            <p className="text-block-label mb-4">Metadata</p>
+          <div className="space-y-4">
+            <p className="text-block-label">Metadata</p>
             <MetadataGrid items={display.metadata} />
           </div>
         )}
 
         {display && (
-          <div>
-            <p className="text-block-label mb-4">Technology</p>
+          <div className="space-y-4">
+            <p className="text-block-label">Technology</p>
             <TechGroups groups={display.techGroups} />
           </div>
         )}
 
         {project.challenges.length > 0 && (
-          <div>
-            <p className="text-block-label mb-4">Production Challenges</p>
-            <ul className="space-y-2.5">
+          <div className="space-y-4">
+            <p className="text-block-label">Production Challenges</p>
+            <ul className="space-y-3">
               {project.challenges.map((c) => (
-                <li key={c} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
-                  <span className="text-primary shrink-0">→</span>
+                <li key={c} className="text-[15px] text-muted-foreground leading-relaxed flex gap-3">
+                  <span className="text-primary shrink-0 mt-0.5">→</span>
                   {c}
                 </li>
               ))}
@@ -398,12 +403,12 @@ function ProjectModal({ project }: { project: Project }) {
         )}
 
         {project.lessons.length > 0 && (
-          <div>
-            <p className="text-block-label mb-4">Results</p>
-            <ul className="space-y-2.5">
+          <div className="space-y-4">
+            <p className="text-block-label">Results</p>
+            <ul className="space-y-3">
               {project.lessons.map((l) => (
-                <li key={l} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
-                  <span className="text-primary shrink-0">→</span>
+                <li key={l} className="text-[15px] text-muted-foreground leading-relaxed flex gap-3">
+                  <span className="text-primary shrink-0 mt-0.5">→</span>
                   {l}
                 </li>
               ))}
@@ -461,19 +466,19 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
       )}
     >
       {/* Preview */}
-      <div className="lg:w-[42%] shrink-0 border-b lg:border-b-0 lg:border-r border-border-subtle/60">
+      <div className="lg:w-[36%] shrink-0 border-b lg:border-b-0 lg:border-r border-border-subtle/60">
         <ProjectPreview projectId={project.id} />
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-6 sm:p-7 lg:p-8 lg:pl-9 gap-5">
+      <div className="flex flex-col flex-1 p-6 sm:p-7 lg:p-8 gap-6">
         {/* Badges */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2.5">
           {display.badges.map((badge) => (
             <span
               key={badge}
               className={cn(
-                "inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-medium border",
+                "inline-flex items-center px-3 py-1.5 rounded-full text-[12px] font-medium border",
                 badgeStyle[badge] ?? "bg-foreground/[0.03] text-muted-foreground border-border-subtle"
               )}
             >
@@ -481,85 +486,84 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             </span>
           ))}
           {project.status === "in-progress" && (
-            <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground/60">
-              <Clock className="w-3 h-3" />
+            <span className="inline-flex items-center gap-1.5 text-[12px] text-muted-foreground/60">
+              <Clock className="w-3.5 h-3.5" />
               Building
             </span>
           )}
         </div>
 
         {/* Title + tagline */}
-        <div className="space-y-2">
-          <h3 className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-semibold text-foreground tracking-[-0.022em] leading-[1.15] group-hover:text-primary transition-colors duration-300">
+        <div className="space-y-2.5">
+          <h3 className="text-[clamp(1.3125rem,2.5vw,1.625rem)] font-semibold text-foreground tracking-[-0.022em] leading-[1.2] group-hover:text-primary transition-colors duration-300">
             {project.title}
           </h3>
-          <p className="text-[14px] text-muted-foreground leading-[1.65] max-w-[48ch]">
+          <p className="text-[15px] sm:text-[16px] text-muted-foreground leading-[1.7]">
             {display.tagline}
           </p>
         </div>
 
-        {/* Metadata */}
-        <MetadataGrid items={display.metadata} />
+        {/* Metadata + highlights use width on large screens */}
+        <div className="grid lg:grid-cols-2 gap-5">
+          <MetadataGrid items={display.metadata} />
 
-        {/* Story: highlights + challenge */}
-        <div className="space-y-4">
           {highlights.length > 0 && (
-            <div>
-              <p className="text-block-label mb-2.5">Production Highlights</p>
+            <div className="content-panel h-full space-y-3">
+              <p className="text-block-label">Production Highlights</p>
               <ProductionHighlights items={highlights} />
-            </div>
-          )}
-
-          {challenge && (
-            <div className="pl-3 border-l-2 border-primary/20">
-              <p className="text-block-label mb-1">Engineering Challenge</p>
-              <p className="text-[12.5px] text-muted-foreground leading-relaxed">{challenge}</p>
             </div>
           )}
         </div>
 
+        {challenge && (
+          <div className="case-study-panel space-y-2.5">
+            <p className="text-block-label">Engineering Challenge</p>
+            <p className="panel-body">{challenge}</p>
+          </div>
+        )}
+
         {/* Tech groups */}
-        <div>
-          <p className="text-block-label mb-2.5">Stack</p>
+        <div className="space-y-3">
+          <p className="text-block-label">Stack</p>
           <TechGroups groups={display.techGroups} />
         </div>
 
         {/* CTAs */}
         <div
-          className="flex flex-wrap items-center gap-2 pt-2 mt-auto"
+          className="flex flex-wrap items-center gap-3 pt-4 mt-auto border-t border-border-subtle/70"
           onClick={(e) => e.stopPropagation()}
         >
           <Button
-            size="sm"
-            className="group/btn h-9 hover:-translate-y-px"
+            size="default"
+            className="group/btn min-w-[9.5rem] h-11 px-5 hover:-translate-y-px"
             onClick={onOpenCaseStudy}
           >
             Case Study
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
           </Button>
           {project.architecture && (
             <Button
-              size="sm"
+              size="default"
               variant="outline"
-              className="h-9 hover:-translate-y-px hover:border-primary/25"
+              className="min-w-[9.5rem] h-11 px-5 hover:-translate-y-px hover:border-primary/25"
               onClick={onOpenCaseStudy}
             >
-              <Layers className="w-3.5 h-3.5" />
+              <Layers className="w-4 h-4" />
               Architecture
             </Button>
           )}
           {project.github && (
-            <Button size="sm" variant="ghost" className="h-9 text-muted-foreground" asChild>
+            <Button size="default" variant="ghost" className="h-11 px-4 text-muted-foreground" asChild>
               <a href={project.github} target="_blank" rel="noopener noreferrer">
-                <GithubIcon className="w-3.5 h-3.5" />
+                <GithubIcon className="w-4 h-4" />
                 GitHub
               </a>
             </Button>
           )}
           {project.demo && (
-            <Button size="sm" variant="ghost" className="h-9 text-muted-foreground" asChild>
+            <Button size="default" variant="ghost" className="h-11 px-4 text-muted-foreground" asChild>
               <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-4 h-4" />
                 Demo
               </a>
             </Button>
@@ -574,17 +578,16 @@ export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <Section id="projects" tone="alt" spacing="spacious" glow width="wide">
+    <Section id="projects" tone="alt" spacing="default" glow width="wide">
       <SectionHeader
         badge="Projects"
         title="Production systems"
         description="Deployed software with documented architecture, scale, and engineering trade-offs."
         align="left"
-        className="max-w-2xl"
       />
 
-      <SectionContent loose>
-        <div className="flex flex-col gap-6 lg:gap-8">
+      <SectionContent>
+        <div className="flex flex-col gap-7 lg:gap-8">
           {projects.map((project, i) => (
             <motion.div
               key={project.id}

@@ -59,17 +59,25 @@ export function SectionContent({
   className,
   tight = false,
   loose = false,
+  featured = false,
   children,
 }: {
   className?: string;
   tight?: boolean;
   loose?: boolean;
+  featured?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <div
       className={cn(
-        loose ? "section-content-loose" : tight ? "section-content-tight" : "section-content",
+        featured
+          ? "section-content-featured"
+          : loose
+            ? "section-content-loose"
+            : tight
+              ? "section-content-tight"
+              : "section-content",
         className
       )}
     >

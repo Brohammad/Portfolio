@@ -33,7 +33,7 @@ const pinnedRepos = [
 
 export function GithubSection() {
   return (
-    <Section id="github" tone="default" spacing="default">
+    <Section id="github" tone="default" spacing="default" width="wide">
       <SectionHeader
         badge="Open Source"
         title="GitHub"

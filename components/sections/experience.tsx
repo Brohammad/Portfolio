@@ -7,6 +7,7 @@ import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { experiences } from "@/content/data";
 import type { Experience } from "@/types";
+import { sectionRevealStagger } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 /* ── Experience section display config ── */
@@ -91,16 +92,14 @@ function FlowConnector() {
 
 function ArchitectureArtifact() {
   return (
-    <div className="rounded-[calc(var(--radius)-4px)] bg-muted/30 border border-border-subtle p-5 sm:p-6">
-      <p className="text-[10px] uppercase tracking-[0.06em] font-medium text-muted-foreground/55 mb-4">
-        Production topology
-      </p>
-      <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap sm:flex-nowrap">
+    <div className="content-panel">
+      <p className="text-block-label mb-5">Production topology</p>
+      <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
         {pipelineNodes.map((node, i) => (
           <div key={node.label} className="flex items-center gap-1 sm:gap-1.5">
             <span
               className={cn(
-                "flow-node text-[10px] px-2.5 py-1.5",
+                "flow-node",
                 node.active && "flow-node-active"
               )}
             >
@@ -123,7 +122,7 @@ function ImpactList({ items }: { items: string[] }) {
   return (
     <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
       {items.map((item) => (
-        <li key={item} className="flex items-start gap-2.5 text-[13px] text-foreground/85 leading-snug">
+        <li key={item} className="flex items-start gap-3 text-[15px] text-foreground/85 leading-relaxed">
           <Check className="w-3.5 h-3.5 text-success shrink-0 mt-0.5" strokeWidth={2.5} />
           <span>{item}</span>
         </li>
@@ -134,13 +133,11 @@ function ImpactList({ items }: { items: string[] }) {
 
 function ProductionSnapshotPanel() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 p-5 sm:p-6 rounded-[calc(var(--radius)-4px)] bg-muted/25 border border-border-subtle">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 p-6 sm:p-7 rounded-[calc(var(--radius)-2px)] bg-muted/20 border border-border-subtle">
       {productionSnapshot.map((item) => (
         <div key={item.label}>
-          <p className="text-[10px] uppercase tracking-[0.06em] font-medium text-muted-foreground/50">
-            {item.label}
-          </p>
-          <p className="text-[14px] font-medium text-foreground/90 mt-1 tracking-tight">
+          <p className="text-block-label">{item.label}</p>
+          <p className="text-[15px] font-medium text-foreground/90 mt-1.5 tracking-tight">
             {item.value}
           </p>
         </div>
@@ -159,14 +156,14 @@ function HighlightCard({
   detail: string;
 }) {
   return (
-    <div className="p-4 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/12">
-      <div className="flex items-center gap-2 mb-1.5">
-        <Icon className="w-3.5 h-3.5 text-muted-foreground/50" />
-        <span className="text-[11px] font-medium text-foreground/70 uppercase tracking-[0.04em]">
+    <div className="p-5 sm:p-6 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/12">
+      <div className="flex items-center gap-2.5 mb-2">
+        <Icon className="w-4 h-4 text-muted-foreground/50" />
+        <span className="text-block-label">
           {label}
         </span>
       </div>
-      <p className="text-[12.5px] text-muted-foreground leading-relaxed">{detail}</p>
+      <p className="text-[14px] text-muted-foreground leading-relaxed">{detail}</p>
     </div>
   );
 }
@@ -176,9 +173,7 @@ function TechGroups() {
     <div className="flex flex-wrap gap-x-8 gap-y-4">
       {techGroups.map((group) => (
         <div key={group.label}>
-          <p className="text-[10px] uppercase tracking-[0.06em] font-medium text-muted-foreground/50 mb-2">
-            {group.label}
-          </p>
+          <p className="text-block-label mb-2.5">{group.label}</p>
           <div className="flex flex-wrap gap-1.5">
             {group.items.map((item) => (
               <span
@@ -199,9 +194,9 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
   return (
     <article className="rounded-[var(--radius)] bg-card border border-border-subtle overflow-hidden transition-[box-shadow,transform] duration-500 hover:shadow-[var(--shadow-md)] hover:-translate-y-0.5">
       {/* Header — product release style */}
-      <header className="px-6 sm:px-8 pt-7 sm:pt-8 pb-6 border-b border-border-subtle bg-background-elevated/40">
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
-          <div className="space-y-3">
+      <header className="p-7 sm:p-9 border-b border-border-subtle bg-background-elevated/40">
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2.5">
               {exp.current && (
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success/[0.08] border border-success/15 text-[10px] font-medium text-success">
@@ -213,7 +208,12 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
                 Production
               </Badge>
             </div>
-            <h3 className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-semibold text-foreground tracking-[-0.025em] leading-tight">
+            <span className="inline-flex items-center self-start px-4 py-2 rounded-full bg-primary/[0.06] border border-primary/12 text-[13px] font-medium text-primary tabular-nums">
+              {exp.duration}
+            </span>
+          </div>
+          <div className="space-y-3 min-w-0">
+            <h3 className="text-[clamp(1.3125rem,2.5vw,1.75rem)] font-semibold text-foreground tracking-[-0.025em] leading-tight">
               {exp.role}
             </h3>
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
@@ -225,13 +225,10 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
               </span>
             </div>
           </div>
-          <span className="inline-flex items-center self-start px-3.5 py-2 rounded-full bg-primary/[0.06] border border-primary/12 text-[12px] font-medium text-primary tabular-nums whitespace-nowrap">
-            {exp.duration}
-          </span>
         </div>
       </header>
 
-      <div className="px-6 sm:px-8 py-7 sm:py-8 space-y-8">
+      <div className="p-7 sm:p-8 space-y-8">
         {/* Production snapshot */}
         <ProductionSnapshotPanel />
 
@@ -240,13 +237,13 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
 
         {/* What I Built */}
         {exp.achievements.length > 0 && (
-          <section className="space-y-3">
+          <section className="space-y-4">
             <p className="text-block-label">What I Built</p>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {exp.achievements.map((item) => (
                 <li
                   key={item}
-                  className="text-[13.5px] text-foreground/85 leading-relaxed pl-4 border-l-2 border-primary/15"
+                  className="text-[15px] text-foreground/85 leading-relaxed pl-4 border-l-2 border-primary/15"
                 >
                   {item}
                 </li>
@@ -257,12 +254,12 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
 
         {/* Architecture Decisions */}
         {exp.decisions.length > 0 && (
-          <section className="space-y-3">
+          <section className="space-y-4">
             <p className="text-block-label">Architecture Decisions</p>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {exp.decisions.map((item) => (
-                <li key={item} className="flex gap-2.5 text-[13px] text-muted-foreground leading-relaxed">
-                  <span className="text-primary/50 shrink-0 font-mono text-[11px] mt-0.5">→</span>
+                <li key={item} className="flex gap-3 text-[15px] text-muted-foreground leading-relaxed">
+                  <span className="text-primary/50 shrink-0 font-mono text-[12px] mt-0.5">→</span>
                   {item}
                 </li>
               ))}
@@ -271,11 +268,12 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
         )}
 
         {/* Engineering Challenges */}
-        <section className="space-y-3">
+        <div className="grid lg:grid-cols-2 gap-8">
+        <section className="space-y-4">
           <p className="text-block-label">Engineering Challenges</p>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {engineeringChallenges.map((item) => (
-              <li key={item} className="text-[13px] text-muted-foreground leading-relaxed flex gap-2.5">
+              <li key={item} className="text-[15px] text-muted-foreground leading-relaxed flex gap-3">
                 <span className="w-1 h-1 rounded-full bg-primary/40 shrink-0 mt-2" />
                 {item}
               </li>
@@ -283,16 +281,16 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
           </ul>
         </section>
 
-        {/* Production Impact */}
-        <section className="space-y-3">
+        <section className="space-y-4">
           <p className="text-block-label text-success">Production Impact</p>
           <ImpactList items={keyImpact} />
         </section>
+        </div>
 
         {/* Engineering Highlights */}
-        <section className="space-y-3">
+        <section className="space-y-4">
           <p className="text-block-label">Engineering Highlights</p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
             {engineeringHighlights.map((item) => (
               <HighlightCard key={item.label} {...item} />
             ))}
@@ -311,28 +309,25 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" tone="default" spacing="spacious" width="wide">
+    <Section id="experience" tone="default" spacing="default" width="wide" className="section-entry-divider">
       <SectionHeader
         badge="Experience"
         title="Production engineering"
         description="Systems shipped to enterprise clients — architecture, scale, and impact documented."
         align="left"
-        className="max-w-2xl"
+        variant="featured"
       />
 
-      <SectionContent loose>
-        <div className="relative max-w-4xl">
+      <SectionContent featured>
+        <div className="relative">
           {/* Timeline rail */}
           <div className="absolute left-[7px] sm:left-[9px] top-4 bottom-4 w-px bg-border/50 hidden sm:block" />
 
-          <div className="space-y-10 sm:space-y-12">
+          <div className="space-y-8 sm:space-y-10">
             {experiences.map((exp, i) => (
               <motion.div
                 key={exp.id}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                {...sectionRevealStagger(i)}
                 className="relative sm:pl-10"
               >
                 <div className="absolute left-0 top-8 hidden sm:flex items-center justify-center">
@@ -353,21 +348,23 @@ export function ExperienceSection() {
               <div className="absolute left-0 top-5 hidden sm:flex items-center justify-center">
                 <div className="w-[11px] h-[11px] rounded-full bg-border ring-[3px] ring-background" />
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-6 py-5 rounded-[calc(var(--radius)-2px)] border border-border-subtle/60 bg-transparent opacity-80 hover:opacity-100 transition-opacity duration-300">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.06em] font-medium text-muted-foreground/45 mb-1.5">
-                    Education
-                  </p>
-                  <h3 className="text-[15px] font-medium text-foreground/75 tracking-tight">
-                    B.Tech · Electrical & Electronics Engineering
-                  </h3>
-                  <p className="text-sm text-muted-foreground/60 mt-1">
-                    National Institute of Technology Calicut
-                  </p>
+              <div className="rounded-[calc(var(--radius)-2px)] border border-border-subtle/60 bg-card/50 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-7 sm:p-8">
+                  <div className="min-w-0">
+                    <p className="text-[10px] uppercase tracking-[0.06em] font-medium text-muted-foreground/45 mb-1.5">
+                      Education
+                    </p>
+                    <h3 className="text-[15px] font-medium text-foreground/75 tracking-tight">
+                      B.Tech · Electrical & Electronics Engineering
+                    </h3>
+                    <p className="text-sm text-muted-foreground/60 mt-1">
+                      National Institute of Technology Calicut
+                    </p>
+                  </div>
+                  <span className="text-[12px] text-muted-foreground/70 px-4 py-2 rounded-full border border-border-subtle/60 bg-muted/30 w-fit tabular-nums shrink-0 self-start sm:self-center">
+                    2021 – 2025
+                  </span>
                 </div>
-                <span className="text-[11px] text-muted-foreground/50 px-3 py-1.5 rounded-full border border-border-subtle/60 w-fit tabular-nums">
-                  2021 – 2025
-                </span>
               </div>
             </motion.div>
           </div>

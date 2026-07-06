@@ -39,8 +39,8 @@ function StatBlock({
 
 export function StatsSection() {
   return (
-    <section className="relative py-10 lg:py-12 section-tone-elevated overflow-hidden border-y border-border-subtle">
-      <div className="section-container relative z-10">
+    <section className="relative py-12 lg:py-14 section-tone-elevated overflow-hidden border-y border-border-subtle">
+      <div className="section-container section-container-wide relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}

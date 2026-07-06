@@ -49,7 +49,7 @@ function JournalPanel({
 
 export function NowSection() {
   return (
-    <Section id="now" tone="default" spacing="spacious">
+    <Section id="now" tone="default" spacing="default" width="wide">
       <SectionHeader
         badge="Now"
         title="Engineering journal"
