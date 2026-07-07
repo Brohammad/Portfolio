@@ -39,7 +39,7 @@ export function SectionHeader({
         <span
           className={cn(
             "text-caption inline-flex items-center rounded-full bg-primary/[0.06] border border-primary/12 text-primary",
-            isFeatured ? "px-4 py-2 text-[11px]" : "px-3 py-1.5"
+            isFeatured ? "px-4 py-2 text-[12px] sm:text-[13px]" : "px-3.5 py-1.5 text-[12px]"
           )}
         >
           {badge}
@@ -49,7 +49,7 @@ export function SectionHeader({
         className={cn(
           "text-foreground tracking-[-0.03em]",
           isFeatured
-            ? "text-[clamp(2rem,3.75vw,2.875rem)] font-semibold leading-[1.08]"
+            ? "text-[clamp(2.375rem,5.25vw,3.5rem)] font-semibold leading-[1.06]"
             : "text-heading"
         )}
       >
@@ -58,10 +58,10 @@ export function SectionHeader({
       {description && (
         <p
           className={cn(
-            "text-muted-foreground leading-[1.75] font-normal",
+            "text-muted-foreground leading-[1.75] font-normal max-w-3xl",
             isFeatured
-              ? "text-[16px] sm:text-[1.0625rem]"
-              : "text-[15px] sm:text-[16px]"
+              ? "text-[17px] sm:text-[1.125rem]"
+              : "text-[16px] sm:text-[17px]"
           )}
         >
           {description}

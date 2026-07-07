@@ -30,6 +30,7 @@ export function UsesSection() {
         title="Engineering setup"
         description="Tools I reach for daily when building production systems."
         align="left"
+        variant="featured"
         className="max-w-xl"
       />
 

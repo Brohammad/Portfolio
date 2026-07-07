@@ -39,6 +39,7 @@ export function GithubSection() {
         title="GitHub"
         description="Systems work, experiments, and production patterns — building in public."
         align="left"
+        variant="featured"
         className="max-w-xl"
       />
 

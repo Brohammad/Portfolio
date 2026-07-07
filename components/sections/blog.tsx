@@ -14,6 +14,7 @@ export function BlogSection() {
         title="Technical notes"
         description="Deep dives on production backend and AI engineering. In progress."
         align="left"
+        variant="featured"
         className="max-w-xl"
       />
 

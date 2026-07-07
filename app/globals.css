@@ -180,6 +180,19 @@ body::before {
     padding-top: var(--space-10);
     padding-bottom: var(--space-10);
   }
+
+  .section-header-featured {
+    padding: var(--space-5) var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .section-content {
+    margin-top: var(--space-6);
+  }
+
+  .section-content-featured {
+    padding-top: var(--space-5);
+  }
 }
 
 .section-container {
@@ -187,8 +200,8 @@ body::before {
   margin-right: auto;
   width: 100%;
   max-width: 73.75rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .section-container-narrow {
@@ -197,6 +210,13 @@ body::before {
 
 .section-container-wide {
   max-width: 80rem;
+}
+
+@media (min-width: 480px) {
+  .section-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 @media (min-width: 640px) {
@@ -351,14 +371,14 @@ body::before {
 }
 
 .text-heading {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 4.25vw, 2.875rem);
   font-weight: 600;
   letter-spacing: -0.028em;
   line-height: 1.1;
 }
 
 .text-subheading {
-  font-size: clamp(1.0625rem, 1.75vw, 1.25rem);
+  font-size: clamp(1.125rem, 2vw, 1.3125rem);
   font-weight: 400;
   line-height: 1.55;
   letter-spacing: -0.008em;
@@ -366,19 +386,19 @@ body::before {
 }
 
 .text-caption {
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.8125rem;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--muted-foreground) 80%, transparent);
 }
 
 .text-block-label {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   line-height: 1.4;
-  color: color-mix(in srgb, var(--foreground) 62%, transparent);
+  color: color-mix(in srgb, var(--foreground) 68%, transparent);
 }
 
 .panel-body {
@@ -388,7 +408,7 @@ body::before {
 }
 
 .content-panel {
-  padding: var(--space-5);
+  padding: var(--space-4);
   border-radius: calc(var(--radius) - 2px);
   background: color-mix(in srgb, var(--muted) 40%, transparent);
   border: 1px solid var(--border-subtle);

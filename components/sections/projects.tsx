@@ -360,11 +360,11 @@ function ProductionHighlights({ items }: { items: string[] }) {
 
 function MetadataGrid({ items }: { items: ProjectMeta[] }) {
   return (
-    <div className="grid grid-cols-2 gap-4 p-5 sm:p-6 rounded-[calc(var(--radius)-2px)] bg-muted/20 border border-border-subtle h-full">
+    <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-3 sm:gap-4 p-4 sm:p-5 lg:p-6 rounded-[calc(var(--radius)-2px)] bg-muted/20 border border-border-subtle h-full">
       {items.map((item) => (
         <div key={item.label} className="min-w-0">
           <p className="text-block-label">{item.label}</p>
-          <p className="text-[15px] text-foreground/90 font-medium mt-1.5 tabular-nums tracking-tight">
+          <p className="text-[15px] sm:text-[16px] text-foreground/90 font-medium mt-1.5 tabular-nums tracking-tight break-words">
             {item.value}
           </p>
         </div>
@@ -527,7 +527,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-6 sm:p-7 lg:p-8 gap-6">
+      <div className="flex flex-col flex-1 p-5 sm:p-7 lg:p-8 gap-5 sm:gap-6">
         {/* Badges */}
         <div className="flex flex-wrap items-center gap-2.5">
           {display.badges.map((badge) => (
@@ -551,16 +551,16 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
 
         {/* Title + tagline */}
         <div className="space-y-2.5">
-          <h3 className="text-[clamp(1.3125rem,2.5vw,1.625rem)] font-semibold text-foreground tracking-[-0.022em] leading-[1.2] group-hover:text-primary transition-colors duration-300">
+          <h3 className="text-[clamp(1.4375rem,3vw,1.75rem)] font-semibold text-foreground tracking-[-0.022em] leading-[1.2] group-hover:text-primary transition-colors duration-300">
             {project.title}
           </h3>
-          <p className="text-[15px] sm:text-[16px] text-muted-foreground leading-[1.7]">
+          <p className="text-[16px] sm:text-[17px] text-muted-foreground leading-[1.7]">
             {display.tagline}
           </p>
         </div>
 
         {/* Metadata + highlights use width on large screens */}
-        <div className="grid lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
           <MetadataGrid items={display.metadata} />
 
           {highlights.length > 0 && (
@@ -586,12 +586,12 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
 
         {/* CTAs */}
         <div
-          className="flex flex-wrap items-center gap-3 pt-4 mt-auto border-t border-border-subtle/70"
+          className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-4 mt-auto border-t border-border-subtle/70"
           onClick={(e) => e.stopPropagation()}
         >
           <Button
             size="default"
-            className="group/btn min-w-[9.5rem] h-11 px-5 hover:-translate-y-px"
+            className="group/btn w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5 hover:-translate-y-px"
             onClick={onOpenCaseStudy}
           >
             Case Study
@@ -601,7 +601,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             <Button
               size="default"
               variant="outline"
-              className="min-w-[9.5rem] h-11 px-5 hover:-translate-y-px hover:border-primary/25"
+              className="w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5 hover:-translate-y-px hover:border-primary/25"
               onClick={onOpenCaseStudy}
             >
               <Layers className="w-4 h-4" />
@@ -609,7 +609,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             </Button>
           )}
           {project.github && (
-            <Button size="default" variant="ghost" className="h-11 px-4 text-muted-foreground" asChild>
+            <Button size="default" variant="ghost" className="w-full sm:w-auto h-11 px-4 text-muted-foreground" asChild>
               <a href={project.github} target="_blank" rel="noopener noreferrer">
                 <GithubIcon className="w-4 h-4" />
                 GitHub
@@ -617,7 +617,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             </Button>
           )}
           {project.demo && (
-            <Button size="default" variant="ghost" className="h-11 px-4 text-muted-foreground" asChild>
+            <Button size="default" variant="ghost" className="w-full sm:w-auto h-11 px-4 text-muted-foreground" asChild>
               <a href={project.demo} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-4 h-4" />
                 Demo
@@ -644,7 +644,7 @@ export function ProjectsSection() {
       />
 
       <SectionContent featured>
-        <div className="flex flex-col gap-7 lg:gap-8">
+        <div className="flex flex-col gap-6 sm:gap-7 lg:gap-8">
           {projects.map((project, i) => (
             <motion.div
               key={project.id}

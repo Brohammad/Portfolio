@@ -13,6 +13,7 @@ export function TechFloatingSection() {
         title="Core production stack"
         description="The technologies behind shipped systems."
         align="center"
+        variant="featured"
       />
 
       <SectionContent>

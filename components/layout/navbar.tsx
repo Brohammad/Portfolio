@@ -177,7 +177,7 @@ export function Navbar() {
                       <button
                         onClick={() => handleNavClick(link.href)}
                         className={cn(
-                          "px-4 py-3.5 text-[15px] font-medium rounded-[calc(var(--radius)-2px)] text-left transition-colors",
+                          "px-4 py-3.5 text-[16px] font-medium rounded-[calc(var(--radius)-2px)] text-left transition-colors",
                           activeSection === link.href.replace("#", "")
                             ? "text-foreground bg-primary/[0.08]"
                             : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
