@@ -128,6 +128,97 @@ export const skillGroups: SkillGroup[] = [
 
 export const projects: Project[] = [
   {
+    id: "paint-intelligence",
+    title: "PaintCRM",
+    description:
+      "Full-stack paint dealer platform — upload a room photo, preview 63 catalog shades on walls in under 60 seconds, capture leads, and run quotes, orders, inventory, and receivables offline-first.",
+    demo: "https://paintcrm.brohammad.tech",
+    github: "https://github.com/Brohammad/PaintCRM",
+    longDescription:
+      "PaintCRM unifies visualization, lead capture, and commercial workflows for paint dealers. Upload a room photo, auto-detect walls with heuristic segmentation (optional TensorFlow.js DeepLab assist), apply real Asian Paints and Dulux shades with HSL recolor, then convert leads into quotes, orders, inventory movements, and an append-only credit ledger — all offline-first for shop-floor demos with best-effort sync when online.",
+    tech: [
+      "Node.js", "Express", "PostgreSQL", "Vanilla JS", "Vite",
+      "Canvas 2D", "TensorFlow.js", "Docker", "Vitest", "Jest",
+    ],
+    difficulty: "Expert",
+    status: "completed",
+    features: [
+      "Room photo → wall masking → live shade preview in under 60 seconds",
+      "63-shade catalog with cost estimator and before/after compare",
+      "Multi-tenant Express API with JWT + rotating refresh tokens",
+      "Quotes, orders, inventory, and append-only credit ledger",
+      "Offline-first UX with localStorage and transparent token refresh",
+      "200+ automated tests (Vitest + Jest/Supertest) with CI/CD",
+    ],
+    challenges: [
+      "Wall masking without a server — region-growing, scoring, edge feathering",
+      "Offline-first sync with server as source of truth for CRM data",
+      "Server-side quote/order totals and append-only ledger integrity",
+    ],
+    lessons: [
+      "Extracting tested modules from a 4,500-line monolith without breaking offline flows",
+      "Financial data must never trust client-computed totals",
+      "Shop-floor demos need zero-login, zero-network paths first",
+    ],
+    metrics: [
+      "Live at paintcrm.brohammad.tech",
+      "200+ automated tests",
+      "40+ API endpoints",
+    ],
+    scale: ["<60 sec to preview", "63 catalog shades", "12 route modules"],
+    engineeringChallenges: [
+      "Heuristic wall segmentation with optional ML fusion in the browser",
+      "Append-only ledger with compensating reversals on order delete",
+    ],
+    architecture:
+      "Vite offline-first frontend with Canvas engine and tested ES modules. Express API with 12 route modules, PostgreSQL multi-tenant store, optional Redis rate limiting. Docker + GitHub Actions CI, deployed on Render/Fly.io.",
+  },
+  {
+    id: "alphaedge",
+    title: "AlphaEdge",
+    description:
+      "Quantitative trading research and execution platform — strategy DSL, async backtesting, paper/live trading via Alpaca, portfolio risk, and OpenAI-powered insights.",
+    longDescription:
+      "AlphaEdge is a web-based quantitative trading terminal that takes you from idea to execution in one place. Users author strategies in a custom YAML DSL or Python, validate and backtest on historical data, optimize parameters with Celery workers, deploy to paper trading, and optionally route orders to Alpaca — with LLM-generated strategy explanations and performance reports.",
+    tech: [
+      "Python", "FastAPI", "PostgreSQL", "Redis", "Celery",
+      "React", "TypeScript", "C++", "Docker", "Stripe", "Alpaca", "OpenAI",
+    ],
+    github: "https://github.com/Brohammad/Apha-Edge",
+    difficulty: "Expert",
+    status: "completed",
+    features: [
+      "YAML strategy DSL with compile-time validation and Python runtime",
+      "Event-driven backtesting with Sharpe, drawdown, and win-rate metrics",
+      "Celery-based parameter optimization (grid search, Optuna)",
+      "Paper and Alpaca broker execution with encrypted credentials",
+      "React trading terminal with live ticker and portfolio dashboards",
+      "OpenAI-powered strategy explanations with provider abstraction",
+    ],
+    challenges: [
+      "DDD-style bounded contexts across identity, strategies, backtesting, and execution",
+      "Optional C++ backtest engine via pybind11 for performance-critical paths",
+      "Sync API for CRUD vs async workers for backtests, ingestion, and orders",
+    ],
+    lessons: [
+      "Modular monolith with domain → application → infrastructure layers scales cleanly",
+      "Provider abstraction for LLM insights enables offline mock mode in CI",
+      "End-to-end Playwright coverage catches full user journeys early",
+    ],
+    metrics: [
+      "80+ unit and integration tests",
+      "Multi-symbol backtests with slippage and commissions",
+      "OAuth + RBAC-secured REST APIs",
+    ],
+    scale: ["6 bounded contexts", "Celery async workers", "Stripe marketplace"],
+    engineeringChallenges: [
+      "Bar-by-bar simulation with equity curve and trade log accuracy",
+      "Market data provider fallback chain (Polygon → Alpha Vantage → DB)",
+    ],
+    architecture:
+      "FastAPI modular monolith with DDD bounded contexts. PostgreSQL source of truth, Redis for cache and Celery broker. React 19 SPA with TanStack Query. Docker Compose local stack, GitHub Actions CI, Nginx reverse proxy.",
+  },
+  {
     id: "renewai",
     title: "RenewAI",
     description:
@@ -208,47 +299,6 @@ export const projects: Project[] = [
     ],
     architecture:
       "FastAPI service with LangChain RAG pipeline. Qdrant vector store with PostgreSQL for metadata. Azure OpenAI for embeddings and generation. Deployed on Azure AKS.",
-  },
-  {
-    id: "paint-intelligence",
-    title: "Paint Intelligence Platform",
-    description:
-      "AI-first CRM that predicts dealer churn, automates follow-ups, and surfaces growth opportunities across a national paint distribution network.",
-    longDescription:
-      "Production CRM platform combining structured dealer data with LLM-driven insight generation. Churn prediction, automated follow-up recommendations, and natural language queries over sales data — integrated with mobile CRM via REST APIs.",
-    tech: ["Python", "Node.js", "LangChain", "OpenAI", "MongoDB", "React", "Docker"],
-    difficulty: "Advanced",
-    status: "completed",
-    features: [
-      "Dealer churn prediction with ML scoring",
-      "Automated follow-up generation with LLM",
-      "Sales trend analysis and anomaly detection",
-      "Natural language query interface over CRM data",
-      "Dashboard with AI-generated weekly insights",
-      "REST API for mobile CRM app integration",
-    ],
-    challenges: [
-      "Generating trustworthy LLM insights from structured CRM data",
-      "Low-latency responses for mobile app integration",
-      "Handling sparse and inconsistent dealer data",
-    ],
-    lessons: [
-      "Structured output parsing is critical for LLM-to-database workflows",
-      "Caching LLM responses reduces cost by 60%+ for repeated queries",
-      "Business users need confidence scores, not just AI answers",
-    ],
-    metrics: [
-      "Production CRM deployment",
-      "National dealer network",
-      "AI-generated insights",
-    ],
-    scale: ["National dealer network", "Mobile API integration", "60%+ cache hit rate"],
-    engineeringChallenges: [
-      "Structured LLM output parsing for CRM workflows",
-      "Low-latency mobile API responses",
-    ],
-    architecture:
-      "Node.js REST API + Python AI service. MongoDB for CRM data. LangChain for insight generation. React dashboard. Deployed with Docker on AWS.",
   },
   {
     id: "distributed-kv",

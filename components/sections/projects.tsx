@@ -38,6 +38,40 @@ interface ProjectDisplay {
 }
 
 const projectDisplay: Record<string, ProjectDisplay> = {
+  "paint-intelligence": {
+    tagline:
+      "From room photo to painted preview, qualified lead, and receivables — offline-first at paintcrm.brohammad.tech.",
+    badges: ["Production", "Live Demo", "Solo Build"],
+    metadata: [
+      { label: "Preview time", value: "<60 sec" },
+      { label: "Catalog", value: "63 shades" },
+      { label: "Tests", value: "200+" },
+      { label: "API", value: "40+ endpoints" },
+    ],
+    techGroups: [
+      { label: "Frontend", items: ["Vanilla JS", "Vite", "Canvas 2D"] },
+      { label: "Backend", items: ["Node.js", "Express"] },
+      { label: "Data", items: ["PostgreSQL"] },
+      { label: "Infra", items: ["Docker", "Render"] },
+    ],
+  },
+  alphaedge: {
+    tagline:
+      "Design strategies. Backtest history. Trade with confidence — YAML DSL to paper execution with AI-powered insights.",
+    badges: ["Open Source", "Full-Stack", "Fintech"],
+    metadata: [
+      { label: "Stack", value: "FastAPI + React" },
+      { label: "Workers", value: "Celery" },
+      { label: "Tests", value: "80+" },
+      { label: "Broker", value: "Alpaca" },
+    ],
+    techGroups: [
+      { label: "Backend", items: ["Python", "FastAPI", "Celery"] },
+      { label: "Frontend", items: ["React", "TypeScript"] },
+      { label: "Data", items: ["PostgreSQL", "Redis"] },
+      { label: "Integrations", items: ["Alpaca", "Stripe", "OpenAI"] },
+    ],
+  },
   renewai: {
     tagline:
       "Multi-agent insurance renewal platform orchestrating policy analysis, risk scoring, and client outreach.",
@@ -72,23 +106,6 @@ const projectDisplay: Record<string, ProjectDisplay> = {
       { label: "Infra", items: ["Azure", "SSE"] },
     ],
   },
-  "paint-intelligence": {
-    tagline:
-      "AI-first CRM predicting dealer churn and surfacing growth opportunities across a national network.",
-    badges: ["Production", "AI", "CRM"],
-    metadata: [
-      { label: "Deployment", value: "AWS" },
-      { label: "Network", value: "National dealers" },
-      { label: "Cache hit", value: "60%+" },
-      { label: "Database", value: "MongoDB" },
-    ],
-    techGroups: [
-      { label: "Core", items: ["Node.js", "Python"] },
-      { label: "AI", items: ["LangChain", "OpenAI"] },
-      { label: "Data", items: ["MongoDB"] },
-      { label: "Infra", items: ["Docker", "React"] },
-    ],
-  },
   "distributed-kv": {
     tagline:
       "Fault-tolerant distributed store with Raft consensus, linearizable reads, and automatic leader failover.",
@@ -118,6 +135,11 @@ const badgeStyle: Record<string, string> = {
   Distributed: "bg-secondary/10 text-primary border-secondary/15",
   Consensus: "bg-secondary/10 text-primary border-secondary/15",
   "In Progress": "bg-foreground/[0.04] text-muted-foreground border-border-subtle",
+  "Live Demo": "bg-success/[0.08] text-success border-success/15",
+  "Open Source": "bg-primary/[0.06] text-primary border-primary/12",
+  "Solo Build": "bg-primary/[0.06] text-primary border-primary/12",
+  "Full-Stack": "bg-primary/[0.06] text-primary border-primary/12",
+  Fintech: "bg-secondary/10 text-primary border-secondary/15",
 };
 
 /* ── Engineering preview visuals ── */
@@ -191,36 +213,69 @@ function PreviewFinCore() {
 }
 
 function PreviewPaintIntel() {
-  const bars = [35, 52, 41, 68, 48, 74, 55, 62];
   return (
-    <div className="w-full max-w-[280px] space-y-3">
-      <div className="flex items-end justify-between gap-3">
-        <div className="flex-1">
-          <p className="text-[9px] text-muted-foreground/50 mb-2">Dealer churn forecast</p>
-          <div className="flex items-end gap-[3px] h-12">
-            {bars.map((h, i) => (
-              <div
-                key={i}
-                className="flex-1 rounded-[2px] bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300"
-                style={{ height: `${h}%` }}
-              />
-            ))}
-          </div>
+    <div className="w-full max-w-[300px] space-y-4">
+      <div className="flex gap-3 items-center">
+        <div className="flex-1 rounded-lg border border-border-subtle bg-card/70 h-16 flex items-center justify-center">
+          <span className="text-[9px] text-muted-foreground/60">Room photo</span>
         </div>
-        <div className="text-right shrink-0">
-          <p className="text-lg font-semibold text-foreground tabular-nums tracking-tight">↓12%</p>
-          <p className="text-[8px] text-muted-foreground/50 mt-0.5">predicted churn</p>
+        <span className="text-[10px] text-muted-foreground/40">→</span>
+        <div className="flex-1 rounded-lg border border-primary/25 bg-primary/[0.08] h-16 flex items-center justify-center">
+          <span className="text-[9px] text-primary/70">Shade preview</span>
         </div>
       </div>
+      <div className="flex gap-1.5 justify-center">
+        {["#E8D5C4", "#7BA3C9", "#4A6741", "#C4A882", "#8B4513"].map((c) => (
+          <div
+            key={c}
+            className="w-6 h-6 rounded-full border border-border-subtle/60"
+            style={{ backgroundColor: c }}
+          />
+        ))}
+      </div>
       <div className="flex gap-2">
-        <div className="flex-1 rounded-md border border-border-subtle bg-card/60 px-2 py-1.5">
-          <span className="text-[8px] text-muted-foreground/50 block">Dealers</span>
-          <span className="text-[11px] font-medium text-foreground/80 tabular-nums">2,400+</span>
+        <div className="flex-1 rounded-md border border-border-subtle bg-card/60 px-2 py-1.5 text-center">
+          <span className="text-[8px] text-muted-foreground/50 block">Preview</span>
+          <span className="text-[11px] font-medium text-foreground/80 tabular-nums">&lt;60s</span>
         </div>
-        <div className="flex-1 rounded-md border border-border-subtle bg-card/60 px-2 py-1.5">
-          <span className="text-[8px] text-muted-foreground/50 block">AI insights</span>
-          <span className="text-[11px] font-medium text-foreground/80">Weekly</span>
+        <div className="flex-1 rounded-md border border-border-subtle bg-card/60 px-2 py-1.5 text-center">
+          <span className="text-[8px] text-muted-foreground/50 block">Shades</span>
+          <span className="text-[11px] font-medium text-foreground/80 tabular-nums">63</span>
         </div>
+        <div className="flex-1 rounded-md border border-border-subtle bg-card/60 px-2 py-1.5 text-center">
+          <span className="text-[8px] text-muted-foreground/50 block">Tests</span>
+          <span className="text-[11px] font-medium text-foreground/80 tabular-nums">200+</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PreviewAlphaEdge() {
+  const steps = [
+    { label: "DSL", detail: "YAML rules" },
+    { label: "backtest", detail: "bar-by-bar" },
+    { label: "optimize", detail: "Celery" },
+    { label: "trade", detail: "Alpaca" },
+  ];
+  return (
+    <div className="w-full max-w-[360px] space-y-4 font-mono">
+      <div className="flex items-center gap-1.5">
+        {steps.map((step, i) => (
+          <div key={step.label} className="flex items-center gap-1.5 flex-1 min-w-0">
+            <div className="flex-1 rounded-lg border border-border-subtle bg-card/70 px-2 py-2.5 text-center group-hover:border-primary/20 transition-colors duration-300">
+              <span className="text-[9px] text-primary/70 block">{step.label}</span>
+              <span className="text-[7px] text-muted-foreground/55 block truncate mt-0.5">{step.detail}</span>
+            </div>
+            {i < steps.length - 1 && (
+              <span className="text-[8px] text-muted-foreground/35 shrink-0">→</span>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="rounded-lg border border-border-subtle bg-card/60 px-4 py-3 flex items-center justify-between">
+        <span className="text-[9px] text-muted-foreground/60">Sharpe · drawdown · win rate</span>
+        <span className="text-[9px] text-primary/60">OpenAI insights</span>
       </div>
     </div>
   );
@@ -271,9 +326,10 @@ function PreviewDistributedKV() {
 }
 
 const previewMap: Record<string, React.FC> = {
+  "paint-intelligence": PreviewPaintIntel,
+  alphaedge: PreviewAlphaEdge,
   renewai: PreviewRenewAI,
   fincore: PreviewFinCore,
-  "paint-intelligence": PreviewPaintIntel,
   "distributed-kv": PreviewDistributedKV,
 };
 
