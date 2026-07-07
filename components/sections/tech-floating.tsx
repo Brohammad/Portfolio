@@ -21,11 +21,11 @@ export function TechFloatingSection() {
           {techStack.map((tech, i) => (
             <motion.span
               key={tech}
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 8, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.025, duration: 0.3 }}
-              className="tech-chip cursor-default hover:border-primary/20 hover:text-primary transition-colors duration-200"
+              transition={{ type: "spring", stiffness: 140, damping: 22, delay: i * 0.02 }}
+              className="tech-chip cursor-default"
             >
               {tech}
             </motion.span>

@@ -54,7 +54,7 @@ export function ContactSection() {
           </p>
 
           <div className="space-y-3">
-            <div className="flex items-center justify-between interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-6">
+            <div className="flex items-center justify-between interactive-card rounded-[var(--radius)] p-6">
               <div className="flex items-center gap-4 min-w-0">
                 <div className="w-11 h-11 rounded-[calc(var(--radius)-4px)] bg-primary/[0.08] border border-primary/12 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-primary" />
@@ -73,7 +73,7 @@ export function ContactSection() {
               </button>
             </div>
 
-            <div className="flex items-center gap-4 interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-6">
+            <div className="flex items-center gap-4 interactive-card rounded-[var(--radius)] p-6">
               <div className="w-11 h-11 rounded-[calc(var(--radius)-4px)] bg-success/[0.08] border border-success/12 flex items-center justify-center shrink-0">
                 <MapPin className="w-4 h-4 text-success" />
               </div>
@@ -121,7 +121,7 @@ export function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.08 }}
         >
-          <form onSubmit={handleSubmit} className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-6 sm:p-7 space-y-5" aria-label="Contact form">
+          <form onSubmit={handleSubmit} className="interactive-card rounded-[var(--radius)] p-6 sm:p-7 space-y-5" aria-label="Contact form">
             <div className="grid sm:grid-cols-2 gap-5">
               <div className="space-y-2">
                 <label className="block text-caption">Name</label>

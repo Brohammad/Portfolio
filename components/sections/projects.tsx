@@ -336,9 +336,9 @@ const previewMap: Record<string, React.FC> = {
 function ProjectPreview({ projectId }: { projectId: string }) {
   const Preview = previewMap[projectId] ?? PreviewRenewAI;
   return (
-    <div className="relative h-[14rem] sm:h-[15rem] lg:h-full lg:min-h-[16rem] overflow-hidden bg-muted/25 group-hover:bg-muted/35 transition-colors duration-500">
-      <div className="absolute inset-0 grid-bg opacity-[0.25]" />
-      <div className="relative h-full flex items-center justify-center p-6 sm:p-8 transition-transform duration-500 group-hover:-translate-y-0.5">
+    <div className="project-preview-zone relative h-[14.5rem] sm:h-[15.5rem] lg:h-full lg:min-h-[17rem] overflow-hidden transition-colors duration-500 group-hover:bg-muted/30">
+      <div className="absolute inset-0 grid-bg opacity-[0.2]" />
+      <div className="relative h-full flex items-center justify-center p-7 sm:p-9 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]">
         <Preview />
       </div>
     </div>
@@ -360,7 +360,7 @@ function ProductionHighlights({ items }: { items: string[] }) {
 
 function MetadataGrid({ items }: { items: ProjectMeta[] }) {
   return (
-    <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-3 sm:gap-4 p-4 sm:p-5 lg:p-6 rounded-[calc(var(--radius)-2px)] bg-muted/20 border border-border-subtle h-full">
+    <div className="surface-panel grid grid-cols-1 min-[420px]:grid-cols-2 gap-3 sm:gap-4 p-4 sm:p-5 lg:p-6 rounded-[calc(var(--radius)-2px)] h-full">
       {items.map((item) => (
         <div key={item.label} className="min-w-0">
           <p className="text-block-label">{item.label}</p>
@@ -496,8 +496,12 @@ function ProjectModal({ project }: { project: Project }) {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 90, damping: 22 },
+  },
 };
 
 interface ProjectCardProps {
@@ -516,18 +520,17 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
   return (
     <article
       className={cn(
-        "group relative flex flex-col lg:flex-row overflow-hidden rounded-[var(--radius)] bg-card transition-[box-shadow,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        "hover:shadow-[var(--shadow-lg)] hover:-translate-y-1",
+        "group relative flex flex-col lg:flex-row overflow-hidden rounded-[var(--radius)] project-card-elevated",
         isDisabled && "opacity-50 pointer-events-none"
       )}
     >
       {/* Preview */}
-      <div className="lg:w-[36%] shrink-0 border-b lg:border-b-0 lg:border-r border-border-subtle/60">
+      <div className="lg:w-[38%] shrink-0 border-b lg:border-b-0 lg:border-r border-border-subtle/40">
         <ProjectPreview projectId={project.id} />
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-5 sm:p-7 lg:p-8 gap-5 sm:gap-6">
+      <div className="flex flex-col flex-1 p-5 sm:p-7 lg:p-8 gap-5 sm:gap-5.5">
         {/* Badges */}
         <div className="flex flex-wrap items-center gap-2.5">
           {display.badges.map((badge) => (
@@ -572,7 +575,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
         </div>
 
         {challenge && (
-          <div className="case-study-panel space-y-2.5">
+          <div className="case-study-panel space-y-2.5 ring-1 ring-primary/[0.06]">
             <p className="text-block-label">Engineering Challenge</p>
             <p className="panel-body">{challenge}</p>
           </div>

@@ -76,7 +76,7 @@ export function Navbar() {
             className="flex items-center gap-3 text-foreground font-medium shrink-0 group"
             aria-label="Go to home"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-transform duration-200 group-hover:scale-[1.03]">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:shadow-[var(--shadow-md)]">
               <Terminal className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px] text-primary-foreground" />
             </div>
             <div className="hidden sm:flex flex-col items-start leading-none gap-1">
@@ -100,10 +100,10 @@ export function Navbar() {
                       onClick={() => handleNavClick(link.href)}
                       data-active={isActive}
                       className={cn(
-                        "nav-link relative px-3.5 xl:px-4 py-2.5 text-[14px] xl:text-[15px] font-medium rounded-[calc(var(--radius)-4px)] transition-all duration-200 focus-ring whitespace-nowrap",
+                        "nav-link relative px-3.5 xl:px-4 py-2.5 text-[14px] xl:text-[15px] font-medium rounded-[calc(var(--radius)-4px)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-ring whitespace-nowrap",
                         isActive
-                          ? "text-foreground bg-card/90 shadow-[var(--shadow-sm)] ring-1 ring-primary/10"
-                          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05]"
+                          ? "nav-link-active"
+                          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
                       )}
                     >
                       {link.label}
@@ -119,7 +119,7 @@ export function Navbar() {
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="w-10 h-10 flex items-center justify-center rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-colors duration-200"
+                className="w-10 h-10 flex items-center justify-center rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] hover:-translate-y-px transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun className="w-[17px] h-[17px]" /> : <Moon className="w-[17px] h-[17px]" />}

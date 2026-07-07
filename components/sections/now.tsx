@@ -28,7 +28,7 @@ function JournalPanel({
     <motion.div
       {...fadeUp}
       className={cn(
-        "interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6 h-full",
+        "interactive-card-secondary rounded-[var(--radius)] p-5 sm:p-6 h-full",
         className
       )}
     >
@@ -64,13 +64,13 @@ export function NowSection() {
           {...fadeUp}
           className="grid sm:grid-cols-2 gap-4 lg:gap-5"
         >
-          <div className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
+          <div className="interactive-card rounded-[var(--radius)] p-5 sm:p-6">
             <p className="text-block-label mb-2.5">Current Obsession</p>
             <p className="text-[14.5px] text-foreground/88 leading-[1.65] font-medium">
               {nowPage.currentObsession}
             </p>
           </div>
-          <div className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-6">
+          <div className="interactive-card rounded-[var(--radius)] p-5 sm:p-6">
             <p className="text-block-label mb-2.5">Favorite Problem</p>
             <p className="text-[14.5px] text-foreground/88 leading-[1.65] font-medium">
               {nowPage.favoriteProblem}

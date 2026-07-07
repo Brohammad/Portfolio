@@ -48,7 +48,7 @@ export function GithubSection() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-5 sm:p-7 mb-6 lg:mb-8"
+          className="interactive-card rounded-[var(--radius)] p-5 sm:p-7 mb-6 lg:mb-8"
         >
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -86,7 +86,7 @@ export function GithubSection() {
                 hidden: { opacity: 0, y: 10 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
               }}
-              className="interactive-card group rounded-[var(--radius)] bg-card border border-border-subtle p-6 sm:p-7 flex flex-col gap-4 h-full focus-ring"
+              className="interactive-card group rounded-[var(--radius)] p-6 sm:p-7 flex flex-col gap-4 h-full focus-ring"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2 min-w-0">

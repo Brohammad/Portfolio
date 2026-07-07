@@ -150,7 +150,7 @@ function CapabilityCard({ capability }: { capability: Capability }) {
   const Icon = capability.icon;
 
   return (
-    <article className="flex flex-col h-full p-6 sm:p-7 rounded-[var(--radius)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-md)] hover:-translate-y-0.5 hover:border-primary/10">
+    <article className="flex flex-col h-full p-6 sm:p-7 rounded-[var(--radius)] interactive-card-secondary">
       <div className="flex items-start justify-between gap-3 mb-5">
         <div className="w-9 h-9 rounded-[calc(var(--radius)-4px)] bg-primary/[0.05] border border-primary/10 flex items-center justify-center shrink-0">
           <Icon className="w-4 h-4 text-muted-foreground/60" strokeWidth={1.5} />

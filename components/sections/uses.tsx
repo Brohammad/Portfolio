@@ -59,7 +59,7 @@ export function UsesSection() {
                 {items.map((item) => (
                   <div
                     key={item.name}
-                    className="interactive-card rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle p-4 sm:p-5 h-full"
+                    className="interactive-card-secondary rounded-[calc(var(--radius)-4px)] p-4 sm:p-5 h-full"
                   >
                     <div className="font-semibold text-foreground text-[14px] mb-1.5 tracking-tight">{item.name}</div>
                     <div className="text-[13px] text-muted-foreground leading-[1.7]">{item.description}</div>

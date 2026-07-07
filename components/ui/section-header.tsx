@@ -24,10 +24,14 @@ export function SectionHeader({
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: isFeatured ? 16 : 8 }}
+      initial={{ opacity: 0, y: isFeatured ? 14 : 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: isFeatured ? 0.55 : 0.4, ease: [0.22, 1, 0.36, 1] }}
+      transition={
+        isFeatured
+          ? { type: "spring", stiffness: 120, damping: 22, mass: 0.8 }
+          : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
+      }
       className={cn(
         "flex flex-col",
         isFeatured ? "gap-5 sm:gap-6 section-header-featured" : "gap-3 sm:gap-4",
@@ -47,9 +51,9 @@ export function SectionHeader({
       )}
       <h2
         className={cn(
-          "text-foreground tracking-[-0.03em]",
+          "text-foreground",
           isFeatured
-            ? "text-[clamp(2.375rem,5.25vw,3.5rem)] font-semibold leading-[1.06]"
+            ? "text-[clamp(2.5rem,5.5vw,3.625rem)] font-semibold leading-[1.04] tracking-[-0.035em]"
             : "text-heading"
         )}
       >
@@ -58,10 +62,10 @@ export function SectionHeader({
       {description && (
         <p
           className={cn(
-            "text-muted-foreground leading-[1.75] font-normal max-w-3xl",
+            "text-muted-foreground/75 leading-[1.7] font-normal max-w-[52ch]",
             isFeatured
-              ? "text-[17px] sm:text-[1.125rem]"
-              : "text-[16px] sm:text-[17px]"
+              ? "text-[16px] sm:text-[17px]"
+              : "text-[15px] sm:text-[16px]"
           )}
         >
           {description}

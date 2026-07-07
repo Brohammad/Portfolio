@@ -78,10 +78,10 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex items-center overflow-hidden noise section-tone-default"
+      className="relative min-h-[88vh] flex items-center overflow-hidden noise section-tone-default"
     >
-      <div className="relative z-10 section-container w-full pt-[calc(var(--navbar-height)+3rem)] pb-24 lg:pt-[calc(var(--navbar-height)+4.5rem)] lg:pb-36">
-        <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-14 lg:gap-16 xl:gap-20 items-center">
+      <div className="relative z-10 section-container w-full pt-[calc(var(--navbar-height)+2.5rem)] pb-20 lg:pt-[calc(var(--navbar-height)+3.75rem)] lg:pb-28">
+        <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-12 lg:gap-14 xl:gap-16 items-center">
           {/* Left column */}
           <div className="flex flex-col max-w-none lg:max-w-[38rem]">
             <motion.div {...fadeUp}>

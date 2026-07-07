@@ -26,7 +26,7 @@ export function BlogSection() {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <div className="interactive-card rounded-[var(--radius)] bg-card border border-border-subtle p-7 sm:p-8">
+            <div className="interactive-card rounded-[var(--radius)] p-7 sm:p-8">
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-10 h-10 rounded-[calc(var(--radius)-4px)] bg-primary/[0.06] border border-primary/10 flex items-center justify-center shrink-0">
                   <PenLine className="w-4 h-4 text-primary/80" strokeWidth={1.5} />
@@ -67,7 +67,7 @@ export function BlogSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="interactive-card group rounded-[var(--radius)] bg-card border border-border-subtle p-7 flex flex-col h-full focus-ring"
+                className="interactive-card group rounded-[var(--radius)] p-7 flex flex-col h-full focus-ring"
               >
                 <div className="flex flex-wrap gap-2 mb-3">
                   {post.tags.map((tag) => (

@@ -25,23 +25,24 @@ export function useCounter(end: number, duration = 2000, start = 0) {
   useEffect(() => {
     if (!isVisible) return;
 
-    const steps = 60;
-    const increment = (end - start) / steps;
-    let current = start;
-    let step = 0;
+    const startTime = performance.now();
+    const range = end - start;
 
-    const timer = setInterval(() => {
-      step++;
-      current += increment;
-      if (step >= steps) {
-        setCount(end);
-        clearInterval(timer);
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(start + range * eased));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       } else {
-        setCount(Math.floor(current));
+        setCount(end);
       }
-    }, duration / steps);
+    };
 
-    return () => clearInterval(timer);
+    const frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
   }, [isVisible, end, start, duration]);
 
   return { count, ref };

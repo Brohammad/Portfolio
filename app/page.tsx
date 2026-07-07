@@ -14,10 +14,12 @@ import { BlogSection } from "@/components/sections/blog";
 import { ContactSection } from "@/components/sections/contact";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CommandPalette } from "@/components/ui/command-palette";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 export default function Home() {
   return (
     <>
+      <CustomCursor />
       <ScrollProgress />
       <CommandPalette />
       <Navbar />

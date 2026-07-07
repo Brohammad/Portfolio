@@ -192,9 +192,9 @@ function TechGroups() {
 
 function ExperienceRelease({ exp }: { exp: Experience }) {
   return (
-    <article className="rounded-[var(--radius)] bg-card border border-border-subtle overflow-hidden transition-[box-shadow,transform] duration-500 hover:shadow-[var(--shadow-md)] hover:-translate-y-0.5">
+    <article className="rounded-[var(--radius)] project-card-elevated overflow-hidden">
       {/* Header — product release style */}
-      <header className="p-7 sm:p-9 border-b border-border-subtle bg-background-elevated/40">
+      <header className="p-7 sm:p-8 border-b border-border-subtle/50 bg-background-elevated/50">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2.5">

@@ -130,7 +130,7 @@ function PrincipleCard({
   detail: string;
 }) {
   return (
-    <div className="p-5 sm:p-6 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
+    <div className="p-5 sm:p-6 rounded-[calc(var(--radius)-4px)] interactive-card-secondary transition-[box-shadow,transform,border-color] duration-300">
       <Icon className="w-4 h-4 text-muted-foreground/45 mb-3" strokeWidth={1.5} />
       <p className="text-[15px] font-medium text-foreground tracking-tight">{title}</p>
       <p className="text-[14px] text-muted-foreground leading-relaxed mt-2">{detail}</p>
@@ -140,7 +140,7 @@ function PrincipleCard({
 
 function InterestCard({ label }: { label: string }) {
   return (
-    <div className="px-4 py-3.5 sm:px-5 sm:py-4 rounded-[calc(var(--radius)-4px)] bg-card/80 border border-border-subtle transition-[box-shadow,transform,border-color] duration-300 hover:shadow-[var(--shadow-sm)] hover:-translate-y-0.5 hover:border-primary/10">
+    <div className="px-4 py-3.5 sm:px-5 sm:py-4 rounded-[calc(var(--radius)-4px)] interactive-card-secondary">
       <p className="text-[14px] font-medium text-foreground/85 tracking-tight">{label}</p>
     </div>
   );
