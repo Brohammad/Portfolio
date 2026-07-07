@@ -28,8 +28,8 @@ const terminalLines: Array<
   | { prompt: string; cmd: string }
   | { result: string; success?: boolean; muted?: boolean }
 > = [
-  { prompt: "~", cmd: "git clone github.com/Brohammad/fincore-assistant" },
-  { prompt: "~", cmd: "cd fincore-assistant && docker compose up -d" },
+  { prompt: "~", cmd: "git clone github.com/Brohammad/bank-fincorp" },
+  { prompt: "~", cmd: "cd bank-fincorp && docker compose up -d" },
   { result: "✓ 4 containers started · api, worker, redis, qdrant", success: true },
   { prompt: "~", cmd: "python ingest.py --source ./banking-docs --chunks 512" },
   { result: "✓ Indexed 3,841 chunks · hybrid index ready", success: true },
@@ -213,7 +213,7 @@ export function HeroSection() {
                   </div>
                   <div className="flex-1 flex items-center justify-center gap-3 min-w-0">
                     <span className="text-[10px] text-[#A8A098]/50 font-mono truncate">
-                      fincore-assistant
+                      bank-fincorp
                     </span>
                     <span className="text-[#3A3530]">—</span>
                     <span className="text-[10px] text-[#A8A098]/70 font-mono">

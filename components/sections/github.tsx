@@ -10,14 +10,19 @@ import { siteConfig } from "@/content/data";
 
 const pinnedRepos = [
   {
+    name: "bank-fincorp",
+    description: "Enterprise RAG assistant with hybrid retrieval, source citation, and SSE streaming for banking workflows.",
+    language: "Python",
+  },
+  {
+    name: "InsuranceAI",
+    description: "Multi-agent insurance renewal platform orchestrating policy analysis, risk scoring, and client outreach.",
+    language: "Python",
+  },
+  {
     name: "distributed-kv-store",
     description: "Raft consensus implementation with linearizable reads and gRPC inter-node communication.",
     language: "Go",
-  },
-  {
-    name: "fincore-assistant",
-    description: "Production RAG pipeline with hybrid retrieval, citation, and SSE streaming.",
-    language: "Python",
   },
   {
     name: "auth-service",

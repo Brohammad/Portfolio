@@ -228,6 +228,7 @@ export const projects: Project[] = [
     tech: ["Python", "LangGraph", "LangChain", "FastAPI", "PostgreSQL", "Redis", "Docker"],
     difficulty: "Expert",
     status: "completed",
+    github: "https://github.com/Brohammad/InsuranceAI",
     features: [
       "Multi-agent orchestration with LangGraph state machines",
       "Automated policy document extraction and analysis",
@@ -269,6 +270,7 @@ export const projects: Project[] = [
     tech: ["Python", "FastAPI", "LangChain", "OpenAI", "Azure", "PostgreSQL", "Qdrant"],
     difficulty: "Advanced",
     status: "completed",
+    github: "https://github.com/Brohammad/bank-fincorp",
     features: [
       "Hybrid semantic + keyword search over banking documents",
       "Strict hallucination guardrails with source citation",
