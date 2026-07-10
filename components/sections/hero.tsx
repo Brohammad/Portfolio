@@ -5,38 +5,38 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Download, ChevronDown } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/social-icons";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/content/data";
+import { siteConfig, heroMetrics } from "@/content/data";
 import { scrollToSection } from "@/lib/scroll-to-section";
 import { cn } from "@/lib/utils";
 
 const roles = [
+  "Voice AI Engineer",
   "Systems Engineer",
   "Backend Engineer",
   "AI Engineer",
-  "Distributed Systems Enthusiast",
   "Production AI Builder",
 ];
 
 const statusSignals = [
-  { label: "Building enterprise AI", dot: true },
+  { label: "VoxForge live in prod", dot: true },
   { label: "Open to opportunities", dot: false },
   { label: "Bengaluru", dot: false },
-  { label: "Shipping production systems", dot: false },
+  { label: "354+ automated tests", dot: false },
 ];
 
 const terminalLines: Array<
   | { prompt: string; cmd: string }
   | { result: string; success?: boolean; muted?: boolean }
 > = [
-  { prompt: "~", cmd: "git clone github.com/Brohammad/bank-fincorp" },
-  { prompt: "~", cmd: "cd bank-fincorp && docker compose up -d" },
-  { result: "✓ 4 containers started · api, worker, redis, qdrant", success: true },
-  { prompt: "~", cmd: "python ingest.py --source ./banking-docs --chunks 512" },
-  { result: "✓ Indexed 3,841 chunks · hybrid index ready", success: true },
-  { prompt: "~", cmd: "curl -s localhost:8000/api/health | jq" },
-  { result: '{"status":"healthy","agents":3,"uptime":"99.9%","p99_ms":840}', muted: true },
-  { prompt: "~", cmd: "kubectl logs deploy/fincore-api --tail=1" },
-  { result: "INFO stream · SSE · 2.4s · cited_sources=4", success: true },
+  { prompt: "~", cmd: "git clone github.com/Brohammad/VoxFauge" },
+  { prompt: "~", cmd: "cd VoxFauge && ./deploy.sh init" },
+  { result: "✓ HTTPS ready · api, worker, postgres, redis, nginx", success: true },
+  { prompt: "~", cmd: "curl -s https://voxforge.brohammad.tech/api/v1/health | jq" },
+  { result: '{"status":"healthy","transports":3,"coverage":"81%"}', muted: true },
+  { prompt: "~", cmd: "pytest -q --cov" },
+  { result: "✓ 354 passed · VoicePipelineService · all transports", success: true },
+  { prompt: "~", cmd: "open https://voxforge.brohammad.tech/demo" },
+  { result: "✓ voice pipeline · STT → LangGraph → TTS → eval · ~100ms", success: true },
 ];
 
 const fadeUp = {
@@ -116,15 +116,39 @@ export function HeroSection() {
             <motion.div
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.18 }}
-              className="mt-8 space-y-4 max-w-[44ch]"
+              className="mt-8 space-y-4 max-w-[48ch]"
             >
               <p className="text-[1.0625rem] sm:text-[1.125rem] leading-[1.72] text-foreground/88 font-medium">
-                Building enterprise AI systems for banking clients.
+                {siteConfig.headline}
               </p>
               <p className="text-[1rem] sm:text-[1.0625rem] leading-[1.75] text-muted-foreground">
-                Multi-agent workflows, backend infrastructure, and production
-                LLM platforms on Azure.
+                Open-source voice AI infrastructure with unified pipeline, RAG,
+                evaluation, and one-command HTTPS deployment — plus enterprise
+                multi-agent systems for banking clients.
               </p>
+            </motion.div>
+
+            <motion.div
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: 0.21 }}
+              className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3"
+            >
+              {heroMetrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="px-3 py-2.5 rounded-[calc(var(--radius)-4px)] border border-border-subtle bg-card/50"
+                >
+                  <p className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">
+                    {metric.label}
+                  </p>
+                  <p className="text-[15px] font-semibold text-foreground tabular-nums mt-1">
+                    {metric.value}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground/55 mt-0.5 truncate">
+                    {metric.detail}
+                  </p>
+                </div>
+              ))}
             </motion.div>
 
             <motion.div
@@ -213,7 +237,7 @@ export function HeroSection() {
                   </div>
                   <div className="flex-1 flex items-center justify-center gap-3 min-w-0">
                     <span className="text-[10px] text-[#A8A098]/50 font-mono truncate">
-                      bank-fincorp
+                      voxforge
                     </span>
                     <span className="text-[#3A3530]">—</span>
                     <span className="text-[10px] text-[#A8A098]/70 font-mono">
@@ -280,10 +304,10 @@ export function HeroSection() {
 
                 <div className="px-5 py-2.5 border-t border-white/[0.04] bg-[#13110E] flex items-center justify-between gap-4">
                   <span className="text-[9px] font-mono text-[#A8A098]/45">
-                    fincore-api · azure-aks · 14d uptime
+                    voxforge-api · ubuntu-vps · 14d uptime
                   </span>
                   <span className="text-[9px] font-mono text-[#6B9A6B]/70 tabular-nums">
-                    p99 840ms
+                    ~100ms mock
                   </span>
                 </div>
               </div>

@@ -1,15 +1,17 @@
-import type { Project, Experience, SkillGroup, Certification, BlogPost, Stat } from "@/types";
+import type { Project, Experience, SkillGroup, Certification, BlogPost, Stat, ProjectCaseStudy } from "@/types";
 
 export const siteConfig = {
   name: "Brohammad",
   title: "Brohammad | Backend & AI Engineer",
   description:
-    "Backend and AI Engineer at PwC building enterprise-grade intelligent systems. Specializing in distributed systems, LLM applications, and production-grade backend infrastructure.",
+    "Backend and AI engineer building production-grade intelligent systems. Shipped VoxForge — an open-source voice AI platform with unified pipeline, RAG, evaluation, and one-command HTTPS deployment — plus enterprise multi-agent and RAG systems for Fortune 500 banking clients.",
   url: "https://brohammad.tech",
   ogImage: "https://brohammad.tech/og.png",
   location: "Bengaluru, Karnataka, India",
   role: "Associate Consultant @ PwC",
   tagline: "Building intelligent systems that scale.",
+  headline:
+    "Built & shipped a full-stack voice agent platform — from WebSocket to operator dashboard.",
   links: {
     github: "https://github.com/Brohammad",
     linkedin: "https://www.linkedin.com/in/aabid-mohamed-a-b22a02229/",
@@ -21,18 +23,18 @@ export const siteConfig = {
 };
 
 export const stats: Stat[] = [
-  { label: "Production Systems", subtitle: "Enterprise deployments", value: 3 },
-  { label: "Daily API Requests", subtitle: "RAG + agent pipelines", value: 5, suffix: "K+", prefix: "~" },
+  { label: "Production Systems", subtitle: "Enterprise + open source", value: 4 },
+  { label: "Automated Tests", subtitle: "VoxForge test suite", value: 354, suffix: "+" },
   { label: "Open Source Commits", subtitle: "GitHub contributions", value: 600, suffix: "+" },
-  { label: "Languages", subtitle: "Production proficiency", value: 6 },
+  { label: "Daily API Requests", subtitle: "RAG + agent pipelines", value: 5, suffix: "K+", prefix: "~" },
   { label: "Years Building", subtitle: "Professional engineering", value: 2, suffix: "+" },
 ];
 
 export const heroMetrics = [
-  { label: "Systems in prod", value: "3", detail: "Fortune 500 banking" },
-  { label: "Uptime target", value: "99.9%", detail: "Azure · AKS" },
-  { label: "Query volume", value: "~5K/day", detail: "Hybrid RAG" },
-  { label: "Agents orchestrated", value: "12+", detail: "LangGraph flows" },
+  { label: "Systems in prod", value: "4", detail: "Banking + VoxForge" },
+  { label: "Voice tests", value: "354+", detail: "81% coverage" },
+  { label: "Transports unified", value: "3", detail: "WS · REST · WebRTC" },
+  { label: "Deploy time", value: "<15m", detail: "Docker + HTTPS" },
 ];
 
 export const skillGroups: SkillGroup[] = [
@@ -44,27 +46,28 @@ export const skillGroups: SkillGroup[] = [
       { name: "AWS" },
       { name: "Azure" },
       { name: "Docker" },
+      { name: "NGINX" },
       { name: "Kubernetes" },
       { name: "GitHub Actions" },
       { name: "Linux" },
+      { name: "OpenTelemetry" },
       { name: "Prometheus" },
-      { name: "Grafana" },
     ],
   },
   {
     category: "AI Platform",
     icon: "Brain",
-    description: "LLM orchestration, RAG, and evaluation pipelines",
+    description: "LLM orchestration, voice AI, RAG, and evaluation pipelines",
     skills: [
       { name: "LangChain" },
       { name: "LangGraph" },
-      { name: "LlamaIndex" },
-      { name: "OpenAI APIs" },
-      { name: "Gemini" },
       { name: "RAG" },
+      { name: "pgvector" },
+      { name: "MCP" },
+      { name: "LiveKit" },
+      { name: "STT/LLM/TTS" },
       { name: "LLM Evaluation" },
       { name: "Multi-Agent Systems" },
-      { name: "MCP" },
     ],
   },
   {
@@ -73,15 +76,15 @@ export const skillGroups: SkillGroup[] = [
     description: "APIs, services, and event-driven architecture",
     skills: [
       { name: "Python" },
+      { name: "FastAPI" },
+      { name: "Uvicorn" },
+      { name: "SQLAlchemy" },
+      { name: "Alembic" },
       { name: "TypeScript" },
       { name: "Node.js" },
-      { name: "FastAPI" },
-      { name: "REST APIs" },
-      { name: "gRPC" },
       { name: "WebSockets" },
+      { name: "REST APIs" },
       { name: "SSE" },
-      { name: "Kafka" },
-      { name: "Microservices" },
     ],
   },
   {
@@ -92,41 +95,88 @@ export const skillGroups: SkillGroup[] = [
       { name: "Raft" },
       { name: "Redis" },
       { name: "PostgreSQL" },
-      { name: "MongoDB" },
-      { name: "Qdrant" },
-      { name: "Neo4j" },
-      { name: "ChromaDB" },
+      { name: "asyncpg" },
+      { name: "gRPC" },
+      { name: "Kafka" },
     ],
   },
   {
-    category: "Cloud",
+    category: "Data",
     icon: "Database",
-    description: "Data stores, caching, and retrieval layers",
+    description: "Relational stores, vector search, and caching",
     skills: [
       { name: "PostgreSQL" },
-      { name: "MongoDB" },
+      { name: "pgvector" },
       { name: "Redis" },
       { name: "Qdrant" },
-      { name: "SQLite" },
-      { name: "JWT / Auth" },
+      { name: "MongoDB" },
+      { name: "Vector Search" },
     ],
   },
   {
-    category: "Developer Experience",
+    category: "Security & Quality",
     icon: "Monitor",
-    description: "Interfaces and tooling for shipping faster",
+    description: "Auth, testing, and production hardening",
     skills: [
-      { name: "React" },
-      { name: "Next.js" },
-      { name: "TailwindCSS" },
-      { name: "Prompt Engineering" },
-      { name: "Java" },
-      { name: "C++" },
+      { name: "JWT / RBAC" },
+      { name: "SAML SSO" },
+      { name: "pytest" },
+      { name: "Playwright" },
+      { name: "Clean Architecture" },
+      { name: "CI/CD" },
     ],
   },
 ];
 
 export const projects: Project[] = [
+  {
+    id: "voxforge",
+    title: "VoxForge",
+    description:
+      "Open-source voice AI infrastructure platform with unified pipeline, RAG, evaluation, replay, and one-command HTTPS deployment — live at voxforge.brohammad.tech.",
+    demo: "https://voxforge.brohammad.tech",
+    github: "https://github.com/Brohammad/VoxFauge",
+    longDescription:
+      "VoxForge is an open-source platform for building and operating enterprise voice agents. Most voice AI projects stop at an LLM wrapper; VoxForge ships the full stack: transport layer, agent orchestration, knowledge base with RAG, MCP tool routing, per-turn evaluation, session replay, human escalation, SAML SSO, and an operator dashboard. I architected it as a modular monolith with Clean Architecture boundaries — one codebase, one deploy, clear module separation. A single VoicePipelineService handles all entry points so WebSocket, programmatic onboarding, and LiveKit WebRTC share identical business logic. Production deployment is automated (./deploy.sh init on Ubuntu 24.04 with Let's Encrypt). CI enforces linting, dependency audit, secret scanning, 70% coverage gate, and browser tests for critical user journeys.",
+    tech: [
+      "Python", "FastAPI", "LangGraph", "LangChain", "PostgreSQL", "pgvector",
+      "Redis", "LiveKit", "Docker", "NGINX", "OpenTelemetry", "Playwright",
+    ],
+    difficulty: "Expert",
+    status: "completed",
+    features: [
+      "Unified VoicePipelineService across WebSocket, REST, and LiveKit WebRTC",
+      "LangGraph agent pipeline: planner, safety, executor, critic",
+      "Document ingestion, pgvector RAG with citation grounding",
+      "MCP runtime discovery and builtin tools",
+      "Operator dashboard: sessions, latency, alerts, policy presets",
+      "Per-turn evaluation, signed replay links, human handoff queue",
+      "JWT, RBAC, API keys, and SAML SSO",
+      "One-command HTTPS deploy with Docker, NGINX, and Certbot",
+    ],
+    challenges: [
+      "Unifying three transport layers without duplicated business logic",
+      "Self-hosted deployment with minimal moving parts — pgvector over dedicated vector DB",
+      "Per-turn evaluation for operator trust and regression detection",
+    ],
+    lessons: [
+      "Live production deployment with HTTPS and smoke-tested endpoints",
+      "v1.0.0-rc.1 released with 81% test coverage and green CI",
+      "Public demo completes voice pipeline in ~100ms with mock providers",
+    ],
+    metrics: [
+      "Live at voxforge.brohammad.tech",
+      "354+ automated tests, 81% coverage",
+      "v1.0.0-rc.1 released on GitHub",
+    ],
+    scale: ["3 unified transports", "354+ tests", "~100ms mock pipeline"],
+    engineeringChallenges: [
+      "Single VoicePipelineService for WebSocket, REST, and LiveKit WebRTC",
+      "Mock providers for zero-API-key demos and CI",
+    ],
+    architecture:
+      "Modular monolith with Clean Architecture boundaries. FastAPI + LangGraph orchestration, PostgreSQL/pgvector for knowledge retrieval, Redis for session state. Single VoicePipelineService unifies WebSocket, REST onboarding, and LiveKit WebRTC. Docker Compose prod stack with NGINX, Certbot, OpenTelemetry, and one-command HTTPS deploy on Ubuntu 24.04.",
+  },
   {
     id: "paint-intelligence",
     title: "PaintCRM",
@@ -343,6 +393,50 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
+    id: "voxforge",
+    company: "VoxForge",
+    role: "Founder / Principal Engineer",
+    duration: "2025 — Present",
+    startDate: "2025-06",
+    endDate: null,
+    location: "Bengaluru, India",
+    type: "contract",
+    current: true,
+    responsibilities: [
+      "Architecting and shipping an open-source voice AI infrastructure platform end-to-end",
+      "Unifying WebSocket, REST onboarding, and LiveKit WebRTC through a single voice pipeline",
+      "Building operator-grade tooling: evaluation, replay, handoff, and analytics dashboard",
+    ],
+    technologies: [
+      "Python", "FastAPI", "LangGraph", "PostgreSQL", "pgvector", "Redis",
+      "LiveKit", "Docker", "NGINX", "OpenTelemetry", "Playwright",
+    ],
+    achievements: [
+      "Architected and launched VoxForge, deployed in production at voxforge.brohammad.tech with HTTPS",
+      "Unified three transport layers into VoicePipelineService — one test suite covers all entry points",
+      "Shipped per-turn evaluation, session replay, human handoff queue, and operator dashboard",
+      "Automated production deployment (Docker, NGINX, Let's Encrypt) — fresh VPS to HTTPS in one command",
+      "Established quality bar with 354+ tests, Playwright UI coverage, 81% coverage, and CI hardening",
+    ],
+    impact: [
+      "Live demo lets recruiters and pilot customers try voice agents without cloning the repo",
+      "Engineering evaluators can inspect ADRs, runbooks, and 354+ automated tests on GitHub",
+      "Open-source alternative to managed voice SaaS — deployable in 15 minutes, no vendor lock-in",
+    ],
+    architecture:
+      "Modular monolith with Clean Architecture. FastAPI + LangGraph, PostgreSQL/pgvector RAG, Redis sessions. VoicePipelineService unifies all transports. Docker Compose with NGINX, Certbot, OpenTelemetry.",
+    scale: [
+      "354+ automated tests · 81% coverage",
+      "3 unified transports · v1.0.0-rc.1",
+      "Live HTTPS · ~100ms mock pipeline",
+    ],
+    decisions: [
+      "Modular monolith over microservices — faster pilots, simpler ops, module boundaries in code",
+      "pgvector over dedicated vector DB — fewer moving parts for self-hosted deployments",
+      "Evaluation on every turn — operator trust and regression detection",
+    ],
+  },
+  {
     id: "pwc",
     company: "PwC",
     role: "Associate Consultant",
@@ -434,28 +528,30 @@ export const blogTopics = [
 ];
 
 export const nowPage = {
-  lastUpdated: "June 2026",
-  currentObsession: "Making multi-agent handoffs reliable without losing state in production.",
-  favoriteProblem: "Balancing retrieval recall and hallucination rate on regulatory documents.",
+  lastUpdated: "July 2026",
+  currentObsession:
+    "Unifying voice transport layers without duplicating business logic — one pipeline for WebSocket, REST, and LiveKit.",
+  favoriteProblem:
+    "Closing the gap between voice demos and production operability: evaluation, replay, and human handoff.",
   building: [
+    "VoxForge v1.0 — voice AI platform live at voxforge.brohammad.tech",
     "Distributed Key-Value Store — Raft consensus in Go",
-    "AI RAG platform with eval pipelines as deployment gates",
-    "Authentication service — JWT, refresh rotation, RBAC",
+    "Per-turn evaluation suites as CI deployment gates",
   ],
   reading: [
     "Designing Data-Intensive Applications — Kleppmann",
-    "Computer Systems: A Programmer's Perspective — Bryant & O'Hallaron",
+    "VoxForge ADRs and incident response runbooks",
   ],
   exploring: [
-    "CRDTs and eventual consistency",
-    "Kubernetes production patterns",
-    "OpenTelemetry instrumentation",
-    "Inference optimization for LLM serving",
+    "LiveKit WebRTC worker integration patterns",
+    "OpenTelemetry instrumentation for voice pipelines",
+    "MCP tool routing in production agents",
+    "Inference optimization for real-time STT/TTS",
   ],
   research: [
-    "Chunking strategy benchmarks for banking policy docs",
-    "Fault injection testing for Raft cluster behavior",
-    "Hybrid dense + BM25 retrieval tuning",
+    "Mock provider strategies for zero-API-key CI and demos",
+    "pgvector retrieval tuning for voice agent grounding",
+    "Failure-mode testing for WebSocket lifecycle and handoff flows",
   ],
   nextProjects: [
     "Event-driven notification service with Kafka",
@@ -463,20 +559,76 @@ export const nowPage = {
   ],
   goals: [
     "Ship fewer systems, each production-grade",
-    "Publish technical writing on backend + AI engineering",
-    "Deepen distributed systems fundamentals",
+    "Grow VoxForge pilot adoption and contributor base",
+    "Publish technical writing on voice AI infrastructure",
   ],
   ideas: [
-    "Structured output schemas as pre-deployment gates",
-    "Redis dedup for repeated RAG queries in enterprise",
+    "Signed replay links as regression fixtures in CI",
+    "Policy presets as operator-configurable agent guardrails",
     "Eval suites tied to CI, not slide decks",
   ],
   technicalNotes: [
-    "512-token chunks outperformed 256 on policy renewal docs",
-    "LangGraph checkpoints prevented state loss in agent handoffs",
-    "Hybrid retrieval beat pure vector search on finance Q&A",
+    "Single VoicePipelineService eliminated transport-specific test duplication",
+    "Mock providers complete voice pipeline in ~100ms without API keys",
+    "Modular monolith shipped faster than planned microservices split",
   ],
 };
+
+export const projectCaseStudies: ProjectCaseStudy[] = [
+  {
+    slug: "voxforge",
+    projectId: "voxforge",
+    problem:
+      "Teams building voice agents face a false choice: managed SaaS (fast, expensive, opaque) or DIY frameworks (flexible, incomplete, no ops story). Neither gives you evaluation, replay, handoff, and self-hosted deployment in one place.",
+    solution:
+      "VoxForge — a batteries-included voice AI platform you deploy on your own infrastructure.",
+    deliverables: [
+      { area: "Voice core", detail: "WebSocket gateway, VoicePipelineService, multi-provider STT/LLM/TTS" },
+      { area: "Agents", detail: "LangGraph pipeline: planner, safety, executor, critic" },
+      { area: "Knowledge", detail: "Document ingestion, chunking, pgvector search, citation grounding" },
+      { area: "Tools", detail: "MCP runtime discovery + builtin tools" },
+      { area: "Operations", detail: "Dashboard: sessions, latency, alerts, policy presets" },
+      { area: "Trust", detail: "Per-turn evaluation, signed replay links, handoff queue" },
+      { area: "Auth", detail: "JWT, RBAC, API keys, SAML SSO" },
+      { area: "WebRTC", detail: "LiveKit token API + worker integration" },
+      { area: "Deploy", detail: "Docker Compose prod stack, NGINX, Certbot, health/readiness, backups" },
+      { area: "Quality", detail: "354+ tests, Playwright browser suite, pip-audit, gitleaks" },
+    ],
+    decisions: [
+      {
+        title: "Modular monolith over microservices",
+        detail: "Faster pilots, simpler ops, module boundaries enforced in code.",
+      },
+      {
+        title: "pgvector over dedicated vector DB",
+        detail: "Fewer moving parts for self-hosted deployments.",
+      },
+      {
+        title: "Mock providers for local/CI",
+        detail: "Zero API keys for demos and tests.",
+      },
+      {
+        title: "Evaluation on every turn",
+        detail: "Operator trust and regression detection built in.",
+      },
+    ],
+    results: [
+      "Live production deployment with HTTPS and smoke-tested endpoints",
+      "v1.0.0-rc.1 released on GitHub",
+      "81% test coverage, green CI",
+      "Public demo completes voice pipeline in ~100ms (mock providers)",
+    ],
+    links: [
+      { label: "Live Demo", href: "https://voxforge.brohammad.tech/demo" },
+      { label: "Documentation", href: "https://github.com/Brohammad/VoxFauge/tree/main/docs" },
+      {
+        label: "Architecture",
+        href: "https://github.com/Brohammad/VoxFauge/blob/main/docs/portfolio/architecture-diagrams.md",
+      },
+      { label: "API Docs", href: "https://voxforge.brohammad.tech/api/v1/docs" },
+    ],
+  },
+];
 
 export const engineeringQuotes = [
   "Simplicity is prerequisite for reliability. — Dijkstra",
@@ -511,9 +663,8 @@ export const usesPage = {
 };
 
 export const techStack = [
-  "TypeScript", "Python", "Node.js", "FastAPI",
-  "LangChain", "React", "PostgreSQL", "MongoDB",
-  "Redis", "Docker", "AWS", "Azure",
+  "Python", "FastAPI", "LangGraph", "LiveKit", "PostgreSQL", "pgvector",
+  "Redis", "Docker", "TypeScript", "Next.js", "Azure", "OpenTelemetry",
 ];
 
 export const stats_simple = [

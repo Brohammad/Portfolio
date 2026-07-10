@@ -18,19 +18,19 @@ import { cn } from "@/lib/utils";
 const intro = [
   {
     label: "Who I am",
-    text: "Backend and AI engineer at PwC, building production systems for enterprise banking.",
+    text: "Backend and AI engineer at PwC, building production systems for enterprise banking — and shipping VoxForge, an open-source voice AI platform, on the side.",
   },
   {
     label: "What I build",
-    text: "Multi-agent workflows, hybrid RAG pipelines, and backend APIs deployed on Azure.",
+    text: "Voice AI infrastructure, multi-agent workflows, hybrid RAG pipelines, and backend APIs deployed on Azure and self-hosted VPS.",
   },
   {
     label: "What excites me",
-    text: "Distributed systems, LLM infrastructure, and software that holds up under real load.",
+    text: "Unified voice pipelines, distributed systems, LLM infrastructure, and software that holds up under real load.",
   },
   {
     label: "What I'm working toward",
-    text: "Fewer projects, higher quality — and deeper mastery of systems engineering.",
+    text: "Fewer projects, higher quality — production-grade systems teams can deploy, operate, and trust.",
   },
 ];
 
@@ -68,22 +68,21 @@ const principles = [
 ];
 
 const currentFocus = [
+  "Voice AI Infrastructure",
   "Production AI",
   "Distributed Systems",
   "Backend Infrastructure",
   "Platform Engineering",
-  "AI Systems",
-  "Cloud Architecture",
+  "Open Source",
 ];
 
 const exploring = [
-  "Distributed Systems",
+  "LiveKit WebRTC",
+  "Voice Agent Evaluation",
   "Kubernetes",
-  "System Design",
-  "Networking",
+  "OpenTelemetry",
   "Inference Optimization",
-  "Operating Systems",
-  "Large Scale Databases",
+  "System Design",
 ];
 
 const interests = [
@@ -107,8 +106,8 @@ const beyondCode = [
 
 const trustSignals = [
   { label: "Company", value: "PwC" },
-  { label: "Experience", value: "Production AI" },
-  { label: "Domain", value: "Banking" },
+  { label: "Side project", value: "VoxForge" },
+  { label: "Domain", value: "Banking + Voice AI" },
   { label: "Focus", value: "Backend + AI" },
   { label: "Location", value: "Bengaluru" },
 ];

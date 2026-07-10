@@ -22,12 +22,14 @@ export const metadata: Metadata = {
   keywords: [
     "Backend Engineer",
     "AI Engineer",
+    "Voice AI",
+    "VoxForge",
     "Production Systems",
     "Enterprise AI",
     "Multi-Agent Systems",
     "RAG",
-    "Distributed Systems",
     "LangGraph",
+    "LiveKit",
     "FastAPI",
     "Azure",
     "Brohammad",
@@ -108,6 +110,7 @@ const jsonLd = {
       knowsAbout: [
         "Backend Engineering",
         "Artificial Intelligence",
+        "Voice AI",
         "Distributed Systems",
         "RAG",
         "Multi-Agent Systems",

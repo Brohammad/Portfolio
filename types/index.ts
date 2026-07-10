@@ -1,3 +1,14 @@
+export interface ProjectCaseStudy {
+  slug: string;
+  projectId: string;
+  problem: string;
+  solution: string;
+  deliverables: { area: string; detail: string }[];
+  decisions: { title: string; detail: string }[];
+  results: string[];
+  links: { label: string; href: string }[];
+}
+
 export interface Project {
   id: string;
   title: string;

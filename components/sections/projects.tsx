@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -14,7 +15,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { GithubIcon } from "@/components/ui/social-icons";
-import { projects } from "@/content/data";
+import { projects, projectCaseStudies } from "@/content/data";
 import type { Project } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -38,6 +39,23 @@ interface ProjectDisplay {
 }
 
 const projectDisplay: Record<string, ProjectDisplay> = {
+  voxforge: {
+    tagline:
+      "Voice AI infrastructure you can deploy, operate, and trust — unified pipeline, RAG, evaluation, and one-command HTTPS.",
+    badges: ["Production", "Open Source", "Live Demo", "Voice AI"],
+    metadata: [
+      { label: "Tests", value: "354+" },
+      { label: "Coverage", value: "81%" },
+      { label: "Transports", value: "3 unified" },
+      { label: "Deploy", value: "<15 min" },
+    ],
+    techGroups: [
+      { label: "Backend", items: ["Python", "FastAPI", "Uvicorn"] },
+      { label: "AI / Voice", items: ["LangGraph", "RAG", "LiveKit"] },
+      { label: "Data", items: ["PostgreSQL", "pgvector", "Redis"] },
+      { label: "Infra", items: ["Docker", "NGINX", "OpenTelemetry"] },
+    ],
+  },
   "paint-intelligence": {
     tagline:
       "From room photo to painted preview, qualified lead, and receivables — offline-first at paintcrm.brohammad.tech.",
@@ -140,6 +158,7 @@ const badgeStyle: Record<string, string> = {
   "Solo Build": "bg-primary/[0.06] text-primary border-primary/12",
   "Full-Stack": "bg-primary/[0.06] text-primary border-primary/12",
   Fintech: "bg-secondary/10 text-primary border-secondary/15",
+  "Voice AI": "bg-primary/[0.06] text-primary border-primary/12",
 };
 
 /* ── Engineering preview visuals ── */
@@ -149,6 +168,54 @@ function FlowArrow() {
     <svg width="20" height="8" viewBox="0 0 20 8" className="shrink-0 text-border" aria-hidden>
       <path d="M0 4h14M14 4l-4-4M14 4l-4 4" stroke="currentColor" strokeWidth="1" fill="none" />
     </svg>
+  );
+}
+
+function PreviewVoxForge() {
+  const transports = ["WebSocket", "REST", "LiveKit"];
+  const pipeline = [
+    { label: "STT", detail: "multi-provider" },
+    { label: "agent", detail: "LangGraph" },
+    { label: "TTS", detail: "multi-provider" },
+    { label: "eval", detail: "per-turn" },
+  ];
+  return (
+    <div className="w-full max-w-[380px] space-y-4">
+      <div className="flex items-center justify-center gap-2">
+        {transports.map((t, i) => (
+          <div key={t} className="flex items-center gap-2 flex-1 min-w-0">
+            <div className="flex-1 rounded-lg border border-border-subtle bg-card/70 px-2 py-2 text-center group-hover:border-primary/20 transition-colors duration-300">
+              <span className="text-[9px] font-medium text-foreground/75 block truncate">{t}</span>
+            </div>
+            {i < transports.length - 1 && (
+              <span className="text-[8px] text-muted-foreground/35 shrink-0">+</span>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center justify-center">
+        <span className="text-[9px] font-mono text-primary/70 px-3 py-1 rounded-md border border-primary/15 bg-primary/[0.05]">
+          VoicePipelineService
+        </span>
+      </div>
+      <div className="flex items-center gap-1.5">
+        {pipeline.map((step, i) => (
+          <div key={step.label} className="flex items-center gap-1.5 flex-1 min-w-0">
+            <div className="flex-1 rounded-lg border border-border-subtle bg-card/70 px-2 py-2.5 text-center group-hover:border-primary/20 transition-colors duration-300">
+              <span className="text-[9px] text-primary/70 block">{step.label}</span>
+              <span className="text-[7px] text-muted-foreground/55 block truncate mt-0.5">{step.detail}</span>
+            </div>
+            {i < pipeline.length - 1 && (
+              <span className="text-[8px] text-muted-foreground/35 shrink-0">→</span>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="rounded-lg border border-success/15 bg-success/[0.04] px-4 py-2.5 flex items-center justify-between">
+        <span className="text-[9px] text-success/80">✓ RAG · replay · handoff</span>
+        <span className="text-[9px] text-muted-foreground/55 tabular-nums">~100ms mock</span>
+      </div>
+    </div>
   );
 }
 
@@ -326,6 +393,7 @@ function PreviewDistributedKV() {
 }
 
 const previewMap: Record<string, React.FC> = {
+  voxforge: PreviewVoxForge,
   "paint-intelligence": PreviewPaintIntel,
   alphaedge: PreviewAlphaEdge,
   renewai: PreviewRenewAI,
@@ -514,6 +582,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
   const isDisabled = project.status === "coming-soon";
   const highlights = project.metrics ?? [];
   const challenge = project.engineeringChallenges?.[0];
+  const fullCaseStudy = projectCaseStudies.find((study) => study.projectId === project.id);
 
   if (!display) return null;
 
@@ -600,6 +669,19 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             Case Study
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
           </Button>
+          {fullCaseStudy && (
+            <Button
+              size="default"
+              variant="outline"
+              className="w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5 hover:-translate-y-px hover:border-primary/25"
+              asChild
+            >
+              <Link href={`/projects/${fullCaseStudy.slug}`}>
+                <Layers className="w-4 h-4" />
+                Full Case Study
+              </Link>
+            </Button>
+          )}
           {project.architecture && (
             <Button
               size="default"

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Check, Server, Brain, Cloud, Boxes } from "lucide-react";
+import { MapPin, Check, Server, Brain, Cloud, Boxes, Mic } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -12,90 +12,175 @@ import { cn } from "@/lib/utils";
 
 /* ── Experience section display config ── */
 
-const keyImpact = [
-  "3 production AI systems delivered",
-  "Enterprise banking deployment",
-  "Thousands of production RAG queries",
-  "Multi-agent orchestration",
-  "Production backend APIs",
-  "Cloud-native deployment on Azure",
-];
+interface ExperienceDisplay {
+  keyImpact: string[];
+  engineeringChallenges: string[];
+  engineeringHighlights: {
+    icon: React.ElementType;
+    label: string;
+    detail: string;
+  }[];
+  productionSnapshot: { label: string; value: string }[];
+  techGroups: { label: string; items: string[] }[];
+  pipelineNodes: { label: string; active: boolean }[];
+  infraChips: string[];
+}
 
-const engineeringChallenges = [
-  "Reliable agent handoffs without state loss",
-  "Hallucination guardrails on regulatory content",
-  "Legacy banking API integration with audit trails",
-];
+const experienceDisplay: Record<string, ExperienceDisplay> = {
+  voxforge: {
+    keyImpact: [
+      "Open-source voice AI platform in production",
+      "354+ automated tests with 81% coverage",
+      "Three transports unified in one pipeline",
+      "Operator dashboard with eval and replay",
+      "One-command HTTPS deployment",
+      "v1.0.0-rc.1 released on GitHub",
+    ],
+    engineeringChallenges: [
+      "Unifying WebSocket, REST, and LiveKit without duplicated logic",
+      "Self-hosted deployment with minimal moving parts",
+      "Per-turn evaluation for operator trust and regression detection",
+    ],
+    engineeringHighlights: [
+      {
+        icon: Mic,
+        label: "Voice Core",
+        detail: "VoicePipelineService across WebSocket, REST, and LiveKit",
+      },
+      {
+        icon: Brain,
+        label: "Agents",
+        detail: "LangGraph planner, safety, executor, critic pipeline",
+      },
+      {
+        icon: Boxes,
+        label: "Knowledge",
+        detail: "pgvector RAG with citation grounding and MCP tools",
+      },
+      {
+        icon: Server,
+        label: "Operations",
+        detail: "Dashboard, replay links, handoff queue, policy presets",
+      },
+      {
+        icon: Cloud,
+        label: "Deploy",
+        detail: "Docker Compose, NGINX, Certbot, health probes, backups",
+      },
+      {
+        icon: Server,
+        label: "Quality",
+        detail: "Playwright UI tests, pip-audit, gitleaks in CI",
+      },
+    ],
+    productionSnapshot: [
+      { label: "Status", value: "Live in prod" },
+      { label: "Tests", value: "354+" },
+      { label: "Coverage", value: "81%" },
+      { label: "Transports", value: "3 unified" },
+      { label: "Release", value: "v1.0.0-rc.1" },
+      { label: "Role", value: "Solo build" },
+    ],
+    techGroups: [
+      { label: "Core", items: ["Python", "FastAPI", "LangGraph"] },
+      { label: "Voice", items: ["LiveKit", "WebSockets", "STT/TTS"] },
+      { label: "Data", items: ["PostgreSQL", "pgvector", "Redis"] },
+      { label: "Infra", items: ["Docker", "NGINX", "OpenTelemetry"] },
+    ],
+    pipelineNodes: [
+      { label: "WS", active: true },
+      { label: "Pipeline", active: true },
+      { label: "Agent", active: true },
+      { label: "Eval", active: true },
+      { label: "TTS", active: false },
+    ],
+    infraChips: ["Docker", "PostgreSQL", "Redis", "NGINX"],
+  },
+  pwc: {
+    keyImpact: [
+      "3 production AI systems delivered",
+      "Enterprise banking deployment",
+      "Thousands of production RAG queries",
+      "Multi-agent orchestration",
+      "Production backend APIs",
+      "Cloud-native deployment on Azure",
+    ],
+    engineeringChallenges: [
+      "Reliable agent handoffs without state loss",
+      "Hallucination guardrails on regulatory content",
+      "Legacy banking API integration with audit trails",
+    ],
+    engineeringHighlights: [
+      {
+        icon: Boxes,
+        label: "Architecture",
+        detail: "Multi-agent LangGraph + hybrid RAG on FastAPI",
+      },
+      {
+        icon: Server,
+        label: "Backend",
+        detail: "REST APIs, SSE streaming, Redis session state",
+      },
+      {
+        icon: Brain,
+        label: "AI",
+        detail: "LangGraph flows, eval pipelines, structured outputs",
+      },
+      {
+        icon: Cloud,
+        label: "Cloud",
+        detail: "Azure AKS, Azure OpenAI, managed services",
+      },
+      {
+        icon: Server,
+        label: "Infrastructure",
+        detail: "Docker, PostgreSQL, Qdrant, Redis",
+      },
+      {
+        icon: Cloud,
+        label: "Deployment",
+        detail: "Production on Azure with CI/CD gates",
+      },
+    ],
+    productionSnapshot: [
+      { label: "Production Systems", value: "3" },
+      { label: "Enterprise Clients", value: "Fortune 500" },
+      { label: "AI Workflows", value: "Multi-Agent" },
+      { label: "Cloud", value: "Azure" },
+      { label: "Deployment", value: "Production" },
+      { label: "Role", value: "Backend + AI" },
+    ],
+    techGroups: [
+      { label: "Languages", items: ["Python", "TypeScript"] },
+      { label: "Backend", items: ["FastAPI", "Node.js", "REST", "SSE"] },
+      { label: "AI", items: ["LangGraph", "LangChain", "LlamaIndex", "OpenAI"] },
+      { label: "Cloud", items: ["Azure", "AKS", "Azure OpenAI"] },
+      { label: "Data", items: ["PostgreSQL", "Qdrant", "Redis"] },
+      { label: "Infrastructure", items: ["Docker", "GitHub Actions"] },
+    ],
+    pipelineNodes: [
+      { label: "Client", active: false },
+      { label: "API", active: true },
+      { label: "Agents", active: true },
+      { label: "RAG", active: true },
+      { label: "Store", active: false },
+    ],
+    infraChips: ["Azure AKS", "PostgreSQL", "Qdrant", "Redis"],
+  },
+};
 
-const engineeringHighlights = [
-  {
-    icon: Boxes,
-    label: "Architecture",
-    detail: "Multi-agent LangGraph + hybrid RAG on FastAPI",
-  },
-  {
-    icon: Server,
-    label: "Backend",
-    detail: "REST APIs, SSE streaming, Redis session state",
-  },
-  {
-    icon: Brain,
-    label: "AI",
-    detail: "LangGraph flows, eval pipelines, structured outputs",
-  },
-  {
-    icon: Cloud,
-    label: "Cloud",
-    detail: "Azure AKS, Azure OpenAI, managed services",
-  },
-  {
-    icon: Server,
-    label: "Infrastructure",
-    detail: "Docker, PostgreSQL, Qdrant, Redis",
-  },
-  {
-    icon: Cloud,
-    label: "Deployment",
-    detail: "Production on Azure with CI/CD gates",
-  },
-];
-
-const productionSnapshot = [
-  { label: "Production Systems", value: "3" },
-  { label: "Enterprise Clients", value: "Fortune 500" },
-  { label: "AI Workflows", value: "Multi-Agent" },
-  { label: "Cloud", value: "Azure" },
-  { label: "Deployment", value: "Production" },
-  { label: "Role", value: "Backend + AI" },
-];
-
-const techGroups = [
-  { label: "Languages", items: ["Python", "TypeScript"] },
-  { label: "Backend", items: ["FastAPI", "Node.js", "REST", "SSE"] },
-  { label: "AI", items: ["LangGraph", "LangChain", "LlamaIndex", "OpenAI"] },
-  { label: "Cloud", items: ["Azure", "AKS", "Azure OpenAI"] },
-  { label: "Data", items: ["PostgreSQL", "Qdrant", "Redis"] },
-  { label: "Infrastructure", items: ["Docker", "GitHub Actions"] },
-];
-
-const pipelineNodes = [
-  { label: "Client", active: false },
-  { label: "API", active: true },
-  { label: "Agents", active: true },
-  { label: "RAG", active: true },
-  { label: "Store", active: false },
-];
+const defaultExperienceDisplay = experienceDisplay.pwc;
 
 function FlowConnector() {
   return <div className="h-px w-3 sm:w-4 bg-border-subtle shrink-0" />;
 }
 
-function ArchitectureArtifact() {
+function ArchitectureArtifact({ display }: { display: ExperienceDisplay }) {
   return (
     <div className="content-panel">
       <p className="text-block-label mb-5">Production topology</p>
       <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
-        {pipelineNodes.map((node, i) => (
+        {display.pipelineNodes.map((node, i) => (
           <div key={node.label} className="flex items-center gap-1 sm:gap-1.5">
             <span
               className={cn(
@@ -105,12 +190,12 @@ function ArchitectureArtifact() {
             >
               {node.label}
             </span>
-            {i < pipelineNodes.length - 1 && <FlowConnector />}
+            {i < display.pipelineNodes.length - 1 && <FlowConnector />}
           </div>
         ))}
       </div>
       <div className="mt-4 pt-4 border-t border-border-subtle flex flex-wrap gap-2">
-        {["Azure AKS", "PostgreSQL", "Qdrant", "Redis"].map((s) => (
+        {display.infraChips.map((s) => (
           <span key={s} className="tech-chip-sm">{s}</span>
         ))}
       </div>
@@ -131,10 +216,10 @@ function ImpactList({ items }: { items: string[] }) {
   );
 }
 
-function ProductionSnapshotPanel() {
+function ProductionSnapshotPanel({ items }: { items: { label: string; value: string }[] }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 p-6 sm:p-7 rounded-[calc(var(--radius)-2px)] bg-muted/20 border border-border-subtle">
-      {productionSnapshot.map((item) => (
+      {items.map((item) => (
         <div key={item.label}>
           <p className="text-block-label">{item.label}</p>
           <p className="text-[15px] font-medium text-foreground/90 mt-1.5 tracking-tight">
@@ -168,10 +253,10 @@ function HighlightCard({
   );
 }
 
-function TechGroups() {
+function TechGroups({ groups }: { groups: { label: string; items: string[] }[] }) {
   return (
     <div className="flex flex-wrap gap-x-8 gap-y-4">
-      {techGroups.map((group) => (
+      {groups.map((group) => (
         <div key={group.label}>
           <p className="text-block-label mb-2.5">{group.label}</p>
           <div className="flex flex-wrap gap-1.5">
@@ -191,6 +276,8 @@ function TechGroups() {
 }
 
 function ExperienceRelease({ exp }: { exp: Experience }) {
+  const display = experienceDisplay[exp.id] ?? defaultExperienceDisplay;
+
   return (
     <article className="rounded-[var(--radius)] project-card-elevated overflow-hidden">
       {/* Header — product release style */}
@@ -230,10 +317,10 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
 
       <div className="p-7 sm:p-8 space-y-8">
         {/* Production snapshot */}
-        <ProductionSnapshotPanel />
+        <ProductionSnapshotPanel items={display.productionSnapshot} />
 
         {/* Architecture artifact */}
-        <ArchitectureArtifact />
+        <ArchitectureArtifact display={display} />
 
         {/* What I Built */}
         {exp.achievements.length > 0 && (
@@ -272,7 +359,7 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
         <section className="space-y-4">
           <p className="text-block-label">Engineering Challenges</p>
           <ul className="space-y-3">
-            {engineeringChallenges.map((item) => (
+            {display.engineeringChallenges.map((item) => (
               <li key={item} className="text-[15px] text-muted-foreground leading-relaxed flex gap-3">
                 <span className="w-1 h-1 rounded-full bg-primary/40 shrink-0 mt-2" />
                 {item}
@@ -283,7 +370,7 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
 
         <section className="space-y-4">
           <p className="text-block-label text-success">Production Impact</p>
-          <ImpactList items={keyImpact} />
+          <ImpactList items={display.keyImpact} />
         </section>
         </div>
 
@@ -291,7 +378,7 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
         <section className="space-y-4">
           <p className="text-block-label">Engineering Highlights</p>
           <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-            {engineeringHighlights.map((item) => (
+            {display.engineeringHighlights.map((item) => (
               <HighlightCard key={item.label} {...item} />
             ))}
           </div>
@@ -300,7 +387,7 @@ function ExperienceRelease({ exp }: { exp: Experience }) {
         {/* Technology Stack */}
         <section className="space-y-3 pt-1">
           <p className="text-block-label">Technology Stack</p>
-          <TechGroups />
+          <TechGroups groups={display.techGroups} />
         </section>
       </div>
     </article>
