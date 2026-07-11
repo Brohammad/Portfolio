@@ -135,6 +135,7 @@ export const projects: Project[] = [
     description:
       "Open-source voice AI infrastructure platform with unified pipeline, RAG, evaluation, replay, and one-command HTTPS deployment — live at voxforge.brohammad.tech.",
     demo: "https://voxforge.brohammad.tech",
+    caseStudyUrl: "https://voxforge.brohammad.tech",
     github: "https://github.com/Brohammad/VoxFauge",
     longDescription:
       "VoxForge is an open-source platform for building and operating enterprise voice agents. Most voice AI projects stop at an LLM wrapper; VoxForge ships the full stack: transport layer, agent orchestration, knowledge base with RAG, MCP tool routing, per-turn evaluation, session replay, human escalation, SAML SSO, and an operator dashboard. I architected it as a modular monolith with Clean Architecture boundaries — one codebase, one deploy, clear module separation. A single VoicePipelineService handles all entry points so WebSocket, programmatic onboarding, and LiveKit WebRTC share identical business logic. Production deployment is automated (./deploy.sh init on Ubuntu 24.04 with Let's Encrypt). CI enforces linting, dependency audit, secret scanning, 70% coverage gate, and browser tests for critical user journeys.",
@@ -574,61 +575,7 @@ export const nowPage = {
   ],
 };
 
-export const projectCaseStudies: ProjectCaseStudy[] = [
-  {
-    slug: "voxforge",
-    projectId: "voxforge",
-    problem:
-      "Teams building voice agents face a false choice: managed SaaS (fast, expensive, opaque) or DIY frameworks (flexible, incomplete, no ops story). Neither gives you evaluation, replay, handoff, and self-hosted deployment in one place.",
-    solution:
-      "VoxForge — a batteries-included voice AI platform you deploy on your own infrastructure.",
-    deliverables: [
-      { area: "Voice core", detail: "WebSocket gateway, VoicePipelineService, multi-provider STT/LLM/TTS" },
-      { area: "Agents", detail: "LangGraph pipeline: planner, safety, executor, critic" },
-      { area: "Knowledge", detail: "Document ingestion, chunking, pgvector search, citation grounding" },
-      { area: "Tools", detail: "MCP runtime discovery + builtin tools" },
-      { area: "Operations", detail: "Dashboard: sessions, latency, alerts, policy presets" },
-      { area: "Trust", detail: "Per-turn evaluation, signed replay links, handoff queue" },
-      { area: "Auth", detail: "JWT, RBAC, API keys, SAML SSO" },
-      { area: "WebRTC", detail: "LiveKit token API + worker integration" },
-      { area: "Deploy", detail: "Docker Compose prod stack, NGINX, Certbot, health/readiness, backups" },
-      { area: "Quality", detail: "354+ tests, Playwright browser suite, pip-audit, gitleaks" },
-    ],
-    decisions: [
-      {
-        title: "Modular monolith over microservices",
-        detail: "Faster pilots, simpler ops, module boundaries enforced in code.",
-      },
-      {
-        title: "pgvector over dedicated vector DB",
-        detail: "Fewer moving parts for self-hosted deployments.",
-      },
-      {
-        title: "Mock providers for local/CI",
-        detail: "Zero API keys for demos and tests.",
-      },
-      {
-        title: "Evaluation on every turn",
-        detail: "Operator trust and regression detection built in.",
-      },
-    ],
-    results: [
-      "Live production deployment with HTTPS and smoke-tested endpoints",
-      "v1.0.0-rc.1 released on GitHub",
-      "81% test coverage, green CI",
-      "Public demo completes voice pipeline in ~100ms (mock providers)",
-    ],
-    links: [
-      { label: "Live Demo", href: "https://voxforge.brohammad.tech/demo" },
-      { label: "Documentation", href: "https://github.com/Brohammad/VoxFauge/tree/main/docs" },
-      {
-        label: "Architecture",
-        href: "https://github.com/Brohammad/VoxFauge/blob/main/docs/portfolio/architecture-diagrams.md",
-      },
-      { label: "API Docs", href: "https://voxforge.brohammad.tech/api/v1/docs" },
-    ],
-  },
-];
+export const projectCaseStudies: ProjectCaseStudy[] = [];
 
 export const engineeringQuotes = [
   "Simplicity is prerequisite for reliability. — Dijkstra",

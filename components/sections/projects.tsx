@@ -669,17 +669,24 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             Case Study
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
           </Button>
-          {fullCaseStudy && (
+          {(fullCaseStudy || project.caseStudyUrl) && (
             <Button
               size="default"
               variant="outline"
               className="w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5 hover:-translate-y-px hover:border-primary/25"
               asChild
             >
-              <Link href={`/projects/${fullCaseStudy.slug}`}>
-                <Layers className="w-4 h-4" />
-                Full Case Study
-              </Link>
+              {fullCaseStudy ? (
+                <Link href={`/projects/${fullCaseStudy.slug}`}>
+                  <Layers className="w-4 h-4" />
+                  Full Case Study
+                </Link>
+              ) : (
+                <a href={project.caseStudyUrl} target="_blank" rel="noopener noreferrer">
+                  <Layers className="w-4 h-4" />
+                  Full Case Study
+                </a>
+              )}
             </Button>
           )}
           {project.architecture && (
