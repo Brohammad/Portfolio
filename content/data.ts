@@ -144,7 +144,7 @@ export const projects: Project[] = [
     caseStudyUrl: "https://voxforge.brohammad.tech",
     github: "https://github.com/Brohammad/VoxFauge",
     longDescription:
-      "VoxForge is a production-grade, open-source voice AI platform I designed and shipped end-to-end. It unifies WebSocket, REST onboarding, and LiveKit WebRTC through a single voice pipeline, with LangGraph orchestration, pgvector knowledge retrieval, MCP tools, per-turn evaluation, and human handoff. Most voice AI projects stop at an LLM wrapper; VoxForge ships the full stack: transport layer, agent orchestration, knowledge base with RAG, MCP tool routing, session replay, human escalation, SAML SSO, and an operator dashboard. I architected it as a modular monolith with Clean Architecture boundaries — one codebase, one deploy, clear module separation. A single VoicePipelineService handles all entry points so WebSocket, programmatic onboarding, and LiveKit WebRTC share identical business logic. Production deployment is automated (./deploy.sh init on Ubuntu 24.04 with Let's Encrypt). CI enforces linting, dependency audit, secret scanning, 70% coverage gate, and browser tests for critical user journeys. Impact: recruiters and pilot customers can try a live demo without cloning; engineering evaluators can inspect ADRs, runbooks, and 354+ tests.",
+      "VoxForge is an open-source voice AI infrastructure platform for building and operating enterprise voice agents. Most voice AI projects stop at an LLM wrapper; VoxForge ships the full stack in one deploy: WebSocket, REST, and LiveKit WebRTC unified through VoicePipelineService; LangGraph orchestration; pgvector RAG with citation grounding; MCP tools; per-turn evaluation; session replay; human handoff; SAML SSO; and an operator dashboard. Production deployment is automated via ./deploy.sh init on Ubuntu 24.04 with Let's Encrypt. CI enforces linting, dependency audit, secret scanning, 70% coverage, and Playwright browser tests. Try the live demo at voxforge.brohammad.tech or inspect 354+ tests and ADRs on GitHub.",
     tech: [
       "Python 3.12", "FastAPI", "LangGraph", "LangChain", "PostgreSQL", "pgvector",
       "Redis", "LiveKit", "Docker", "NGINX", "OpenTelemetry", "Playwright",
@@ -415,37 +415,36 @@ export const experiences: Experience[] = [
     type: "contract",
     current: false,
     responsibilities: [
-      "Architecting and shipping an open-source voice AI infrastructure platform end-to-end",
-      "Unifying WebSocket, REST onboarding, and LiveKit WebRTC through a single voice pipeline",
-      "Building operator-grade tooling: evaluation, replay, handoff, and analytics dashboard",
+      "Solo founder — owned architecture, implementation, deployment, and documentation end-to-end",
+      "Scoped and prioritized features for pilot customers, recruiters, and engineering evaluators",
+      "Released open source to offer Vapi-class capabilities without vendor lock-in",
     ],
     technologies: [
       "Python", "FastAPI", "LangGraph", "PostgreSQL", "pgvector", "Redis",
       "LiveKit", "Docker", "NGINX", "OpenTelemetry", "Playwright",
     ],
     achievements: [
-      "Architected and launched VoxForge, deployed in production at voxforge.brohammad.tech with HTTPS",
-      "Unified three transport layers into VoicePipelineService — one test suite covers all entry points",
-      "Shipped per-turn evaluation, session replay, human handoff queue, and operator dashboard",
-      "Automated production deployment (Docker, NGINX, Let's Encrypt) — fresh VPS to HTTPS in one command",
-      "Established quality bar with 354+ tests, Playwright UI coverage, 81% coverage, and CI hardening",
+      "Founded VoxForge and shipped the full platform solo — from system design through production HTTPS",
+      "Automated deploy pipeline: fresh Ubuntu VPS to HTTPS in one command with Docker, NGINX, and Certbot",
+      "Published v1.0.0-rc.1 open source with ADRs, runbooks, and incident response documentation",
+      "Set CI quality gates: 354+ tests, Playwright UI coverage, dependency audit, and secret scanning",
     ],
     impact: [
-      "Live demo lets recruiters and pilot customers try voice agents without cloning the repo",
-      "Engineering evaluators can inspect ADRs, runbooks, and 354+ automated tests on GitHub",
-      "Open-source alternative to managed voice SaaS — deployable in 15 minutes, no vendor lock-in",
+      "Recruiters and pilot customers can evaluate voice agents via live demo — no clone required",
+      "Engineering evaluators can inspect architecture docs and 354+ automated tests on GitHub",
+      "Open-source release removes per-minute SaaS fees and vendor lock-in for early adopters",
     ],
     architecture:
-      "Modular monolith with Clean Architecture. FastAPI + LangGraph, PostgreSQL/pgvector RAG, Redis sessions. VoicePipelineService unifies all transports. Docker Compose with NGINX, Certbot, OpenTelemetry.",
+      "Solo-designed modular monolith with Clean Architecture boundaries. Owned transport unification, agent orchestration, deploy stack, and observability end-to-end.",
     scale: [
-      "354+ automated tests · 81% coverage",
-      "3 unified transports · v1.0.0-rc.1",
-      "Live HTTPS · ~100ms mock pipeline",
+      "Solo founder · end-to-end ownership",
+      "Open source · v1.0.0-rc.1",
+      "Live at voxforge.brohammad.tech",
     ],
     decisions: [
-      "Modular monolith over microservices — faster pilots, simpler ops, module boundaries in code",
-      "pgvector over dedicated vector DB — fewer moving parts for self-hosted deployments",
-      "Evaluation on every turn — operator trust and regression detection",
+      "Scoped as modular monolith to ship pilots faster without a team",
+      "Prioritized operator trust — eval, replay, handoff — over demo-only features",
+      "Open-sourced to lower adoption barrier for pilot customers and contributors",
     ],
   },
   {
