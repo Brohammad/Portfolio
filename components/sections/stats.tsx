@@ -39,7 +39,7 @@ function StatBlock({
 
 export function StatsSection() {
   return (
-    <section className="relative py-10 lg:py-12 section-tone-elevated overflow-hidden stat-section-glow">
+    <section className="relative py-9 lg:py-11 section-tone-elevated overflow-hidden stat-section-glow">
       <div
         className="absolute inset-x-0 top-0 h-px"
         style={{
@@ -62,7 +62,7 @@ export function StatsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 120, damping: 24 }}
-          className="mb-5 lg:mb-6"
+          className="mb-4 lg:mb-5"
         >
           <p className="text-block-label">Production Metrics</p>
         </motion.div>

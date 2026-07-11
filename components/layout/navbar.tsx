@@ -67,7 +67,6 @@ export function Navbar() {
           className={cn(
             "navbar-shell glass pointer-events-auto",
             "flex h-[var(--navbar-inner-height)] items-center justify-between gap-4 lg:gap-6",
-            "transition-all duration-300",
             scrolled && "glass-scrolled"
           )}
         >
@@ -76,7 +75,7 @@ export function Navbar() {
             className="flex items-center gap-3 text-foreground font-medium shrink-0 group"
             aria-label="Go to home"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:shadow-[var(--shadow-md)]">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[calc(var(--radius)-4px)] bg-primary flex items-center justify-center shadow-[var(--shadow-button)] transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] group-hover:shadow-[var(--shadow-md)] group-active:scale-[0.98]">
               <Terminal className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px] text-primary-foreground" />
             </div>
             <div className="hidden sm:flex flex-col items-start leading-none gap-1">
@@ -100,10 +99,10 @@ export function Navbar() {
                       onClick={() => handleNavClick(link.href)}
                       data-active={isActive}
                       className={cn(
-                        "nav-link relative px-3.5 xl:px-4 py-2.5 text-[14px] xl:text-[15px] font-medium rounded-[calc(var(--radius)-4px)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-ring whitespace-nowrap",
+                        "nav-link relative px-3.5 xl:px-4 py-2.5 text-[14px] xl:text-[15px] font-medium rounded-[calc(var(--radius)-4px)] transition-[color,background-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-ring whitespace-nowrap",
                         isActive
                           ? "nav-link-active"
-                          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+                          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.045]"
                       )}
                     >
                       {link.label}
@@ -119,7 +118,7 @@ export function Navbar() {
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="w-10 h-10 flex items-center justify-center rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] hover:-translate-y-px transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="w-10 h-10 flex items-center justify-center rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.045] hover:-translate-y-px transition-[color,background-color,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-ring"
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun className="w-[17px] h-[17px]" /> : <Moon className="w-[17px] h-[17px]" />}
@@ -164,10 +163,10 @@ export function Navbar() {
               initial={{ opacity: 0, y: -8, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed left-4 right-4 sm:left-6 sm:right-6 z-50 top-[calc(var(--navbar-height)+0.25rem)] lg:hidden"
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed left-4 right-4 sm:left-6 sm:right-6 z-50 top-[calc(var(--navbar-height)+0.375rem)] lg:hidden"
             >
-              <div className="rounded-[calc(var(--radius)+4px)] border border-border-subtle bg-card/95 backdrop-blur-xl shadow-[var(--shadow-lg)] overflow-hidden">
+              <div className="rounded-[calc(var(--radius)+4px)] border border-border-subtle bg-card/96 backdrop-blur-xl shadow-[var(--shadow-lg)] overflow-hidden">
                 <div className="px-3 py-3 flex flex-col">
                   {navLinks.map((link, index) => (
                     <Fragment key={link.href}>

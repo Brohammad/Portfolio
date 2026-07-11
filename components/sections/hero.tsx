@@ -78,10 +78,10 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-[88vh] flex items-center overflow-hidden noise section-tone-default"
+      className="relative min-h-[86vh] flex items-center overflow-hidden noise section-tone-default"
     >
-      <div className="relative z-10 section-container w-full pt-[calc(var(--navbar-height)+2.5rem)] pb-20 lg:pt-[calc(var(--navbar-height)+3.75rem)] lg:pb-28">
-        <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-12 lg:gap-14 xl:gap-16 items-center">
+      <div className="relative z-10 section-container w-full pt-[calc(var(--navbar-height)+2.25rem)] pb-16 lg:pt-[calc(var(--navbar-height)+3.25rem)] lg:pb-24">
+        <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-10 lg:gap-12 xl:gap-14 items-center">
           {/* Left column */}
           <div className="flex flex-col max-w-none lg:max-w-[38rem]">
             <motion.div {...fadeUp}>
@@ -97,7 +97,7 @@ export function HeroSection() {
             <motion.h1
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.06 }}
-              className="mt-10 sm:mt-12 tracking-[-0.032em]"
+              className="mt-8 sm:mt-10 tracking-[-0.034em]"
             >
               <span className="block text-[clamp(2.125rem,4.25vw,3.125rem)] font-semibold leading-[1.1] text-foreground">
                 Hi, I&apos;m{" "}
@@ -127,7 +127,7 @@ export function HeroSection() {
                   href="https://voxforge.brohammad.tech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline"
+                  className="text-primary underline-offset-[3px] decoration-primary/25 hover:underline transition-[color,text-decoration] duration-200"
                 >
                   VoxForge
                 </a>
@@ -142,17 +142,14 @@ export function HeroSection() {
               className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3"
             >
               {heroMetrics.map((metric) => (
-                <div
-                  key={metric.label}
-                  className="px-3 py-2.5 rounded-[calc(var(--radius)-4px)] border border-border-subtle bg-card/50"
-                >
-                  <p className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">
+                <div key={metric.label} className="hero-metric">
+                  <p className="text-[10px] text-muted-foreground/55 uppercase tracking-[0.06em] font-medium">
                     {metric.label}
                   </p>
-                  <p className="text-[15px] font-semibold text-foreground tabular-nums mt-1">
+                  <p className="text-[15px] font-semibold text-foreground tabular-nums mt-1 tracking-tight">
                     {metric.value}
                   </p>
-                  <p className="text-[10px] text-muted-foreground/55 mt-0.5 truncate">
+                  <p className="text-[10px] text-muted-foreground/50 mt-0.5 truncate">
                     {metric.detail}
                   </p>
                 </div>
@@ -182,11 +179,11 @@ export function HeroSection() {
             <motion.div
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.3 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
+              className="mt-9 flex flex-wrap items-center gap-3.5"
             >
               <Button
                 size="lg"
-                className="group min-w-[10.5rem] hover:-translate-y-px hover:shadow-[var(--shadow-md)]"
+                className="group min-w-[10.5rem]"
                 onClick={() => scrollToSection("projects")}
               >
                 View Projects
@@ -195,7 +192,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="min-w-[10rem] px-8 hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.03]"
+                className="min-w-[10rem] px-8"
                 asChild
               >
                 <a href="https://voxforge.brohammad.tech/demo" target="_blank" rel="noopener noreferrer">
@@ -206,7 +203,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="min-w-[10rem] px-8 hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.03]"
+                className="min-w-[10rem] px-8"
                 asChild
               >
                 <a href={siteConfig.links.resume} download>
@@ -338,7 +335,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.75 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/25"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-muted-foreground/30"
         >
           <span className="text-caption">Scroll</span>
           <ChevronDown

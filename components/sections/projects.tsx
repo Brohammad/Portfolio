@@ -404,9 +404,9 @@ const previewMap: Record<string, React.FC> = {
 function ProjectPreview({ projectId }: { projectId: string }) {
   const Preview = previewMap[projectId] ?? PreviewRenewAI;
   return (
-    <div className="project-preview-zone relative h-[14.5rem] sm:h-[15.5rem] lg:h-full lg:min-h-[17rem] overflow-hidden transition-colors duration-500 group-hover:bg-muted/30">
-      <div className="absolute inset-0 grid-bg opacity-[0.2]" />
-      <div className="relative h-full flex items-center justify-center p-7 sm:p-9 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]">
+    <div className="project-preview-zone relative h-[15.5rem] sm:h-[16.5rem] lg:h-full lg:min-h-[18rem] overflow-hidden transition-colors duration-500 group-hover:bg-muted/25">
+      <div className="absolute inset-0 grid-bg opacity-[0.22]" />
+      <div className="relative h-full flex items-center justify-center p-6 sm:p-8 lg:p-10 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]">
         <Preview />
       </div>
     </div>
@@ -640,7 +640,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-5 sm:p-7 lg:p-8 gap-5 sm:gap-5.5">
+      <div className="flex flex-col flex-1 p-5 sm:p-7 lg:p-8 gap-4 sm:gap-5">
         {/* Badges */}
         <div className="flex flex-wrap items-center gap-2.5">
           {display.badges.map((badge) => (
@@ -663,11 +663,11 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
         </div>
 
         {/* Title + tagline */}
-        <div className="space-y-2.5">
-          <h3 className="text-[clamp(1.4375rem,3vw,1.75rem)] font-semibold text-foreground tracking-[-0.022em] leading-[1.2] group-hover:text-primary transition-colors duration-300">
+        <div className="space-y-2">
+          <h3 className="text-[clamp(1.4375rem,3vw,1.75rem)] font-semibold text-foreground tracking-[-0.024em] leading-[1.18] group-hover:text-primary transition-colors duration-300">
             {project.title}
           </h3>
-          <p className="text-[16px] sm:text-[17px] text-muted-foreground leading-[1.7]">
+          <p className="text-[15px] sm:text-[16px] text-muted-foreground leading-[1.68] max-w-[52ch]">
             {display.tagline}
           </p>
           {project.audience && (
@@ -704,12 +704,12 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
 
         {/* CTAs */}
         <div
-          className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-4 mt-auto border-t border-border-subtle/70"
+          className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 pt-3.5 mt-auto border-t border-border-subtle/60"
           onClick={(e) => e.stopPropagation()}
         >
           <Button
             size="default"
-            className="group/btn w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5 hover:-translate-y-px"
+            className="group/btn w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5"
             onClick={onOpenCaseStudy}
           >
             Case Study
@@ -719,7 +719,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             <Button
               size="default"
               variant="outline"
-              className="w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5 hover:-translate-y-px hover:border-primary/25"
+              className="w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5"
               asChild
             >
               {fullCaseStudy ? (
@@ -739,7 +739,7 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
             <Button
               size="default"
               variant="outline"
-              className="w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5 hover:-translate-y-px hover:border-primary/25"
+              className="w-full sm:w-auto sm:min-w-[9.5rem] h-11 px-5"
               onClick={onOpenCaseStudy}
             >
               <Layers className="w-4 h-4" />
@@ -782,7 +782,7 @@ export function ProjectsSection() {
       />
 
       <SectionContent featured>
-        <div className="flex flex-col gap-6 sm:gap-7 lg:gap-8">
+        <div className="flex flex-col gap-5 sm:gap-6 lg:gap-7">
           {projects.map((project, i) => (
             <motion.div
               key={project.id}
@@ -804,9 +804,9 @@ export function ProjectsSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-14"
+          className="mt-12"
         >
-          <Button variant="outline" size="lg" className="hover:-translate-y-px" asChild>
+          <Button variant="outline" size="lg" asChild>
             <a href="https://github.com/Brohammad" target="_blank" rel="noopener noreferrer">
               <GithubIcon className="w-4 h-4" />
               View all projects on GitHub

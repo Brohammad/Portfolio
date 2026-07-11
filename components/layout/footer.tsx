@@ -54,7 +54,7 @@ export function Footer() {
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
                   download={link.download || undefined}
-                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-primary transition-colors duration-200 focus-ring rounded-md px-1 py-0.5"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-primary transition-[color,transform] duration-200 hover:-translate-y-px focus-ring rounded-md px-1 py-0.5"
                 >
                   {link.label === "GitHub" && <GithubIcon className="w-3.5 h-3.5" />}
                   {link.label === "LinkedIn" && <LinkedinIcon className="w-3.5 h-3.5" />}

@@ -28,7 +28,7 @@ export function ContactSection() {
   };
 
   const inputClass =
-    "w-full px-4 py-3.5 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle text-foreground text-[15px] placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-2 focus:ring-primary/[0.06] transition-all duration-200";
+    "w-full px-4 py-3.5 rounded-[calc(var(--radius)-4px)] bg-card border border-border-subtle text-foreground text-[15px] placeholder:text-muted-foreground/38 focus:outline-none focus:border-primary/32 focus:ring-2 focus:ring-primary/[0.07] focus:shadow-[var(--shadow-sm)] transition-[border-color,box-shadow,background-color] duration-200";
 
   return (
     <Section id="contact" tone="default" spacing="default" width="wide" className="section-chapter">
@@ -68,7 +68,7 @@ export function ContactSection() {
               </div>
               <button
                 onClick={handleCopyEmail}
-                className="p-2.5 rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] transition-colors duration-200 shrink-0 ml-3 focus-ring"
+                className="p-2.5 rounded-[calc(var(--radius)-4px)] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.045] hover:scale-105 active:scale-95 transition-[color,background-color,transform] duration-200 shrink-0 ml-3 focus-ring"
                 aria-label="Copy email"
               >
                 {copied ? <Check className="w-4 h-4 text-success" /> : <Copy className="w-4 h-4" />}

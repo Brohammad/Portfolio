@@ -53,7 +53,7 @@ export function SectionHeader({
         className={cn(
           "text-foreground",
           isFeatured
-            ? "text-[clamp(2.5rem,5.5vw,3.625rem)] font-semibold leading-[1.04] tracking-[-0.035em]"
+            ? "text-[clamp(2.375rem,5.25vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.038em]"
             : "text-heading"
         )}
       >
@@ -62,9 +62,9 @@ export function SectionHeader({
       {description && (
         <p
           className={cn(
-            "text-muted-foreground/75 leading-[1.7] font-normal max-w-[52ch]",
+            "text-muted-foreground/72 leading-[1.68] font-normal max-w-[50ch]",
             isFeatured
-              ? "text-[16px] sm:text-[17px]"
+              ? "text-[15px] sm:text-[16px]"
               : "text-[15px] sm:text-[16px]"
           )}
         >
