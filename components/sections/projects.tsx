@@ -475,6 +475,11 @@ function ProjectModal({ project }: { project: Project }) {
               {display.tagline}
             </p>
           )}
+          {project.audience && (
+            <p className="text-[15px] text-foreground/75 leading-relaxed border-l-2 border-primary/20 pl-4">
+              {project.audience}
+            </p>
+          )}
         </DialogHeader>
       </div>
 
@@ -665,6 +670,11 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
           <p className="text-[16px] sm:text-[17px] text-muted-foreground leading-[1.7]">
             {display.tagline}
           </p>
+          {project.audience && (
+            <p className="text-[14px] sm:text-[15px] text-foreground/70 leading-relaxed border-l-2 border-primary/15 pl-3.5">
+              {project.audience}
+            </p>
+          )}
         </div>
 
         {/* Metadata + highlights use width on large screens */}

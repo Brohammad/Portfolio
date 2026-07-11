@@ -2,16 +2,15 @@ import type { Project, Experience, SkillGroup, Certification, BlogPost, Stat, Pr
 
 export const siteConfig = {
   name: "Brohammad",
-  title: "Brohammad | Backend & AI Engineer",
+  title: "Brohammad | Backend & AI Engineer · Founding Engineer",
   description:
-    "Backend and AI engineer building production-grade intelligent systems. Shipped VoxForge — an open-source voice AI platform with unified pipeline, RAG, evaluation, and one-command HTTPS deployment — plus enterprise multi-agent and RAG systems for Fortune 500 banking clients.",
+    "Backend and AI engineer who ships production systems solo. Built VoxForge — open-source voice AI in production — plus enterprise AI at PwC. Open to founding engineer and early technical co-founder roles.",
   url: "https://brohammad.tech",
   ogImage: "https://brohammad.tech/og.png",
   location: "Bengaluru, Karnataka, India",
   role: "Associate Consultant @ PwC",
-  tagline: "Building intelligent systems that scale.",
-  headline:
-    "Built & shipped a full-stack voice agent platform — from WebSocket to operator dashboard.",
+  tagline: "Founding engineer energy. Production discipline.",
+  headline: "I ship production systems solo — from architecture to HTTPS.",
   links: {
     github: "https://github.com/Brohammad",
     linkedin: "https://www.linkedin.com/in/aabid-mohamed-a-b22a02229/",
@@ -27,6 +26,37 @@ export const siteConfig = {
     repo: "https://github.com/Brohammad/VoxFauge",
   },
 };
+
+export const foundingEngineer = {
+  why: [
+    "I want to own problems end-to-end — architecture, implementation, deploy, and ops — not hand off to a platform team.",
+    "Enterprise work taught me how production AI survives real load; I want that discipline at startup speed.",
+    "I'm looking for a founding engineer or early co-founder role where shipping beats process.",
+  ],
+  openTo:
+    "Open to co-founder conversations and early founding engineer roles — especially voice/AI infra. VoxForge is built in public so founders and engineers can evaluate how I work before we talk. Just shipped; no traction metrics yet.",
+  contactBlurb:
+    "If you're a founder building voice agents, AI infra, or developer tools — or hiring a founding engineer who ships solo — I'd like to hear from you.",
+};
+
+export const aboutIntro = [
+  {
+    label: "Who I am",
+    text: "Backend and AI engineer. By day, production systems at PwC. On my own time, I ship full platforms solo — most recently VoxForge, a voice AI stack live in production.",
+  },
+  {
+    label: "What I build",
+    text: "Production systems you can demo, deploy, and inspect — not slide decks. See Projects for the full stack; VoxForge is the latest and lives at voxforge.brohammad.tech.",
+  },
+  {
+    label: "What excites me",
+    text: "Zero-to-one ownership, voice AI infrastructure, and software that holds up when someone actually uses it.",
+  },
+  {
+    label: "Why founding engineer",
+    text: "I do my best work with full scope and full accountability. I want to be early — building the product, the infra, and the ops story together — not maintaining someone else's roadmap.",
+  },
+];
 
 export const stats: Stat[] = [
   { label: "Production Systems", subtitle: "Enterprise + open source", value: 4 },
@@ -143,6 +173,8 @@ export const projects: Project[] = [
     demo: "https://voxforge.brohammad.tech/demo",
     caseStudyUrl: "https://voxforge.brohammad.tech",
     github: "https://github.com/Brohammad/VoxFauge",
+    audience:
+      "Built for teams evaluating self-hosted voice AI — try the live demo or read the repo without a sales call. Just shipped; growing from here.",
     longDescription:
       "VoxForge is an open-source voice AI infrastructure platform for building and operating enterprise voice agents. Most voice AI projects stop at an LLM wrapper; VoxForge ships the full stack in one deploy: WebSocket, REST, and LiveKit WebRTC unified through VoicePipelineService; LangGraph orchestration; pgvector RAG with citation grounding; MCP tools; per-turn evaluation; session replay; human handoff; SAML SSO; and an operator dashboard. Production deployment is automated via ./deploy.sh init on Ubuntu 24.04 with Let's Encrypt. CI enforces linting, dependency audit, secret scanning, 70% coverage, and Playwright browser tests. Try the live demo at voxforge.brohammad.tech or inspect 354+ tests and ADRs on GitHub.",
     tech: [
@@ -196,6 +228,8 @@ export const projects: Project[] = [
       "Full-stack paint dealer platform — upload a room photo, preview 63 catalog shades on walls in under 60 seconds, capture leads, and run quotes, orders, inventory, and receivables offline-first.",
     demo: "https://paintcrm.brohammad.tech",
     github: "https://github.com/Brohammad/PaintCRM",
+    audience:
+      "Built for paint dealers on the shop floor — preview 63 real catalog shades on a customer's wall in under 60 seconds, capture leads, and run quotes even without reliable internet.",
     longDescription:
       "PaintCRM unifies visualization, lead capture, and commercial workflows for paint dealers. Upload a room photo, auto-detect walls with heuristic segmentation (optional TensorFlow.js DeepLab assist), apply real Asian Paints and Dulux shades with HSL recolor, then convert leads into quotes, orders, inventory movements, and an append-only credit ledger — all offline-first for shop-floor demos with best-effort sync when online.",
     tech: [
@@ -247,6 +281,8 @@ export const projects: Project[] = [
       "React", "TypeScript", "C++", "Docker", "Stripe", "Alpaca", "OpenAI",
     ],
     github: "https://github.com/Brohammad/Apha-Edge",
+    audience:
+      "Built for indie quant researchers who want strategy authoring, backtesting, optimization, and paper trading in one workspace — without juggling notebooks, spreadsheets, and broker APIs.",
     difficulty: "Expert",
     status: "completed",
     features: [
@@ -374,6 +410,8 @@ export const projects: Project[] = [
     tech: ["Go", "Raft", "gRPC", "Docker", "Protocol Buffers"],
     difficulty: "Expert",
     status: "in-progress",
+    audience:
+      "Systems learning project — Raft consensus from scratch to understand linearizable reads/writes, leader election, and fault tolerance firsthand.",
     features: [
       "Raft leader election and log replication",
       "Linearizable reads and writes",

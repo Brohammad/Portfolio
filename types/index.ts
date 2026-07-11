@@ -18,6 +18,7 @@ export interface Project {
   github?: string;
   demo?: string;
   caseStudyUrl?: string;
+  audience?: string;
   image?: string;
   difficulty: "Beginner" | "Intermediate" | "Advanced" | "Expert";
   status: "completed" | "in-progress" | "coming-soon";

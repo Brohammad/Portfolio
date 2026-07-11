@@ -7,7 +7,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/ui/social-icons";
 import { Button } from "@/components/ui/button";
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
-import { siteConfig } from "@/content/data";
+import { siteConfig, foundingEngineer } from "@/content/data";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -35,7 +35,7 @@ export function ContactSection() {
       <SectionHeader
         badge="Contact"
         title="Get in touch"
-        description="Open to backend and AI engineering roles. Recruiters, founders, and engineers welcome."
+        description="Open to founding engineer roles and early co-founder conversations. Founders, recruiters, and engineers welcome."
         align="left"
         variant="featured"
       />
@@ -49,8 +49,10 @@ export function ContactSection() {
           className="space-y-8"
         >
           <p className="prose-body-lg">
-            I build production AI and backend systems for enterprise clients.
-            If you&apos;re hiring or building something ambitious, reach out.
+            {foundingEngineer.contactBlurb}
+          </p>
+          <p className="text-[15px] text-muted-foreground leading-relaxed">
+            {foundingEngineer.openTo}
           </p>
 
           <div className="space-y-3">

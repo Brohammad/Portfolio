@@ -10,29 +10,12 @@ import {
   Gauge,
   Sparkles,
   BookOpen,
+  Rocket,
 } from "lucide-react";
 import { Section, SectionContent } from "@/components/layout/section";
 import { SectionHeader } from "@/components/ui/section-header";
+import { aboutIntro, foundingEngineer } from "@/content/data";
 import { cn } from "@/lib/utils";
-
-const intro = [
-  {
-    label: "Who I am",
-    text: "Backend and AI engineer at PwC, building production systems for enterprise banking — and shipping VoxForge, an open-source voice AI platform, on the side.",
-  },
-  {
-    label: "What I build",
-    text: "VoxForge is a production-grade, open-source voice AI platform I designed and shipped end-to-end. It unifies WebSocket, REST onboarding, and LiveKit WebRTC through a single voice pipeline, with LangGraph orchestration, pgvector knowledge retrieval, MCP tools, per-turn evaluation, and human handoff — live at voxforge.brohammad.tech with 354+ automated tests.",
-  },
-  {
-    label: "What excites me",
-    text: "Unified voice pipelines, distributed systems, LLM infrastructure, and software that holds up under real load.",
-  },
-  {
-    label: "What I'm working toward",
-    text: "Fewer projects, higher quality — production-grade systems teams can deploy, operate, and trust.",
-  },
-];
 
 const principles = [
   {
@@ -68,18 +51,18 @@ const principles = [
 ];
 
 const currentFocus = [
+  "Founding Engineer Roles",
   "Voice AI Infrastructure",
+  "Zero-to-One Shipping",
   "Production AI",
-  "Distributed Systems",
-  "Backend Infrastructure",
-  "Platform Engineering",
   "Open Source",
+  "Distributed Systems",
 ];
 
 const exploring = [
   "LiveKit WebRTC",
   "Voice Agent Evaluation",
-  "Kubernetes",
+  "Co-founder fit",
   "OpenTelemetry",
   "Inference Optimization",
   "System Design",
@@ -88,12 +71,12 @@ const exploring = [
 const interests = [
   "Backend Engineering",
   "Artificial Intelligence",
+  "Voice AI",
   "Distributed Systems",
-  "Cloud Infrastructure",
+  "Platform Engineering",
   "Developer Experience",
-  "Performance Engineering",
-  "Financial Technology",
-  "Observability",
+  "Open Source",
+  "Early-Stage Startups",
 ];
 
 const beyondCode = [
@@ -105,9 +88,9 @@ const beyondCode = [
 ];
 
 const trustSignals = [
-  { label: "Company", value: "PwC" },
+  { label: "Open to", value: "Founding engineer" },
   { label: "Side project", value: "VoxForge" },
-  { label: "Domain", value: "Banking + Voice AI" },
+  { label: "Day job", value: "PwC" },
   { label: "Focus", value: "Backend + AI" },
   { label: "Location", value: "Bengaluru" },
 ];
@@ -151,7 +134,7 @@ export function AboutSection() {
       <SectionHeader
         badge="About"
         title="Engineering profile"
-        description="Who I am, how I think, and what I'm building toward."
+        description="Who I am, why founding engineer, and what I'm building toward."
         align="left"
         variant="featured"
       />
@@ -160,7 +143,7 @@ export function AboutSection() {
         {/* Left — story + philosophy */}
         <div className="space-y-8 lg:space-y-10">
           <motion.div {...fadeUp} className="space-y-5">
-            {intro.map((block) => (
+            {aboutIntro.map((block) => (
               <div key={block.label} className="space-y-2">
                 <p className="text-block-label">{block.label}</p>
                 <p className="text-[16px] sm:text-[1.0625rem] text-foreground/85 leading-[1.75]">
@@ -168,6 +151,26 @@ export function AboutSection() {
                 </p>
               </div>
             ))}
+          </motion.div>
+
+          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.04 }}>
+            <div className="interactive-card rounded-[var(--radius)] p-6 sm:p-7 space-y-4 ring-1 ring-primary/[0.08]">
+              <div className="flex items-center gap-2.5">
+                <Rocket className="w-4 h-4 text-primary/70" strokeWidth={1.5} />
+                <p className="text-block-label">Why founding engineer</p>
+              </div>
+              <ul className="space-y-3">
+                {foundingEngineer.why.map((line) => (
+                  <li
+                    key={line}
+                    className="text-[15px] text-foreground/85 leading-relaxed flex gap-3"
+                  >
+                    <span className="text-primary shrink-0 mt-1">→</span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
 
           <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.06 }}>
@@ -205,6 +208,16 @@ export function AboutSection() {
 
         {/* Right — focus, exploring, interests, trust */}
         <div className="space-y-8 lg:space-y-10">
+          <motion.div
+            {...fadeUp}
+            className="interactive-card-secondary rounded-[var(--radius)] p-6 sm:p-7 space-y-3"
+          >
+            <p className="text-block-label">Open to</p>
+            <p className="text-[15px] sm:text-[16px] text-foreground/88 leading-[1.75]">
+              {foundingEngineer.openTo}
+            </p>
+          </motion.div>
+
           <motion.div
             {...fadeUp}
             className="flex flex-wrap gap-x-6 gap-y-3 pb-5 border-b border-border-subtle/80"

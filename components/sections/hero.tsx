@@ -10,18 +10,18 @@ import { scrollToSection } from "@/lib/scroll-to-section";
 import { cn } from "@/lib/utils";
 
 const roles = [
+  "Founding Engineer",
   "Voice AI Engineer",
-  "Systems Engineer",
   "Backend Engineer",
   "AI Engineer",
-  "Production AI Builder",
+  "Production Systems Builder",
 ];
 
 const statusSignals = [
-  { label: "VoxForge live in prod", dot: true },
-  { label: "Open to opportunities", dot: false },
+  { label: "Open to founding roles", dot: true },
+  { label: "Ships solo end-to-end", dot: false },
   { label: "Bengaluru", dot: false },
-  { label: "354+ automated tests", dot: false },
+  { label: "VoxForge live in prod", dot: false },
 ];
 
 const terminalLines: Array<
@@ -90,7 +90,7 @@ export function HeroSection() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-25" />
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-success" />
                 </span>
-                Open to opportunities
+                Open to founding roles
               </span>
             </motion.div>
 
@@ -122,17 +122,17 @@ export function HeroSection() {
                 {siteConfig.headline}
               </p>
               <p className="text-[1rem] sm:text-[1.0625rem] leading-[1.75] text-muted-foreground">
-                Open-source voice AI infrastructure with unified pipeline, RAG,
-                evaluation, replay, and one-command HTTPS deployment — live at{" "}
+                Latest:{" "}
                 <a
                   href="https://voxforge.brohammad.tech"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline"
                 >
-                  voxforge.brohammad.tech
+                  VoxForge
                 </a>
-                .
+                {" "}— open-source voice AI, live in production. I build the
+                whole stack myself: pipeline, deploy, docs, and tests.
               </p>
             </motion.div>
 
