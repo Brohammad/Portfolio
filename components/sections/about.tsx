@@ -22,7 +22,7 @@ const intro = [
   },
   {
     label: "What I build",
-    text: "Voice AI infrastructure, multi-agent workflows, hybrid RAG pipelines, and backend APIs deployed on Azure and self-hosted VPS.",
+    text: "VoxForge is a production-grade, open-source voice AI platform I designed and shipped end-to-end. It unifies WebSocket, REST onboarding, and LiveKit WebRTC through a single voice pipeline, with LangGraph orchestration, pgvector knowledge retrieval, MCP tools, per-turn evaluation, and human handoff — live at voxforge.brohammad.tech with 354+ automated tests.",
   },
   {
     label: "What excites me",

@@ -41,12 +41,12 @@ interface ProjectDisplay {
 const projectDisplay: Record<string, ProjectDisplay> = {
   voxforge: {
     tagline:
-      "Voice AI infrastructure you can deploy, operate, and trust — unified pipeline, RAG, evaluation, and one-command HTTPS.",
+      "Voice AI infrastructure you can deploy, operate, and trust.",
     badges: ["Production", "Open Source", "Live Demo", "Voice AI"],
     metadata: [
+      { label: "Release", value: "v1.0.0-rc.1" },
       { label: "Tests", value: "354+" },
       { label: "Coverage", value: "81%" },
-      { label: "Transports", value: "3 unified" },
       { label: "Deploy", value: "<15 min" },
     ],
     techGroups: [
@@ -512,6 +512,34 @@ function ProjectModal({ project }: { project: Project }) {
           </div>
         )}
 
+        {project.features.length > 0 && (
+          <div className="space-y-4">
+            <p className="text-block-label">What I Built</p>
+            <ul className="space-y-3">
+              {project.features.map((f) => (
+                <li key={f} className="text-[15px] text-muted-foreground leading-relaxed flex gap-3">
+                  <span className="text-primary shrink-0 mt-0.5">→</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {project.engineeringChallenges && project.engineeringChallenges.length > 0 && (
+          <div className="space-y-4">
+            <p className="text-block-label">Technical Decisions</p>
+            <ul className="space-y-3">
+              {project.engineeringChallenges.map((d) => (
+                <li key={d} className="text-[15px] text-muted-foreground leading-relaxed flex gap-3">
+                  <span className="text-primary shrink-0 mt-0.5">→</span>
+                  {d}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {project.challenges.length > 0 && (
           <div className="space-y-4">
             <p className="text-block-label">Production Challenges</p>
@@ -554,6 +582,14 @@ function ProjectModal({ project }: { project: Project }) {
               <a href={project.demo} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-4 h-4" />
                 Live Demo
+              </a>
+            </Button>
+          )}
+          {project.caseStudyUrl && (
+            <Button variant="outline" asChild>
+              <a href={project.caseStudyUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4" />
+                Visit VoxForge
               </a>
             </Button>
           )}
@@ -683,8 +719,8 @@ function ProjectCard({ project, onOpenCaseStudy }: ProjectCardProps) {
                 </Link>
               ) : (
                 <a href={project.caseStudyUrl} target="_blank" rel="noopener noreferrer">
-                  <Layers className="w-4 h-4" />
-                  Full Case Study
+                  <ExternalLink className="w-4 h-4" />
+                  Visit VoxForge
                 </a>
               )}
             </Button>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Download, ChevronDown } from "lucide-react";
+import { ArrowRight, Download, ChevronDown, ExternalLink } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/social-icons";
 import { Button } from "@/components/ui/button";
 import { siteConfig, heroMetrics } from "@/content/data";
@@ -123,8 +123,16 @@ export function HeroSection() {
               </p>
               <p className="text-[1rem] sm:text-[1.0625rem] leading-[1.75] text-muted-foreground">
                 Open-source voice AI infrastructure with unified pipeline, RAG,
-                evaluation, and one-command HTTPS deployment — plus enterprise
-                multi-agent systems for banking clients.
+                evaluation, replay, and one-command HTTPS deployment — live at{" "}
+                <a
+                  href="https://voxforge.brohammad.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  voxforge.brohammad.tech
+                </a>
+                .
               </p>
             </motion.div>
 
@@ -183,6 +191,17 @@ export function HeroSection() {
               >
                 View Projects
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="min-w-[10rem] px-8 hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.03]"
+                asChild
+              >
+                <a href="https://voxforge.brohammad.tech/demo" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  <span>VoxForge Demo</span>
+                </a>
               </Button>
               <Button
                 size="lg"
