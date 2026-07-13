@@ -5,6 +5,7 @@ import { Command } from "cmdk";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
+  User,
   Briefcase,
   FolderOpen,
   Wrench,
@@ -22,9 +23,11 @@ const commands = [
     group: "Navigate",
     items: [
       { icon: Home, label: "Go to Home", action: () => scrollToSection("home") },
-      { icon: Wrench, label: "Skills", action: () => scrollToSection("skills") },
-      { icon: FolderOpen, label: "Projects", action: () => scrollToSection("projects") },
+      { icon: User, label: "About Me", action: () => scrollToSection("about") },
       { icon: Briefcase, label: "Experience", action: () => scrollToSection("experience") },
+      { icon: FolderOpen, label: "Projects", action: () => scrollToSection("projects") },
+      { icon: Wrench, label: "Skills", action: () => scrollToSection("skills") },
+      { icon: User, label: "Now", action: () => scrollToSection("now") },
       { icon: Mail, label: "Contact Me", action: () => scrollToSection("contact") },
     ],
   },
