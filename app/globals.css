@@ -1212,31 +1212,6 @@ body::before {
   padding-bottom: var(--space-3);
 }
 
-.cursor-spotlight {
-  position: fixed;
-  width: 480px;
-  height: 480px;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 4%, transparent) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  opacity: 0.6;
-  mix-blend-mode: soft-light;
-}
-
-.cursor-ring {
-  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
-  background: color-mix(in srgb, var(--primary) 2%, transparent);
-  backdrop-filter: blur(1px);
-  transition: width 0.25s var(--ease-spring), height 0.25s var(--ease-spring), border-color 0.2s ease;
-}
-
-.cursor-dot {
-  background: color-mix(in srgb, var(--primary) 70%, var(--foreground));
-  box-shadow: 0 0 8px color-mix(in srgb, var(--primary) 25%, transparent);
-}
-
 @media (max-width: 768px) {
   .section-pause {
     padding-top: var(--space-3);
