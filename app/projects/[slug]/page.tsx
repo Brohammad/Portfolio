@@ -42,6 +42,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const external = project.demo ?? project.caseStudyUrl ?? project.github;
+  const externalLabel = project.demo || project.caseStudyUrl ? "open live →" : "view source →";
 
   return (
     <main id="main-content" className="page-shell section-block">
@@ -74,7 +75,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       {external && (
         <a href={external} target="_blank" rel="noopener noreferrer" className="section-more">
-          open live →
+          {externalLabel}
         </a>
       )}
     </main>

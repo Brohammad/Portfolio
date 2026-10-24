@@ -5,7 +5,7 @@ export const siteConfig = {
   handle: "brohammad",
   title: "Aabid Mohamed A | Backend & AI Engineer",
   description:
-    "Backend and AI engineer who ships production systems solo. Built VoxForge — open-source voice AI in production — plus enterprise AI at PwC. Open to founding engineer roles.",
+    "Backend and AI engineer who ships production systems solo. Built VoxForge — open-source voice AI infrastructure — plus enterprise AI at PwC. Open to founding engineer roles.",
   url: "https://brohammad.tech",
   ogImage: "https://brohammad.tech/og.png",
   location: "Bengaluru, Karnataka, India",
@@ -21,9 +21,6 @@ export const siteConfig = {
   lastUpdated: "October 2026",
   builtWith: "Next.js · TypeScript · Tailwind CSS",
   voxforge: {
-    site: "https://voxforge.brohammad.tech",
-    demo: "https://voxforge.brohammad.tech/demo",
-    apiDocs: "https://voxforge.brohammad.tech/api/v1/docs",
     repo: "https://github.com/Brohammad/VoxForge",
   },
 };
@@ -47,7 +44,7 @@ export const aboutIntro = [
   },
   {
     label: "What I build",
-    text: "Production systems you can demo, deploy, and inspect — not slide decks. See Projects for the full stack; VoxForge is the latest and lives at voxforge.brohammad.tech.",
+    text: "Production systems you can deploy and inspect — not slide decks. See Projects for the full stack; VoxForge is the latest, open source and self-hostable.",
   },
   {
     label: "What excites me",
@@ -170,14 +167,12 @@ export const projects: Project[] = [
     id: "voxforge",
     title: "VoxForge",
     description:
-      "Open-source voice AI infrastructure platform with unified pipeline, RAG, evaluation, replay, and one-command HTTPS deployment — live at voxforge.brohammad.tech.",
-    demo: "https://voxforge.brohammad.tech/demo",
-    caseStudyUrl: "https://voxforge.brohammad.tech",
+      "Open-source voice AI infrastructure platform with one unified pipeline, RAG, evaluation, replay, and one-command HTTPS deployment.",
     github: "https://github.com/Brohammad/VoxForge",
     audience:
-      "Built for teams evaluating self-hosted voice AI — try the live demo or read the repo without a sales call. Just shipped; growing from here.",
+      "Built for teams evaluating self-hosted voice AI — read the repo and run it locally without a sales call. Just shipped; growing from here.",
     longDescription:
-      "VoxForge is an open-source voice AI infrastructure platform for building and operating enterprise voice agents. Most voice AI projects stop at an LLM wrapper; VoxForge ships the full stack in one deploy: WebSocket, REST, and LiveKit WebRTC unified through VoicePipelineService; LangGraph orchestration; pgvector RAG with citation grounding; MCP tools; per-turn evaluation; session replay; human handoff; SAML SSO; and an operator dashboard. Production deployment is automated via ./deploy.sh init on Ubuntu 24.04 with Let's Encrypt. CI enforces linting, dependency audit, secret scanning, 70% coverage, and Playwright browser tests. Try the live demo at voxforge.brohammad.tech or inspect 354+ tests and ADRs on GitHub.",
+      "VoxForge is an open-source voice AI infrastructure platform for building and operating enterprise voice agents. Most voice AI projects stop at an LLM wrapper; VoxForge ships the full stack in one deploy: WebSocket, REST, and LiveKit WebRTC unified through VoicePipelineService; LangGraph orchestration; pgvector RAG with citation grounding; MCP tools; per-turn evaluation; session replay; human handoff; SAML SSO; and an operator dashboard. Production deployment is automated via ./deploy.sh init on Ubuntu 24.04 with Let's Encrypt. CI enforces linting, dependency audit, secret scanning, 70% coverage, and Playwright browser tests. Inspect 354+ tests and ADRs on GitHub.",
     tech: [
       "Python 3.12", "FastAPI", "LangGraph", "LangChain", "PostgreSQL", "pgvector",
       "Redis", "LiveKit", "Docker", "NGINX", "OpenTelemetry", "Playwright",
@@ -202,15 +197,15 @@ export const projects: Project[] = [
       "Closing the gap between voice demos and production operability",
     ],
     lessons: [
-      "Live production deployment with HTTPS and smoke-tested endpoints",
+      "One-command HTTPS deploy with smoke-tested endpoints (NGINX + Certbot)",
       "v1.0.0-rc.1 released on GitHub with 81% test coverage and green CI",
-      "Public demo completes voice pipeline in ~100ms with mock providers",
+      "Mock providers exercise the full voice pipeline in ~100ms without API keys",
       "Open-source alternative to managed voice SaaS — deployable in 15 minutes",
     ],
     metrics: [
-      "Live at voxforge.brohammad.tech",
       "354+ automated tests · 81% coverage",
-      "v1.0.0-rc.1 · 3 unified transports",
+      "3 transports, one pipeline",
+      "v1.0.0-rc.1 · self-hostable",
     ],
     scale: ["354+ tests", "3 unified transports", "~100ms mock pipeline"],
     engineeringChallenges: [
@@ -433,7 +428,7 @@ export const experiences: Experience[] = [
       "Set CI quality gates: 354+ tests, Playwright UI coverage, dependency audit, and secret scanning",
     ],
     impact: [
-      "Recruiters and pilot customers can evaluate voice agents via live demo — no clone required",
+      "Engineers can evaluate the voice pipeline from the repo, docs, and 354+ tests",
       "Engineering evaluators can inspect architecture docs and 354+ automated tests on GitHub",
       "Open-source release removes per-minute SaaS fees and vendor lock-in for early adopters",
     ],
@@ -442,7 +437,7 @@ export const experiences: Experience[] = [
     scale: [
       "Solo founder · end-to-end ownership",
       "Open source · v1.0.0-rc.1",
-      "Live at voxforge.brohammad.tech",
+      "Self-hostable · one-command deploy",
     ],
     decisions: [
       "Scoped as modular monolith to ship pilots faster without a team",
@@ -547,7 +542,7 @@ export const nowPage = {
   favoriteProblem:
     "Closing the gap between voice demos and production operability: evaluation, replay, and human handoff.",
   building: [
-    "VoxForge v1.0 — voice AI platform live at voxforge.brohammad.tech",
+    "VoxForge v1.0 — open-source voice AI infrastructure",
     "Distributed Key-Value Store — Raft consensus in Go",
     "Per-turn evaluation suites as CI deployment gates",
   ],
