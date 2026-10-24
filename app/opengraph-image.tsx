@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Brohammad — Backend & AI Engineer";
+export const alt = "Aabid Mohamed A — Backend & AI Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -73,7 +73,7 @@ export default async function Image() {
             marginBottom: 16,
           }}
         >
-          Brohammad
+          Aabid Mohamed A
         </div>
 
         {/* Subtitle */}
@@ -90,7 +90,7 @@ export default async function Image() {
 
         {/* Tags */}
         <div style={{ display: "flex", gap: 12 }}>
-          {["Node.js", "Python", "Distributed Systems", "LLMs", "AWS"].map(
+          {["Go", "Python", "Distributed Systems", "LLMs", "Voice AI"].map(
             (tag) => (
               <div
                 key={tag}

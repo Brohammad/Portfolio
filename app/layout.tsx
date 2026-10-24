@@ -1,12 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { siteConfig } from "@/content/data";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
-const inter = Inter({
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: "400",
+  variable: "--font-instrument",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-ibm-plex-mono",
   display: "swap",
 });
 
@@ -22,27 +31,21 @@ export const metadata: Metadata = {
   keywords: [
     "Backend Engineer",
     "AI Engineer",
+    "Founding Engineer",
     "Voice AI",
     "VoxForge",
+    "Forward Deployed Engineer",
     "Production Systems",
-    "Enterprise AI",
-    "Multi-Agent Systems",
     "RAG",
     "LangGraph",
-    "LiveKit",
-    "FastAPI",
-    "Azure",
+    "Aabid Mohamed A",
     "Brohammad",
+    "BugSathi",
     "Bengaluru",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -69,13 +72,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
   alternates: {
     canonical: siteConfig.url,
@@ -84,10 +80,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F3EC" },
-    { media: "(prefers-color-scheme: dark)", color: "#141210" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0c0b" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f1ea" },
   ],
-  colorScheme: "light dark",
+  colorScheme: "dark light",
   width: "device-width",
   initialScale: 1,
 };
@@ -97,7 +93,8 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      name: "Brohammad",
+      name: "Aabid Mohamed A",
+      alternateName: "Brohammad",
       url: siteConfig.url,
       jobTitle: "Backend & AI Engineer",
       description: siteConfig.description,
@@ -111,7 +108,7 @@ const jsonLd = {
         "Backend Engineering",
         "Artificial Intelligence",
         "Voice AI",
-        "Distributed Systems",
+        "Founding Engineering",
         "RAG",
         "Multi-Agent Systems",
       ],
@@ -132,20 +129,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${instrument.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased bg-background text-foreground">
-        <a href="#main-content" className="skip-link focus-ring">
+      <body className="antialiased bg-background text-foreground">
+        <a href="#main-content" className="skip-link">
           Skip to content
         </a>
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

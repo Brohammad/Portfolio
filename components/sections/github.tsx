@@ -10,28 +10,28 @@ import { siteConfig } from "@/content/data";
 
 const pinnedRepos = [
   {
-    name: "bank-fincorp",
-    description: "Enterprise RAG assistant with hybrid retrieval, source citation, and SSE streaming for banking workflows.",
+    name: "VoxForge",
+    description: "Open-source voice AI infrastructure — one pipeline for WebSocket, REST, and LiveKit WebRTC with LangGraph agents and pgvector RAG.",
     language: "Python",
   },
   {
-    name: "InsuranceAI",
-    description: "Multi-agent insurance renewal platform orchestrating policy analysis, risk scoring, and client outreach.",
-    language: "Python",
-  },
-  {
-    name: "distributed-kv-store",
-    description: "Raft consensus implementation with linearizable reads and gRPC inter-node communication.",
+    name: "BugSathi",
+    description: "Local-first bug reporting platform with an ordered Kafka pipeline, ffmpeg frame extraction, and AI-drafted reports.",
     language: "Go",
   },
   {
-    name: "auth-service",
-    description: "JWT authentication microservice with refresh rotation and RBAC.",
-    language: "TypeScript",
+    name: "PainMiningEngine",
+    description: "SignalMine: source-agnostic pipeline turning GitHub and Reddit threads into schema-validated market intelligence.",
+    language: "Python",
   },
   {
-    name: "url-shortener-service",
-    description: "High-throughput URL shortener with Redis caching and rate limiting.",
+    name: "payment-state-machine",
+    description: "Typed payment lifecycle in Haskell — explicit transitions, idempotent event processing, typed errors.",
+    language: "Haskell",
+  },
+  {
+    name: "MicroManus",
+    description: "Deep research agent with social login, credit-ledger paywall, BYOK models, and PDF artifacts.",
     language: "TypeScript",
   },
 ];

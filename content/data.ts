@@ -1,14 +1,15 @@
 import type { Project, Experience, SkillGroup, Certification, BlogPost, Stat, ProjectCaseStudy } from "@/types";
 
 export const siteConfig = {
-  name: "Brohammad",
-  title: "Brohammad | Backend & AI Engineer · Founding Engineer",
+  name: "Aabid Mohamed A",
+  handle: "brohammad",
+  title: "Aabid Mohamed A | Backend & AI Engineer",
   description:
-    "Backend and AI engineer who ships production systems solo. Built VoxForge — open-source voice AI in production — plus enterprise AI at PwC. Open to founding engineer and early technical co-founder roles.",
+    "Backend and AI engineer who ships production systems solo. Built VoxForge — open-source voice AI in production — plus enterprise AI at PwC. Open to founding engineer roles.",
   url: "https://brohammad.tech",
   ogImage: "https://brohammad.tech/og.png",
   location: "Bengaluru, Karnataka, India",
-  role: "Associate Consultant @ PwC",
+  role: "Associate Software Engineer @ PwC",
   tagline: "Founding engineer energy. Production discipline.",
   headline: "I ship production systems solo — from architecture to HTTPS.",
   links: {
@@ -17,13 +18,13 @@ export const siteConfig = {
     email: "aabidmohamed2003@gmail.com",
     resume: "/resume.pdf",
   },
-  lastUpdated: "July 2026",
+  lastUpdated: "October 2026",
   builtWith: "Next.js · TypeScript · Tailwind CSS",
   voxforge: {
     site: "https://voxforge.brohammad.tech",
     demo: "https://voxforge.brohammad.tech/demo",
     apiDocs: "https://voxforge.brohammad.tech/api/v1/docs",
-    repo: "https://github.com/Brohammad/VoxFauge",
+    repo: "https://github.com/Brohammad/VoxForge",
   },
 };
 
@@ -172,7 +173,7 @@ export const projects: Project[] = [
       "Open-source voice AI infrastructure platform with unified pipeline, RAG, evaluation, replay, and one-command HTTPS deployment — live at voxforge.brohammad.tech.",
     demo: "https://voxforge.brohammad.tech/demo",
     caseStudyUrl: "https://voxforge.brohammad.tech",
-    github: "https://github.com/Brohammad/VoxFauge",
+    github: "https://github.com/Brohammad/VoxForge",
     audience:
       "Built for teams evaluating self-hosted voice AI — try the live demo or read the repo without a sales call. Just shipped; growing from here.",
     longDescription:
@@ -220,6 +221,54 @@ export const projects: Project[] = [
     ],
     architecture:
       "Modular monolith with Clean Architecture boundaries. FastAPI + LangGraph orchestration, PostgreSQL/pgvector for knowledge retrieval, Redis for session state. Single VoicePipelineService unifies WebSocket, REST onboarding, and LiveKit WebRTC. Docker Compose prod stack with NGINX, Certbot, OpenTelemetry, and one-command HTTPS deploy on Ubuntu 24.04.",
+  },
+  {
+    id: "bugsathi",
+    title: "BugSathi",
+    description:
+      "Local-first, AI-native bug reporting platform — screen recording upload, ffmpeg frame extraction, AI-drafted reports, shareable links, and an ordered Kafka pipeline in Go.",
+    github: "https://github.com/Brohammad/BugSathi",
+    audience:
+      "Built for engineering teams that want bug reports with evidence — recording, frames, environment, and an AI draft — without shipping media to a black-box SaaS.",
+    longDescription:
+      "BugSathi turns a screen recording into a structured bug report: upload to MinIO, extract keyframes with ffmpeg, analyze frames and browser metadata with an OpenAI-compatible provider, and publish a shareable report. The backend is a Go modular monolith split into API and worker binaries, with per-recording Kafka ordering, idempotent consumers, an outbox, DLQ reprocess, JWT refresh rotation, project tenancy, Postgres migrations, and OpenTelemetry/Prometheus/Grafana observability. It runs local-first on Docker Compose or on Kubernetes with Caddy.",
+    tech: [
+      "Go", "Kafka", "PostgreSQL", "MinIO", "Redis", "ffmpeg",
+      "OpenTelemetry", "Prometheus", "Grafana", "Docker", "Kubernetes", "React",
+    ],
+    difficulty: "Expert",
+    status: "in-progress",
+    features: [
+      "Screen recording upload to MinIO with presigned URLs",
+      "Ordered Kafka pipeline: upload → ffmpeg frames → AI analysis → report",
+      "AI-drafted summary and reproduction steps behind a provider port",
+      "Shareable report links and project/workspace tenancy",
+      "JWT auth with refresh rotation, audit logs, and rate limiting",
+      "OpenTelemetry traces, Prometheus metrics, and Grafana dashboards",
+    ],
+    challenges: [
+      "Keeping per-recording pipeline stages ordered and idempotent under replay",
+      "Grounding AI reports in frames without inventing untriggered actions",
+      "Running the full media + AI stack local-first on one machine",
+    ],
+    lessons: [
+      "ADRs and runbooks make a solo systems project debuggable",
+      "Provider ports keep AI tests offline and deterministic",
+      "Vision evals need uncertainty fields, not just higher scores",
+    ],
+    metrics: [
+      "116 tests under -race",
+      "28 REST endpoints",
+      "34 ADRs",
+    ],
+    scale: ["8 Kafka topics", "10 Postgres migrations", "API + worker binaries"],
+    engineeringChallenges: [
+      "Per-recording ordering via Kafka partition keys",
+      "Idempotent replay with an outbox and DLQ reprocess path",
+      "Media processing isolated in an ffmpeg worker",
+    ],
+    architecture:
+      "Go modular monolith with separate API and worker binaries. PostgreSQL for metadata, MinIO for recordings and frames, Redis for rate limiting, Kafka/Redpanda for the ordered event pipeline, and OpenTelemetry/Prometheus/Grafana for observability. Docker Compose locally; Kubernetes manifests and Caddy for production.",
   },
   {
     id: "paint-intelligence",
@@ -317,90 +366,6 @@ export const projects: Project[] = [
       "FastAPI modular monolith with DDD bounded contexts. PostgreSQL source of truth, Redis for cache and Celery broker. React 19 SPA with TanStack Query. Docker Compose local stack, GitHub Actions CI, Nginx reverse proxy.",
   },
   {
-    id: "renewai",
-    title: "RenewAI",
-    description:
-      "Multi-agent platform that automates insurance renewals for Fortune 500 banking clients — orchestrating policy analysis, risk scoring, and client outreach at scale.",
-    longDescription:
-      "Built for a Fortune 500 banking client, RenewAI replaces manual renewal workflows with a production multi-agent system. LangGraph orchestrates specialized agents for document extraction, risk assessment, and client communication — with full audit trails and REST APIs into legacy banking infrastructure.",
-    tech: ["Python", "LangGraph", "LangChain", "FastAPI", "PostgreSQL", "Redis", "Docker"],
-    difficulty: "Expert",
-    status: "completed",
-    github: "https://github.com/Brohammad/InsuranceAI",
-    features: [
-      "Multi-agent orchestration with LangGraph state machines",
-      "Automated policy document extraction and analysis",
-      "Risk scoring engine with configurable thresholds",
-      "Parallel agent execution for high throughput",
-      "Audit trail for all agent decisions",
-      "REST API for integration with existing banking systems",
-    ],
-    challenges: [
-      "Designing reliable agent handoffs without state loss",
-      "Handling LLM inconsistencies in production with eval pipelines",
-      "Integrating with legacy banking infrastructure",
-    ],
-    lessons: [
-      "LangGraph state machines are critical for reliable agent flows",
-      "LLM eval pipelines are non-negotiable before production",
-      "Streaming responses dramatically improve UX in AI applications",
-    ],
-    metrics: [
-      "Fortune 500 banking client",
-      "Multi-agent architecture",
-      "Production on Azure",
-    ],
-    scale: ["3 specialized agents", "Full audit trail", "Legacy API integration"],
-    engineeringChallenges: [
-      "Reliable agent handoffs without state loss",
-      "LLM eval pipelines before production",
-    ],
-    architecture:
-      "FastAPI backend with LangGraph orchestrating specialized agents. PostgreSQL for audit logs. Redis for session state. Deployed on Azure with Docker Compose.",
-  },
-  {
-    id: "fincore",
-    title: "FinCore Banking Assistant",
-    description:
-      "Enterprise AI assistant that automates banking workflows and retrieves financial knowledge using hybrid RAG — handling thousands of production queries daily.",
-    longDescription:
-      "A production RAG assistant deployed inside a major banking client's operations team. Hybrid semantic + keyword retrieval over regulatory documents, strict hallucination guardrails with source citation, and role-based access for compliance-sensitive content.",
-    tech: ["Python", "FastAPI", "LangChain", "OpenAI", "Azure", "PostgreSQL", "Qdrant"],
-    difficulty: "Advanced",
-    status: "completed",
-    github: "https://github.com/Brohammad/bank-fincorp",
-    features: [
-      "Hybrid semantic + keyword search over banking documents",
-      "Strict hallucination guardrails with source citation",
-      "Streaming responses with SSE",
-      "Role-based access to sensitive document segments",
-      "Multi-turn conversation with memory management",
-      "Integration with internal banking portals",
-    ],
-    challenges: [
-      "Reducing hallucinations on financial/regulatory content",
-      "Managing context window with large policy documents",
-      "RBAC on document-level access for compliance",
-    ],
-    lessons: [
-      "Chunking strategy is the single biggest quality lever in RAG",
-      "Hybrid search consistently outperforms pure dense retrieval",
-      "Guardrails and eval frameworks are essential in finance",
-    ],
-    metrics: [
-      "Enterprise production deployment",
-      "Thousands of queries daily",
-      "Hybrid retrieval pipeline",
-    ],
-    scale: ["~5K queries/day", "Document-level RBAC", "SSE streaming"],
-    engineeringChallenges: [
-      "Hallucination guardrails on regulatory content",
-      "Hybrid dense + BM25 retrieval tuning",
-    ],
-    architecture:
-      "FastAPI service with LangChain RAG pipeline. Qdrant vector store with PostgreSQL for metadata. Azure OpenAI for embeddings and generation. Deployed on Azure AKS.",
-  },
-  {
     id: "distributed-kv",
     title: "Distributed Key-Value Store",
     description:
@@ -488,7 +453,7 @@ export const experiences: Experience[] = [
   {
     id: "pwc",
     company: "PwC",
-    role: "Associate Consultant",
+    role: "Associate Software Engineer",
     duration: "2025 — Present",
     startDate: "2025-01",
     endDate: null,
@@ -496,35 +461,34 @@ export const experiences: Experience[] = [
     type: "full-time",
     current: true,
     responsibilities: [
-      "Building enterprise-grade AI applications for banking clients",
-      "Designing and deploying multi-agent AI systems using LangGraph and LangChain",
-      "Architecting RAG pipelines with hybrid retrieval for financial document Q&A",
+      "Building an agentic deal platform for a banking client (SMBC) on async microservices",
+      "Designing NLP extraction and ML classification pipelines over deal documents and chat",
+      "Shipping the APIs and operational tooling the sales desk uses daily",
     ],
     technologies: [
-      "Python", "FastAPI", "LangChain", "LangGraph", "LlamaIndex",
-      "OpenAI", "Azure", "PostgreSQL", "Qdrant", "Docker", "Node.js",
+      "Python", "FastAPI", "LangChain", "PostgreSQL", "Azure", "Docker", "Node.js",
     ],
     achievements: [
-      "Shipped 3 production AI systems to enterprise banking clients",
-      "Built multi-agent insurance renewal platform reducing manual processing",
-      "Deployed RAG assistant handling thousands of queries daily in production",
+      "Shipped an end-to-end agentic deal platform that replaced a manual workflow for 25 salespeople",
+      "Cut irrelevant blotter entries ~40% with an ML deal-likelihood classifier",
+      "Improved downstream extraction quality 30%+ with a normalized chat-ingestion pipeline",
     ],
     impact: [
-      "Reduced manual insurance renewal processing for Fortune 500 banking client",
-      "RAG assistant serving ~5K queries/day with source citation and RBAC",
-      "Multi-agent platform with full audit trails integrated into legacy banking APIs",
+      "~50 deals/day processed end to end in under 60 seconds",
+      "Zero downtime on the blotter API and live potlist for 25 concurrent users",
+      "~2 hours/day saved in status checks; per-call eval logging catches extraction drift",
     ],
     architecture:
-      "LangGraph-orchestrated agents on FastAPI, hybrid RAG over Qdrant + PostgreSQL, deployed on Azure AKS with Docker and Redis session state.",
+      "Async Python microservices on FastAPI with a prompt-driven NLP extraction layer, an ML classifier for deal likelihood, and PostgreSQL behind a blotter API. Deployed on Azure.",
     scale: [
-      "3 production systems · Fortune 500 clients",
-      "~5K daily queries · 99.9% uptime target",
-      "12+ agent flows · document-level access control",
+      "~50 deals/day",
+      "25 salespeople",
+      "Zero-downtime blotter API",
     ],
     decisions: [
-      "LangGraph state machines over ad-hoc agent chains for reliability",
-      "Hybrid retrieval (dense + BM25) over pure vector search for finance docs",
-      "Eval pipelines as a deployment gate, not a post-launch afterthought",
+      "Async services over one monolith so ingestion stays independent of scoring",
+      "Evaluation logging at extraction time instead of offline batch review",
+      "Typed contracts between ingestion, extraction, and classification stages",
     ],
   },
 ];

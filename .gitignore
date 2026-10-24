@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated resume (build.sh output; public/resume.pdf is committed)
+/resume/resume.pdf
