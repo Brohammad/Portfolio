@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, siteConfig } from "@/content/data";
+import { projects, siteConfig, projectCaseStudies } from "@/content/data";
+import { EditorialCaseStudy } from "@/components/projects/editorial-case-study";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.id }));
+  return projects
+    .filter((p) => p.status !== "coming-soon")
+    .map((project) => ({ slug: project.id }));
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
@@ -20,11 +22,11 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 
   return {
-    title: project.title,
-    description: project.description,
+    title: `${project.title} — Case Study`,
+    description: project.problemStatement,
     openGraph: {
       title: `${project.title} | ${siteConfig.name}`,
-      description: project.description,
+      description: project.problemStatement,
       url: `${siteConfig.url}/projects/${slug}`,
     },
     alternates: {
@@ -41,43 +43,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  const external = project.demo ?? project.caseStudyUrl ?? project.github;
-  const externalLabel = project.demo || project.caseStudyUrl ? "open live →" : "view source →";
+  const caseStudy = projectCaseStudies.find((cs) => cs.projectId === project.id);
 
-  return (
-    <main id="main-content" className="page-shell section-block">
-      <Link href="/#projects" className="section-more" style={{ marginTop: 0, marginBottom: "2rem" }}>
-        ← projects
-      </Link>
+  if (!caseStudy) {
+    notFound();
+  }
 
-      <p className="section-kicker">{project.title}</p>
-      <h1 className="display-name" style={{ fontSize: "clamp(2.25rem, 6vw, 3.75rem)" }}>
-        {project.title}
-      </h1>
-
-      <p className="list-body" style={{ marginTop: "1.5rem", maxWidth: "42rem" }}>
-        {project.longDescription ?? project.description}
-      </p>
-
-      {project.metrics && project.metrics.length > 0 && (
-        <div className="list-tags" style={{ marginTop: "1.5rem" }}>
-          {project.metrics.map((m) => (
-            <span key={m}>{m}</span>
-          ))}
-        </div>
-      )}
-
-      <div className="list-tags" style={{ marginTop: "1rem" }}>
-        {project.tech.slice(0, 10).map((t) => (
-          <span key={t}>{t}</span>
-        ))}
-      </div>
-
-      {external && (
-        <a href={external} target="_blank" rel="noopener noreferrer" className="section-more">
-          {externalLabel}
-        </a>
-      )}
-    </main>
-  );
+  return <EditorialCaseStudy project={project} caseStudy={caseStudy} />;
 }

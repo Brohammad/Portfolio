@@ -1,8 +1,20 @@
+export type ProjectTier = "flagship" | "supporting" | "experiment" | "upcoming";
+
 export interface ProjectCaseStudy {
   slug: string;
   projectId: string;
   problem: string;
   solution: string;
+  requirements?: string;
+  architectureDiagramNote?: string;
+  eventFlow?: string;
+  reliability?: string;
+  security?: string;
+  testing?: string;
+  performance?: string;
+  tradeoffs?: string[];
+  lessonsLearned?: string[];
+  evidenceGaps?: string[];
   deliverables: { area: string; detail: string }[];
   decisions: { title: string; detail: string }[];
   results: string[];
@@ -12,6 +24,10 @@ export interface ProjectCaseStudy {
 export interface Project {
   id: string;
   title: string;
+  tier: ProjectTier;
+  problemStatement: string;
+  contribution: string;
+  mainEngineeringChallenge: string;
   description: string;
   longDescription: string;
   tech: string[];

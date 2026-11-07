@@ -13,7 +13,7 @@ const workCopy: Record<
   voxforge: {
     role: "founder / principal engineer",
     summary:
-      "solo-built open-source voice ai infra — unified ws/rest/webrtc pipeline, langgraph agents, pgvector rag, eval + replay, and one-command https deploy. 354+ tests at 81% coverage.",
+      "solo-built open-source voice ai infra — unified ws/rest/webrtc pipeline, langgraph agents, pgvector rag, eval + replay, and one-command https deploy. metrics pinned in voxforge docs/project-metrics.md.",
     tags: ["python", "fastapi", "langgraph", "livekit", "docker", "otel"],
   },
 };

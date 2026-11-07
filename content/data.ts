@@ -1,41 +1,55 @@
-import type { Project, Experience, SkillGroup, Certification, BlogPost, Stat, ProjectCaseStudy } from "@/types";
+import type { Project, Experience, SkillGroup, Certification, BlogPost, Stat } from "@/types";
+import { projectCaseStudies } from "@/content/case-studies";
+import {
+  bugSathiMetrics,
+  paintCrmMetrics,
+  signalMineMetrics,
+  voxForgeMetrics,
+} from "@/content/verified-metrics";
 
 export const siteConfig = {
   name: "Aabid Mohamed A",
   handle: "brohammad",
-  title: "Aabid Mohamed A | Backend & AI Engineer",
+  title: "Aabid Mohamed A | Backend · Distributed Systems & AI Infrastructure",
   description:
-    "Backend and AI engineer who ships production systems solo. Built VoxForge — open-source voice AI infrastructure — plus enterprise AI at PwC. Open to founding engineer roles.",
+    "Backend engineer building distributed systems and AI infrastructure — VoxForge, BugSathi, SignalMine, and production agentic workflows at PwC. Source, tests, and case studies on GitHub.",
   url: "https://brohammad.tech",
   ogImage: "https://brohammad.tech/og.png",
   location: "Bengaluru, Karnataka, India",
   role: "Associate Software Engineer @ PwC",
-  tagline: "Founding engineer energy. Production discipline.",
-  headline: "I ship production systems solo — from architecture to HTTPS.",
+  tagline: "I build backend systems and AI infrastructure.",
+  headline: "Distributed systems, developer tooling, and production-grade AI applications.",
+  techIdentity: "Python · Go · Distributed Systems · AI Infrastructure",
   links: {
     github: "https://github.com/Brohammad",
     linkedin: "https://www.linkedin.com/in/aabid-mohamed-a-b22a02229/",
     email: "aabidmohamed2003@gmail.com",
     resume: "/resume.pdf",
   },
-  lastUpdated: "October 2026",
+  lastUpdated: "November 2026",
   builtWith: "Next.js · TypeScript · Tailwind CSS",
   voxforge: {
     repo: "https://github.com/Brohammad/VoxForge",
+    demo: "https://voxforge.brohammad.tech",
   },
 };
 
-export const foundingEngineer = {
+export const engineeringContact = {
   why: [
-    "I want to own problems end-to-end — architecture, implementation, deploy, and ops — not hand off to a platform team.",
-    "Enterprise work taught me how production AI survives real load; I want that discipline at startup speed.",
-    "I'm looking for a founding engineer or early co-founder role where shipping beats process.",
+    "I want end-to-end ownership — architecture, implementation, deploy, and ops — not handoffs across silos.",
+    "Enterprise banking work taught me how production AI and APIs survive real load and change.",
+    "I optimize for systems you can inspect: tests, ADRs, observability, and honest limitations.",
   ],
+  focus:
+    "Backend and platform engineering roles — distributed systems, event-driven services, and AI infrastructure with real test and deploy discipline.",
   openTo:
-    "Open to co-founder conversations and early founding engineer roles — especially voice/AI infra. VoxForge is built in public so founders and engineers can evaluate how I work before we talk. Just shipped; no traction metrics yet.",
+    "Open to backend, platform, and applied-AI infrastructure roles. I keep flagship work in public repos so you can inspect architecture and tests before we talk.",
   contactBlurb:
-    "If you're a founder building voice agents, AI infra, or developer tools — or hiring a founding engineer who ships solo — I'd like to hear from you.",
+    "Hiring for backend, distributed systems, or AI infrastructure? Email me with the system problem — I’ll point you at the repo, tests, and case study that best match it.",
 };
+
+/** @deprecated Use engineeringContact — kept for unused section components */
+export const foundingEngineer = engineeringContact;
 
 export const aboutIntro = [
   {
@@ -166,8 +180,15 @@ export const projects: Project[] = [
   {
     id: "voxforge",
     title: "VoxForge",
+    tier: "flagship",
+    problemStatement:
+      "Voice AI stacks split across transports and lack production operability (eval, replay, deploy).",
+    contribution: "Solo design and implementation — architecture through HTTPS deploy, tests, and docs.",
+    mainEngineeringChallenge:
+      "One VoicePipelineService for WebSocket, REST, and LiveKit without duplicating agent and RAG logic.",
     description:
       "Open-source voice AI infrastructure platform with one unified pipeline, RAG, evaluation, replay, and one-command HTTPS deployment.",
+    demo: "https://voxforge.brohammad.tech",
     github: "https://github.com/Brohammad/VoxForge",
     audience:
       "Built for teams evaluating self-hosted voice AI — read the repo and run it locally without a sales call. Just shipped; growing from here.",
@@ -198,15 +219,11 @@ export const projects: Project[] = [
     ],
     lessons: [
       "One-command HTTPS deploy with smoke-tested endpoints (NGINX + Certbot)",
-      "v1.0.0-rc.1 released on GitHub with 81% test coverage and green CI",
+      "Metrics pinned in docs/project-metrics.md (426 collected, 76.40% coverage at last doc revision)",
       "Mock providers exercise the full voice pipeline in ~100ms without API keys",
       "Open-source alternative to managed voice SaaS — deployable in 15 minutes",
     ],
-    metrics: [
-      "354+ automated tests · 81% coverage",
-      "3 transports, one pipeline",
-      "v1.0.0-rc.1 · self-hostable",
-    ],
+    metrics: [...voxForgeMetrics.display, "3 transports · 1 pipeline"],
     scale: ["354+ tests", "3 unified transports", "~100ms mock pipeline"],
     engineeringChallenges: [
       "Modular monolith over microservices — faster pilots, simpler ops, module boundaries in code",
@@ -220,6 +237,12 @@ export const projects: Project[] = [
   {
     id: "bugsathi",
     title: "BugSathi",
+    tier: "flagship",
+    problemStatement:
+      "Bug reports lack evidence and teams cannot audit how recordings become AI-written reports.",
+    contribution: "End-to-end Go systems build — API, workers, Kafka pipeline, observability, ADRs.",
+    mainEngineeringChallenge:
+      "Ordered, idempotent media + AI pipeline per recording under Kafka replay and failure.",
     description:
       "Local-first, AI-native bug reporting platform — screen recording upload, ffmpeg frame extraction, AI-drafted reports, shareable links, and an ordered Kafka pipeline in Go.",
     github: "https://github.com/Brohammad/BugSathi",
@@ -251,23 +274,71 @@ export const projects: Project[] = [
       "Provider ports keep AI tests offline and deterministic",
       "Vision evals need uncertainty fields, not just higher scores",
     ],
-    metrics: [
-      "116 tests under -race",
-      "28 REST endpoints",
-      "34 ADRs",
-    ],
+    metrics: [...bugSathiMetrics.display, "28 REST endpoints (per project docs)"],
     scale: ["8 Kafka topics", "10 Postgres migrations", "API + worker binaries"],
     engineeringChallenges: [
       "Per-recording ordering via Kafka partition keys",
       "Idempotent replay with an outbox and DLQ reprocess path",
       "Media processing isolated in an ffmpeg worker",
     ],
-    architecture:
+      architecture:
       "Go modular monolith with separate API and worker binaries. PostgreSQL for metadata, MinIO for recordings and frames, Redis for rate limiting, Kafka/Redpanda for the ordered event pipeline, and OpenTelemetry/Prometheus/Grafana for observability. Docker Compose locally; Kubernetes manifests and Caddy for production.",
+  },
+  {
+    id: "signalmine",
+    title: "SignalMine",
+    tier: "flagship",
+    problemStatement:
+      "Unstructured forum and issue threads hide product and market signals; manual synthesis is not reproducible.",
+    contribution:
+      "Pipeline design, collectors, normalizer, schema-bound extraction, evaluation harness, and FastAPI service.",
+    mainEngineeringChallenge:
+      "Reliable LLM extraction with JSON Schema contracts and golden-dataset regression scoring.",
+    description:
+      "Source-agnostic pipeline turning GitHub and Reddit discussions into schema-validated market intelligence.",
+    longDescription:
+      "SignalMine (repository: PainMiningEngine) implements collector → deterministic normalization → Instructor-backed extraction → validation. Typer CLI exposes stage-by-stage JSON workflows; FastAPI adds persistence, health, and Prometheus metrics when Postgres is configured.",
+    github: "https://github.com/Brohammad/PainMiningEngine",
+    tech: [
+      "Python", "FastAPI", "Typer", "PostgreSQL", "SQLAlchemy", "Alembic",
+      "OpenTelemetry", "Prometheus", "JSON Schema", "Instructor", "PRAW",
+    ],
+    difficulty: "Expert",
+    status: "completed",
+    features: [
+      "GitHub and file collectors with URL routing",
+      "Deterministic markdown normalization",
+      "Schema-constrained Complaint extraction",
+      "Golden-dataset evaluation reports",
+      "Insert-only persistence and duplicate detection",
+    ],
+    challenges: [
+      "GitHub rate limits and collector retries",
+      "Extraction validation retries without silent drift",
+      "Keeping CLI and API orchestration aligned",
+    ],
+    lessons: [
+      "Normalize before LLM calls so diffs are attributable",
+      "Golden datasets beat single accuracy numbers for extraction work",
+    ],
+    metrics: [...signalMineMetrics.display],
+    scale: ["4 JSON schemas", "Synchronous pipeline + optional API"],
+    engineeringChallenges: [
+      "Versioned prompt policy separate from code",
+      "Field-level golden scoring",
+    ],
+    architecture:
+      "Python package boundaries under backend/app: collectors, normalizer, extractor, validator, pipeline, storage, API. Contracts in schemas/; product constraints in docs/.",
   },
   {
     id: "paint-intelligence",
     title: "PaintCRM",
+    tier: "supporting",
+    problemStatement:
+      "Dealers need sub-minute wall previews and lead capture on unreliable shop-floor networks.",
+    contribution: "Full-stack product build — offline-first UX, Express API, ledger integrity, deploy.",
+    mainEngineeringChallenge:
+      "Offline-first CRM sync with server-authoritative financial data.",
     description:
       "Full-stack paint dealer platform — upload a room photo, preview 63 catalog shades on walls in under 60 seconds, capture leads, and run quotes, orders, inventory, and receivables offline-first.",
     demo: "https://paintcrm.brohammad.tech",
@@ -300,11 +371,7 @@ export const projects: Project[] = [
       "Financial data must never trust client-computed totals",
       "Shop-floor demos need zero-login, zero-network paths first",
     ],
-    metrics: [
-      "Live at paintcrm.brohammad.tech",
-      "200+ automated tests",
-      "40+ API endpoints",
-    ],
+    metrics: [...paintCrmMetrics.display, "Multi-tenant Express API"],
     scale: ["<60 sec to preview", "63 catalog shades", "12 route modules"],
     engineeringChallenges: [
       "Heuristic wall segmentation with optional ML fusion in the browser",
@@ -314,8 +381,39 @@ export const projects: Project[] = [
       "Vite offline-first frontend with Canvas engine and tested ES modules. Express API with 12 route modules, PostgreSQL multi-tenant store, optional Redis rate limiting. Docker + GitHub Actions CI, deployed on Render/Fly.io.",
   },
   {
+    id: "arden",
+    title: "Arden",
+    tier: "upcoming",
+    problemStatement:
+      "Teams need a scheduler that survives worker crashes without double execution or lost jobs.",
+    contribution: "Planned — distributed job engine in Go (design phase; not yet implemented).",
+    mainEngineeringChallenge:
+      "Postgres as source of truth with leasing, fencing tokens, heartbeats, and fair retry/DLQ semantics.",
+    description:
+      "Upcoming distributed job scheduler and execution engine in Go — Postgres-backed leasing, fencing, and observability.",
+    longDescription:
+      "Arden is in design. Intended scope: distributed scheduling, job leasing with fencing tokens, worker heartbeats, crash recovery, retry and DLQ policies, delayed/recurring jobs, fair scheduling, observability, fault injection, and benchmarks. No implementation evidence yet — follow GitHub when the repo ships.",
+    github: undefined,
+    tech: ["Go", "PostgreSQL", "OpenTelemetry"],
+    difficulty: "Expert",
+    status: "coming-soon",
+    features: [
+      "Design: Postgres as scheduler source of truth",
+      "Design: leasing, fencing tokens, worker heartbeats",
+      "Design: delayed jobs, DLQ, fair scheduling",
+    ],
+    challenges: ["Correctness under crash and partition — implementation not started"],
+    lessons: [],
+    metrics: ["Status: upcoming · not production-ready"],
+    architecture: "Planned architecture will be documented in-repo before this site claims components exist.",
+  },
+  {
     id: "alphaedge",
     title: "AlphaEdge",
+    tier: "experiment",
+    problemStatement: "Quant research toolchain experiment — personal learning and integration practice.",
+    contribution: "Solo build — strategy DSL, backtesting, and broker integration exploration.",
+    mainEngineeringChallenge: "Bounded contexts across backtesting, execution, and market data ingestion.",
     description:
       "Quantitative trading research and execution platform — strategy DSL, async backtesting, paper/live trading via Alpaca, portfolio risk, and OpenAI-powered insights.",
     longDescription:
@@ -363,6 +461,10 @@ export const projects: Project[] = [
   {
     id: "distributed-kv",
     title: "Distributed Key-Value Store",
+    tier: "experiment",
+    problemStatement: "Learn Raft consensus and linearizable replication by building, not reading only.",
+    contribution: "Go implementation study — leader election, log replication, snapshots.",
+    mainEngineeringChallenge: "Correctness at partition boundaries and fault-injection testing.",
     description:
       "Fault-tolerant distributed store implementing Raft consensus from scratch — linearizable reads/writes with automatic leader election and failover.",
     longDescription:
@@ -456,7 +558,7 @@ export const experiences: Experience[] = [
     type: "full-time",
     current: true,
     responsibilities: [
-      "Building an agentic deal platform for a banking client (SMBC) on async microservices",
+      "Building an agentic deal platform for an enterprise banking client on async microservices",
       "Designing NLP extraction and ML classification pipelines over deal documents and chat",
       "Shipping the APIs and operational tooling the sales desk uses daily",
     ],
@@ -525,14 +627,13 @@ export const certifications: Certification[] = [
 export const blogPosts: BlogPost[] = [];
 
 export const blogTopics = [
-  "Building reliable multi-agent systems with LangGraph",
-  "RAG in production: chunking strategies that actually work",
-  "Implementing Raft consensus from scratch in Go",
-  "Redis caching patterns for high-throughput APIs",
-  "Prompt engineering for structured outputs",
-  "System design: building an API gateway from scratch",
-  "LLM evaluation pipelines you can't skip in production",
-  "Kafka for event-driven backend architectures",
+  "Building a real-time voice AI infrastructure platform",
+  "Designing event-driven services in Go and Kafka",
+  "Building reliable LLM extraction pipelines",
+  "Distributed systems correctness: leases, fencing, and recovery",
+  "Implementing observability in production applications",
+  "RAG in production: chunking and grounding tradeoffs",
+  "Per-turn evaluation as a deployment gate for voice agents",
 ];
 
 export const nowPage = {
@@ -582,7 +683,7 @@ export const nowPage = {
   ],
 };
 
-export const projectCaseStudies: ProjectCaseStudy[] = [];
+export { projectCaseStudies };
 
 export const engineeringQuotes = [
   "Simplicity is prerequisite for reliability. — Dijkstra",

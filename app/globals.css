@@ -130,6 +130,45 @@ a {
   }
 }
 
+.hero-lede {
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.45;
+  max-width: 28rem;
+  margin-top: 1.25rem;
+  color: var(--foreground);
+}
+
+.hero-sub {
+  margin-top: 0.65rem;
+  max-width: 32rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+.hero-stack {
+  margin-top: 0.85rem;
+  color: var(--muted-foreground);
+  letter-spacing: 0.06em;
+}
+
+.writing-topics {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0;
+}
+
+.writing-topics li {
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
 .masthead-copy {
   display: flex;
   flex-direction: column;

@@ -6,8 +6,9 @@ import { FieldArt } from "@/components/ui/field-art";
 import { siteConfig } from "@/content/data";
 
 const nav = [
-  { href: "#work", label: "work", hint: "who i've built for" },
-  { href: "#projects", label: "projects", hint: "things i've built solo" },
+  { href: "#work", label: "work", hint: "production systems" },
+  { href: "#projects", label: "projects", hint: "inspect the repos" },
+  { href: "#writing", label: "writing", hint: "engineering notes" },
   { href: "#contact", label: "contact", hint: "say hello" },
 ];
 
@@ -37,11 +38,13 @@ export function HeroSection() {
 
       <section id="home" className="page-shell masthead">
         <div className="masthead-copy">
-          <p className="role-eyebrow">aabid mohamed a · backend &amp; ai engineer</p>
+          <p className="role-eyebrow">aabid mohamed a · backend · distributed systems &amp; ai infrastructure</p>
 
-          <h1 className="display-name">
-            brohammad
-          </h1>
+          <h1 className="display-name">brohammad</h1>
+
+          <p className="hero-lede">{siteConfig.tagline}</p>
+          <p className="hero-sub">{siteConfig.headline}</p>
+          <p className="hero-stack">{siteConfig.techIdentity}</p>
 
           <nav className="leader-nav" aria-label="Primary">
             {nav.map((item) => (
@@ -60,6 +63,12 @@ export function HeroSection() {
             <span className="social-sep" aria-hidden>
               ×
             </span>
+            <a href={siteConfig.links.resume} download>
+              resume
+            </a>
+            <span className="social-sep" aria-hidden>
+              ×
+            </span>
             <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer">
               linkedin
             </a>
@@ -67,12 +76,6 @@ export function HeroSection() {
               ×
             </span>
             <a href={`mailto:${siteConfig.links.email}`}>email</a>
-            <span className="social-sep" aria-hidden>
-              ×
-            </span>
-            <a href={siteConfig.links.resume} download>
-              resume
-            </a>
           </div>
         </div>
 
