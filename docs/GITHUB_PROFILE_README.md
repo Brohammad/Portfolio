@@ -44,9 +44,9 @@ Offline-first room preview · multi-tenant API · live demo at [paintcrm.brohamm
 
 **Case study:** [brohammad.tech/projects/paint-intelligence](https://brohammad.tech/projects/paint-intelligence)
 
-### Arden (upcoming)
+### [Arden](https://github.com/Brohammad/Arden) (upcoming)
 
-Distributed job scheduler in Go — Postgres-backed leasing, fencing tokens, DLQ, observability. **Not started** — listed on [brohammad.tech](https://brohammad.tech) only as upcoming.
+Distributed job scheduler in Go — Postgres-backed leasing, fencing tokens, DLQ, observability. **Design phase only** — README states what is not implemented yet.
 
 ---
 

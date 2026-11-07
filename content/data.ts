@@ -392,8 +392,8 @@ export const projects: Project[] = [
     description:
       "Upcoming distributed job scheduler and execution engine in Go — Postgres-backed leasing, fencing, and observability.",
     longDescription:
-      "Arden is in design. Intended scope: distributed scheduling, job leasing with fencing tokens, worker heartbeats, crash recovery, retry and DLQ policies, delayed/recurring jobs, fair scheduling, observability, fault injection, and benchmarks. No implementation evidence yet — follow GitHub when the repo ships.",
-    github: undefined,
+      "Arden is in design. Intended scope: distributed scheduling, job leasing with fencing tokens, worker heartbeats, crash recovery, retry and DLQ policies, delayed/recurring jobs, fair scheduling, observability, fault injection, and benchmarks. Track progress at github.com/Brohammad/Arden — no scheduler implementation yet.",
+    github: "https://github.com/Brohammad/Arden",
     tech: ["Go", "PostgreSQL", "OpenTelemetry"],
     difficulty: "Expert",
     status: "coming-soon",
