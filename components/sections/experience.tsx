@@ -7,7 +7,7 @@ const workCopy: Record<
   pwc: {
     role: "associate software engineer · backend + ai",
     summary:
-      "building an agentic deal platform for a banking client — async ingestion, nlp extraction, ml classification, and the apis the sales desk actually uses. ~50 deals/day end to end in under 60 seconds, with evaluation logging and azure deploy discipline.",
+      "building an agentic deal platform for an enterprise banking client — async ingestion, nlp extraction, ml classification, sales-desk apis, per-stage evaluation logging, and azure deploy discipline (client details confidential).",
     tags: ["python", "fastapi", "postgres", "langchain", "azure", "docker"],
   },
   voxforge: {

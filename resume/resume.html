@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="author" content="Aabid Mohamed A" />
-<meta name="description" content="Aabid Mohamed A — Backend & AI Engineer. Production agentic systems, NLP pipelines, and backend platforms." />
+<meta name="description" content="Aabid Mohamed A — Backend engineer · distributed systems and AI infrastructure." />
 <title>Aabid Mohamed A — Resume</title>
 <style>
   @page { size: Letter; margin: 0.34in 0.46in 0.26in 0.46in; }
@@ -64,7 +64,6 @@
   }
   .entry-title { font-weight: 700; font-size: 9.5pt; }
   .entry-title .company { color: #16324f; }
-  .entry-title .client { font-weight: 500; color: #46545f; }
   .entry-meta {
     font-size: 8.5pt;
     color: #46545f;
@@ -118,7 +117,7 @@
 
 <header>
   <div class="name">Aabid Mohamed A</div>
-  <div class="role">Backend &amp; AI Engineer</div>
+  <div class="role">Backend · Distributed Systems &amp; AI Infrastructure</div>
   <div class="contact">
     +91-70255 25039<span class="sep">|</span><a href="mailto:aabidmohamed2003@gmail.com">aabidmohamed2003@gmail.com</a><span class="sep">|</span><a href="https://github.com/Brohammad">github.com/Brohammad</a><span class="sep">|</span><a href="https://www.linkedin.com/in/aabid-mohamed-a-b22a02229/">linkedin.com/in/aabid-mohamed-a</a><span class="sep">|</span><a href="https://brohammad.tech">brohammad.tech</a>
   </div>
@@ -126,22 +125,21 @@
 
 <h2>Summary</h2>
 <p class="summary">
-Backend and AI engineer with production experience deploying <strong>agentic systems on live banking infrastructure</strong> at PwC — NLP extraction pipelines, ML classifiers, and async microservices handling ~50 deals/day. B.Tech in Electrical &amp; Electronics Engineering, NIT Calicut; self-taught in systems and applied AI. Seeking backend and AI platform roles.
+Backend engineer with production experience on <strong>agentic workflows and async services</strong> at PwC (enterprise banking client — confidential). Flagship open-source work: voice AI infrastructure (VoxForge), event-driven Go services (BugSathi), and schema-bound LLM extraction (SignalMine). B.Tech, NIT Calicut. Case studies and metrics on <a href="https://brohammad.tech">brohammad.tech</a>.
 </p>
 
 <h2>Experience</h2>
 
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title"><span class="company">PwC</span><span class="client"> — Client: SMBC (Sumitomo Mitsui Banking Corporation)</span></div>
+    <div class="entry-title"><span class="company">PwC</span> — Enterprise banking (confidential)</div>
     <div class="entry-meta">Aug 2025 – Present · Bengaluru</div>
   </div>
-  <div class="entry-sub">Associate Software Engineer</div>
+  <div class="entry-sub">Associate Software Engineer · Backend + AI</div>
   <ul>
-    <li>Built an end-to-end agentic deal platform that eliminated a manual workflow for <strong>25 salespeople</strong> — async microservices processing <strong>~50 deals/day</strong> across ingestion, extraction, classification, and approval in under 60 seconds.</li>
-    <li>Improved downstream ML extraction quality <strong>30%+</strong> with a chat-ingestion pipeline that normalized raw deal conversations into retrieval-ready structured documents.</li>
-    <li>Eliminated manual entity tagging with a prompt-driven NLP layer (investor, tranche, deal size, terms) and per-call evaluation logging that catches extraction drift before scoring.</li>
-    <li>Cut irrelevant blotter entries <strong>~40%</strong> with an ML deal-likelihood classifier, and delivered a blotter API plus live potlist that held <strong>zero downtime</strong> for 25 concurrent users and saved <strong>~2 hours/day</strong> in status checks.</li>
+    <li>Building an agentic deal platform on <strong>async Python microservices</strong> — document and chat ingestion, NLP extraction, ML classification, and operational APIs for internal users.</li>
+    <li>Normalized conversational deal data into structured documents to improve downstream ML extraction quality; added <strong>per-call evaluation logging</strong> to catch extraction drift.</li>
+    <li>Shipped classification and blotter APIs on <strong>PostgreSQL</strong> with <strong>Azure</strong> deployment discipline; typed contracts between ingestion, extraction, and scoring stages.</li>
   </ul>
 </div>
 
@@ -152,8 +150,8 @@ Backend and AI engineer with production experience deploying <strong>agentic sys
   </div>
   <div class="entry-sub">Machine Learning Intern</div>
   <ul>
-    <li>Cut query latency below <strong>3 seconds</strong> by building a multi-source research agent that orchestrates Tavily web search and Hunter data retrieval into structured outputs.</li>
-    <li>Reduced manual SDR prospecting <strong>~60%</strong> with a LinkedIn and Gmail outreach agent automating contact discovery and personalized messaging; tripled throughput via async FastAPI endpoints.</li>
+    <li>Multi-source research agent orchestrating web search and enrichment APIs into structured outputs; async FastAPI endpoints.</li>
+    <li>Outreach automation prototype with LinkedIn/Gmail integrations.</li>
   </ul>
 </div>
 
@@ -161,46 +159,57 @@ Backend and AI engineer with production experience deploying <strong>agentic sys
 
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title"><a href="https://github.com/Brohammad/VoxForge">VoxForge — Voice AI Platform</a></div>
-    <div class="entry-meta">354+ tests · 81% coverage</div>
+    <div class="entry-title"><a href="https://github.com/Brohammad/VoxForge">VoxForge — Voice AI infrastructure</a></div>
+    <div class="entry-meta">426 collected · 76.40% cov.</div>
   </div>
   <div class="tech">Python · FastAPI · LangGraph · LiveKit · pgvector · Docker · OpenTelemetry</div>
   <ul>
-    <li>Built and shipped an open-source voice AI platform solo — one pipeline unifying WebSocket, REST, and LiveKit WebRTC with LangGraph agents and pgvector RAG.</li>
-    <li>Hardened it with <strong>354+ automated tests (81% coverage)</strong>, Playwright browser tests, per-turn evaluation, signed replay, human handoff, OpenTelemetry, and one-command HTTPS deploy.</li>
+    <li>Open-source voice platform — one <strong>VoicePipelineService</strong> for WebSocket, REST, and LiveKit WebRTC; LangGraph agents; pgvector RAG; per-turn eval; signed replay; human handoff.</li>
+    <li>Metrics per <a href="https://github.com/Brohammad/VoxForge/blob/main/docs/project-metrics.md">docs/project-metrics.md</a>: 407 non-browser tests passed, Playwright CI, one-command HTTPS deploy. Case study: brohammad.tech/projects/voxforge</li>
   </ul>
 </div>
 
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title"><a href="https://github.com/Brohammad/BugSathi">BugSathi — Bug Reporting Platform</a></div>
-    <div class="entry-meta">116 tests · 34 ADRs</div>
+    <div class="entry-title"><a href="https://github.com/Brohammad/BugSathi">BugSathi — Event-driven bug reporting</a></div>
+    <div class="entry-meta">116 tests · 35 ADRs</div>
   </div>
   <div class="tech">Go · Kafka · PostgreSQL · MinIO · Redis · ffmpeg · OpenTelemetry · Kubernetes</div>
   <ul>
-    <li>Built a local-first bug reporting platform in Go — an ordered <strong>8-topic Kafka pipeline</strong> from MinIO upload through ffmpeg frame extraction to AI-drafted reports and shareable links.</li>
-    <li>Shipped <strong>28 REST endpoints</strong>, 10 Postgres migrations, JWT refresh rotation, and project tenancy; 116 tests run under <strong>-race</strong> in CI alongside OTel/Prometheus/Grafana, Docker/K8s, and 34 ADRs.</li>
+    <li>Ordered <strong>Kafka pipeline</strong> from MinIO upload through ffmpeg frames to AI-drafted reports; API + worker binaries, JWT refresh rotation, OTel/Prometheus/Grafana.</li>
+    <li><strong>116 tests</strong> under <strong>-race</strong> in CI. Case study: brohammad.tech/projects/bugsathi</li>
   </ul>
 </div>
 
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title"><a href="https://github.com/Brohammad/PainMiningEngine">SignalMine — Market Intelligence Pipeline</a></div>
-    <div class="entry-meta">124 tests · 4 JSON schemas</div>
+    <div class="entry-title"><a href="https://github.com/Brohammad/PainMiningEngine">SignalMine — Market intelligence pipeline</a></div>
+    <div class="entry-meta">125 tests · 4 schemas</div>
   </div>
   <div class="tech">Python · FastAPI · PostgreSQL · Pydantic · Instructor · OpenTelemetry · Prometheus</div>
   <ul>
-    <li>Built a source-agnostic pipeline that turns GitHub and Reddit threads into <strong>schema-validated, evidence-backed</strong> complaint records — collectors, a deterministic normalizer, an LLM extractor, and a JSON Schema validator behind one contract.</li>
-    <li>Shipped a FastAPI service with Postgres persistence, OpenTelemetry traces, and Prometheus metrics, backed by <strong>124 tests</strong> and a golden-dataset harness that scores extraction field by field.</li>
+    <li>GitHub/Reddit collectors → deterministic normalization → schema-validated LLM extraction; golden-dataset field-level evaluation.</li>
+    <li><strong>125 pytest tests</strong> (see docs/project-metrics.md). Case study: brohammad.tech/projects/signalmine</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title"><a href="https://github.com/Brohammad/PaintCRM">PaintCRM — Dealer platform</a></div>
+    <div class="entry-meta">Live demo</div>
+  </div>
+  <div class="tech">Node.js · Express · PostgreSQL · Docker · Playwright</div>
+  <ul>
+    <li>Offline-first room preview and CRM workflows; live at paintcrm.brohammad.tech. Case study: brohammad.tech/projects/paint-intelligence</li>
   </ul>
 </div>
 
 <h2>Technical Skills</h2>
 <div class="skills">
-  <div class="row"><span class="k">Languages:</span> Python, Go, TypeScript, JavaScript, C++</div>
-  <div class="row"><span class="k">Backend:</span> FastAPI, Node.js, Express, REST APIs, gRPC, AsyncIO, WebSockets, SSE, Redis, Kafka</div>
-  <div class="row"><span class="k">AI / ML:</span> LangGraph, LangChain, RAG, MCP, multi-agent systems, LLM evaluation, prompt engineering, NLP, OpenAI, Gemini</div>
-  <div class="row"><span class="k">Data, Infra &amp; Testing:</span> PostgreSQL, SQLite, Neo4j, ChromaDB, Qdrant, Docker, Kubernetes, GitHub Actions, Prometheus, Grafana, OpenTelemetry, AWS, GCP, Linux, Git, pytest, Playwright</div>
+  <div class="row"><span class="k">Languages:</span> Python, Go, TypeScript, JavaScript</div>
+  <div class="row"><span class="k">Backend:</span> FastAPI, Express, REST, gRPC, WebSockets, Kafka, Redis, async services</div>
+  <div class="row"><span class="k">AI / platforms:</span> LangGraph, RAG, MCP, LLM evaluation, Instructor, voice AI (STT/TTS/LiveKit)</div>
+  <div class="row"><span class="k">Data &amp; ops:</span> PostgreSQL, pgvector, MinIO, Docker, Kubernetes, GitHub Actions, Prometheus, Grafana, OpenTelemetry, pytest, Playwright</div>
 </div>
 
 <h2>Education</h2>
@@ -211,8 +220,8 @@ Backend and AI engineer with production experience deploying <strong>agentic sys
 
 <h2>Leadership</h2>
 <ul class="tight">
-  <li><strong>Joint Secretary, Enquire (NIT Calicut):</strong> Drove <strong>20,000+ students</strong> statewide for Samasya, Kerala's largest science competition.</li>
-  <li><strong>IEEE NIT Calicut:</strong> 10,000+ participants across 40+ events; named <strong>Best Student Branch in India</strong>.</li>
+  <li><strong>Joint Secretary, Enquire (NIT Calicut):</strong> Statewide outreach for Samasya science competition.</li>
+  <li><strong>IEEE NIT Calicut:</strong> Large-scale student events; branch recognized nationally.</li>
 </ul>
 
 </body>

@@ -527,11 +527,11 @@ export const experiences: Experience[] = [
       "Founded VoxForge and shipped the full platform solo — from system design through production HTTPS",
       "Automated deploy pipeline: fresh Ubuntu VPS to HTTPS in one command with Docker, NGINX, and Certbot",
       "Published v1.0.0-rc.1 open source with ADRs, runbooks, and incident response documentation",
-      "Set CI quality gates: 354+ tests, Playwright UI coverage, dependency audit, and secret scanning",
+      "Set CI quality gates per docs/project-metrics.md — Playwright UI coverage, dependency audit, and secret scanning",
     ],
     impact: [
-      "Engineers can evaluate the voice pipeline from the repo, docs, and 354+ tests",
-      "Engineering evaluators can inspect architecture docs and 354+ automated tests on GitHub",
+      "Engineers can evaluate the voice pipeline from the repo, docs, and pinned test metrics",
+      "Engineering evaluators can inspect architecture docs and CI on GitHub",
       "Open-source release removes per-minute SaaS fees and vendor lock-in for early adopters",
     ],
     architecture:
@@ -566,21 +566,21 @@ export const experiences: Experience[] = [
       "Python", "FastAPI", "LangChain", "PostgreSQL", "Azure", "Docker", "Node.js",
     ],
     achievements: [
-      "Shipped an end-to-end agentic deal platform that replaced a manual workflow for 25 salespeople",
-      "Cut irrelevant blotter entries ~40% with an ML deal-likelihood classifier",
-      "Improved downstream extraction quality 30%+ with a normalized chat-ingestion pipeline",
+      "Shipped an end-to-end agentic deal platform on async microservices (enterprise banking client — confidential)",
+      "ML deal-likelihood classifier to reduce noise in operational blotter workflows",
+      "Normalized chat-ingestion pipeline to improve downstream NLP extraction quality",
     ],
     impact: [
-      "~50 deals/day processed end to end in under 60 seconds",
-      "Zero downtime on the blotter API and live potlist for 25 concurrent users",
-      "~2 hours/day saved in status checks; per-call eval logging catches extraction drift",
+      "Per-call evaluation logging on extraction paths to catch model drift early",
+      "Production APIs on PostgreSQL with Azure deployment discipline",
+      "Typed contracts between ingestion, extraction, and classification services",
     ],
     architecture:
       "Async Python microservices on FastAPI with a prompt-driven NLP extraction layer, an ML classifier for deal likelihood, and PostgreSQL behind a blotter API. Deployed on Azure.",
     scale: [
-      "~50 deals/day",
-      "25 salespeople",
-      "Zero-downtime blotter API",
+      "Async microservices",
+      "Enterprise banking context",
+      "Production Azure deploy",
     ],
     decisions: [
       "Async services over one monolith so ingestion stays independent of scoring",

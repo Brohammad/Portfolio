@@ -34,6 +34,8 @@ Screen recording → MinIO → ordered Kafka pipeline → ffmpeg → AI-drafted 
 
 GitHub/Reddit → deterministic normalization → schema-validated LLM extraction · golden-dataset eval · FastAPI + Postgres persistence.
 
+**Metrics:** [docs/project-metrics.md](https://github.com/Brohammad/PainMiningEngine/blob/main/docs/project-metrics.md) — 125 pytest tests collected.
+
 **Case study:** [brohammad.tech/projects/signalmine](https://brohammad.tech/projects/signalmine)
 
 ### [PaintCRM](https://github.com/Brohammad/PaintCRM) — dealer product

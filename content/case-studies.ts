@@ -144,9 +144,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
     lessonsLearned: [
       "Golden datasets catch extraction drift field-by-field, not just with a single accuracy score.",
     ],
-    evidenceGaps: [
-      "Add docs/project-metrics.md to PainMiningEngine so CI revision pins the pytest count (local collect-only showed 125 on 2026-11-07; resume cites 124).",
-    ],
+    evidenceGaps: [],
     deliverables: [
       { area: "Collectors", detail: "GitHub REST, file, optional Reddit via PRAW" },
       { area: "Contracts", detail: `${signalMineMetrics.jsonSchemas} JSON schemas in schemas/` },
@@ -169,6 +167,7 @@ export const projectCaseStudies: ProjectCaseStudy[] = [
       { label: "GitHub (PainMiningEngine)", href: "https://github.com/Brohammad/PainMiningEngine" },
       { label: "Architecture", href: "https://github.com/Brohammad/PainMiningEngine/blob/main/docs/architecture.md" },
       { label: "Evaluation", href: "https://github.com/Brohammad/PainMiningEngine/blob/main/docs/eval.md" },
+      { label: "Project metrics", href: "https://github.com/Brohammad/PainMiningEngine/blob/main/docs/project-metrics.md" },
     ],
   },
   {
